@@ -1,0 +1,20 @@
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+int
+main()
+{
+  if (@test@)
+    {
+      @loop:method{iteration=true}@
+    }
+
+  if (@test@)
+    {
+      @loop:method{iteration=true}@
+    }
+
+  return 0;
+}

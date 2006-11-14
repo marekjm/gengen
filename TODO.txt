@@ -1,0 +1,30 @@
+Add, in the generated comments, also the source file
+
+Enable some sort of submodules within the same skeleton file
+so that variables can be consistently shared
+
+ATTENTION: names are generated alphabetically and this can change the
+semantics of the member-wise constructor!
+
+also deal with \t characters
+
+Generate also Java code.
+
+Implement "default" and "required"
+
+IF BRANCH
+
+don't use METHOD_TYPE and other types and rely on derived classes?
+
+memorizzarsi in tabelle le varie variabili e metodi cosi' che non
+sia necessario tutte le volte riesaminare tutti gli elementi.
+
+reimplement templates with @if@ as much as possible
+(e.g. class.h_skel and constructors)
+
+does not update indent after an @ENDIF@ without any \n after:
+
+@ENDIF@
+  @foo@
+  
+@cond exp ? then : else cond@ (alias for if then else)

@@ -1,0 +1,2 @@
+notsametype.cc_skel:2: 10 and "foo" must have the same type
+notsametype.cc_skel:2: 10 has type int, "foo" has type string

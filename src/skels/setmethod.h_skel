@@ -1,0 +1,4 @@
+void set_@name@(@type@_@name@)
+{
+  @name@ = _@name@;
+}

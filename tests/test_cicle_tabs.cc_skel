@@ -1,0 +1,17 @@
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+#define NUM_OF_LOOPS @loopnum@
+
+int
+main()
+{
+  cout << "The val of NUM_OF_LOOPS is ";
+  cout << @loopnum@ << endl;
+
+  @loop@
+
+  @return_st@
+}

@@ -1,0 +1,23 @@
+void
+generate_@genname@(FILE *stream, struct @structname@ *record, unsigned int indent)
+{
+  char *indent_str;
+  unsigned int i;
+
+  indent_str = (char *) malloc (indent + 1);
+  for (i = 0; i < indent; ++i)
+    indent_str[i] = ' ';
+  indent_str[indent] = '\0';
+  indent = 0;
+  @geninstructions:method{iteration=true}@
+
+  free (indent_str);
+}
+
+void
+generatep_@genname@(FILE *stream, unsigned int indent@genparameters:method@)
+{
+  struct @structname@ record;
+  @assignfields:method@
+  generate_@genname@ (stream, &record, indent);
+}

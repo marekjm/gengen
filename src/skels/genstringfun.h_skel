@@ -1,0 +1,32 @@
+
+static void
+generate_string(const char *s, FILE *stream, unsigned int indent)
+{
+  const char *sub = s;
+  char *indent_str;
+  unsigned int i;
+
+  if (!indent || strchr (s, '\n') == 0)
+    {
+      fprintf (stream, "%s", s);
+      return;
+    }
+
+  indent_str = (char *) malloc (indent + 1);
+  for (i = 0; i < indent; ++i)
+    indent_str[i] = ' ';
+  indent_str[indent] = '\0';
+
+  while ( (sub=strchr (s, '\n')) != 0 )
+    {
+      fwrite (s, sizeof(char), (sub-s)+1, stream);
+      s = sub+1;
+      if (s[0])
+        fprintf (stream, "%s", indent_str);
+    }
+  if (s[0])
+    fwrite (s, sizeof(char), strlen (s), stream);
+
+  free (indent_str);
+}
+

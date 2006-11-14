@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+  
+  <meta name="Author" content="Lorenzo Bettini">
+
+
+  
+  <meta name="GENERATOR" content="Mozilla/4.77 [en] (X11; U; Linux 2.4.3-20mdk i686) [Netscape]">
+
+<title>GNU Gengen - GNU Project - Free Software Foundation (FSF)</title>
+
+</head>
+
+
+<body>
+
+
+<h1>
+GNU Gengen 1.0</h1>
+
+
+A parameterized-text-generator generator based on a template
+<p>by <i><a href="http://www.lorenzobettini.it">Lorenzo
+Bettini</a></i>
+</p>
+
+
+<hr>
+<h1>Table of Contents</h1>
+
+
+<ul>
+
+
+  <li> <a href="#Download">Download</a></li>
+
+
+  <li> <a href="#Simple%20example">Simple example</a></li>
+
+
+  <li> <a href="#Gengen%20manual">Gengen manual</a></li>
+
+
+</ul>
+
+
+<hr>
+<br>
+
+
+Gengen (<i>GENerator GENerator</i>) is a tool that,
+starting from a
+parameterized text, called template, generates a text generator that
+can
+substitute parameters with values.
+<p>At the moment Gengen can generate C++ or C code; however other
+target
+languages
+are under development (e.g., Java).
+</p>
+
+
+<p>Gengen is free software; you are free to use, share and modify
+it
+under
+the terms of the GNU General Public License (see <a href="COPYING">COPYING</a>).
+</p>
+
+
+<p>The home page of Gengen is <a href="http://www.gnu.org/software/gengen">http://www.gnu.org/software/gengen</a>
+</p>
+
+
+<p>See <a href="NEWS">NEWS</a> file for a
+summary of new features in
+this
+release and ChangeLog for the complete list of
+changes sources
+</p>
+
+
+<h2><a name="Download"></a>Download</h2>
+
+
+You can download it from GNU's ftp site: <br>
+
+
+<a href="ftp://ftp.gnu.org/gnu/gengen/">ftp://ftp.gnu.org/gnu/gengen/</a>
+or from one of its mirrors (see <a href="http://www.gnu.org/prep/ftp.html">http://www.gnu.org/prep/ftp.html</a>).
+<br>
+
+
+<br>
+
+
+I do not distribute Windows binaries anymore; since, they can be
+easily built by using <b>Cygwin C/C++</b> compiler,
+available at <a href="http://www.cygwin.com/">http://www.cygwin.com/</a>.
+However, if
+you don't feel like downloading such compiler, you can request such
+binaries directly to me, by e-mail (please find my e-mail address at my
+home page) and I can send them to you.
+<p>The steps to perform for the installation are standard for
+packages
+in source form: once you have unpacked the sources in a directory, `cd'
+to the directory containing the package's source code and execute the
+following
+steps:
+</p>
+
+
+<pre>./configure<br>make<br>make install</pre>
+
+
+Note: unless you specify a different install directory by
+<tt>--prefix</tt>
+option of configure (e.g. <tt>./configure --prefix=&lt;your
+home&gt;</tt>),
+you must be root to 'make install'.<br>
+
+<h3><a name="mozTocId38513" class="mozTocH3"></a> Anonymous CVS Access</h3>
+
+
+This project's CVS repository can be checked out through anonymous
+(pserver) CVS with the following instruction:
+<pre>cvs -z3 -d:pserver:anonymous@cvs.savannah.gnu.org:/sources/gengen co gengen </pre>
+
+
+Further instructions can be found at the address: <a href="http://savannah.gnu.org/projects/gengen">http://savannah.gnu.org/projects/gengen</a>
+.
+
+   
+<p>Please notice that this way you will get the latest development sources
+of Gengen, which may also be unstable.  This solution is the
+best if you intend to correct/extend this program: you should send me
+patches against the latest cvs repository sources.</p>
+
+
+
+   
+<p>If, on the contrary, you want to get the sources of a given release,
+through cvs, say, e.g., version X.Y.Z, you must specify the tag
+<tt>rel_X_Y_Z</tt> when you run the cvs command or the <tt>cvs update</tt>
+command.</p>
+
+
+
+   
+<p>When you compile the sources that you get through the cvs repository,
+before running the <tt>configure</tt> and <tt>make</tt> commands, you
+should, at least the first time, run the command:</p>
+
+
+
+<pre>     sh reconf<br></pre>
+
+
+   
+   
+<p>This will run the autotools commands in the correct order, and also copy
+possibly missing files.  You should have installed recent versions of
+<tt>automake</tt> and <tt>autoconf</tt> in order for this to succeed. 
+You will also need <tt>flex</tt> and <tt>bison</tt>.<br>
+
+
+</p>
+
+<h2><a name="Simple example"></a>Simple example</h2>
+
+Say you are writing a C/C++ program and at some point your program
+has to generate the following code:
+
+<pre class="example">     if (i &lt; 10)
+       printf("the value of i is %d", i);
+</pre>
+   <p class="noindent">It is not so difficult to write this piece of C++ code:
+
+<pre class="example">     cout &lt;&lt; "if (i &lt; 10)" &lt;&lt; endl;
+     cout &lt;&lt; "  printf(\"the value of i is %d\", i);" &lt;&lt; endl;
+</pre>
+   <p class="noindent">or the C code:
+
+<pre class="example">     printf("if (i &lt; 10)\n");
+     printf("  printf(\"the value of i is %%d\", i);\n");
+</pre>
+   <p class="noindent">provided that you remember to escape the <code>"</code> (and in the
+C code, also the <code>%</code>).
+
+   <p>Suppose now that the previous piece of code has to be generated many
+times by your program, and every time instead of <code>i</code> another
+symbol has to be generated (decided at run time).  In this case,
+supposing that this value is contained in a variable <code>symb</code>,
+the code for generating this code would be a little bit more
+complex:
+
+<pre class="example">     cout &lt;&lt; "if (" &lt;&lt; symb &lt;&lt; "&lt; 10)" &lt;&lt; endl;
+     cout &lt;&lt; "  printf(\"the value of " &lt;&lt; symb &lt;&lt; " is %d\", "
+          &lt;&lt; symb &lt;&lt; ");" &lt;&lt; endl;
+</pre>
+   <p class="noindent">And the C version would be even more obfuscated.
+
+   <p>Probably you didn't even realize that you forgot to leave
+a space before the <code>&lt; 10</code>; basically this is due to the fact
+that this piece of code mixes the code that has to be generated
+with the code that generates it, and this tends to make this part
+of program less easy to maintain.  Especially if some day you
+have to change the code that has to be generated, you'll have
+to act on this part of the program, and probably you'll have to
+execute some tests in order to be sure that you did it right.
+
+   <p>If the code that you have to generate is a slightly more complex,
+the task may easily become a pain in the neck!
+
+<p>Wouldn't it be nice if you could write the code to be generated in a
+separate file, let's call it <em>template</em>, say <samp><span class="file">test1.cc_skel</span></samp>
+this way
+
+<!-- Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite -->
+<pre class="example">     if (@i@ &lt; 10)
+       printf("the value of @i@ is %d", @i@);
+</pre>
+   <p class="noindent">and have a tool that generates a generator, that you
+can instantiate at run-time with the value that has to be substituted to
+the <em>parameter</em> <code>i</code>?  If such a tool existed, and it generated
+a file <samp><span class="file">test1_c.h</span></samp> with a C struct <code>test1_gen_struct</code>, then
+you could write simply this code, in another file, say
+<samp><span class="file">test1_gen_c.c</span></samp>:
+
+<!-- Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite -->
+<pre class="example">     <b>#include</b> <tt>&lt;stdio.h&gt;</tt>
+     
+     <b>#include</b> <tt>"test1_c.h"</tt>
+     
+     <b>int</b>
+     main()
+     {
+       <b>struct</b> test1_gen_struct gen_struct;
+       gen_struct.i = <tt>"foo"</tt>;
+       generate_test1(stdout, &amp;gen_struct, 0);
+       printf(<tt>"</tt>\n<tt>"</tt>);
+       gen_struct.i = <tt>"bar"</tt>;
+       generate_test1(stdout, &amp;gen_struct, 0);
+       printf(<tt>"</tt>\n<tt>"</tt>);
+     
+       <b>return</b> 0;
+     }
+     
+</pre>
+   <p>Alternatively, if it generated a file <samp><span class="file">test1.h</span></samp> with a C++ class
+<code>test1_gen_class</code>, then you could write simply this code, in
+another file, say <samp><span class="file">test1_gen.cc</span></samp>:
+
+<!-- Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite -->
+<pre class="example">     <b>#include</b> <tt>&lt;iostream&gt;</tt>
+     
+     <b>using</b> std::cout;
+     <b>using</b> std::endl;
+     
+     <b>#include</b> <tt>"test1.h"</tt>
+     
+     <b>int</b>
+     main()
+     {
+       test1_gen_class gen_class;
+       gen_class.set_i(<tt>"foo"</tt>);
+       gen_class.generate_test1(cout);
+       cout &lt;&lt; endl;
+       gen_class.set_i(<tt>"bar"</tt>);
+       gen_class.generate_test1(cout);
+       cout &lt;&lt; endl;
+     
+       <b>return</b> 0;
+     }
+     
+</pre>
+   <p class="noindent">and when you run it you would obtain the expected output:
+
+<pre class="example">     if (foo &lt; 10)
+       printf("the value of foo is %d", foo);
+     if (bar &lt; 10)
+       printf("the value of bar is %d", bar);
+</pre>
+   <p class="noindent">Well, Gengen does right this!  Now the code that has to
+be generated and the code that generates it are separated and they can
+be maintained more easily: if you want to change the code that has to be
+generated you act on the file <samp><span class="file">test1.cc_skel</span></samp>; alternatively, say
+you need to change the value that will be substituted for <code>i</code>, you
+just change the file <samp><span class="file">test1_gen.cc</span></samp> or <samp><span class="file">test1_gen_c.c</span></samp>.
+
+   <p>Notice that the method <code>generate_test1</code> accepts an output stream
+(indeed in this example the standard output stream <code>cout</code> is used),
+thus the stream abstraction facilities can be exploited.  Similarly, the
+C function <code>generate_test1</code> accepts a <code>FILE*</code>, so you can use
+the C file abstraction.
+
+   <p>Indeed in order to generate the C++ file <samp><span class="file">test1.h</span></samp> with the class
+<code>test1_gen_class</code>, I simply had to run the following command:
+
+<pre class="example">     gengen -i test1.cc_skel --file-name test1.h --gen-name test1
+</pre>
+   <p class="noindent">and in order to generate the C file <samp><span class="file">test1_c.h</span></samp> with the structure
+<code>test1_gen_struct</code>, I simply had to run the following command:
+
+<pre class="example">     gengen -i test1.cc_skel --file-name test1_c.h --gen-name test1 \
+             --output-format=c
+</pre>
+   <p class="noindent">If I caught your attention and you would like to know
+more about these options and more advanced features of Gengen, I
+hope you read on :-)
+
+
+
+<h2><a name="Gengen manual"></a><a href="gengen.html">Gengen manual</a></h2>
+
+
+For installation and all the advanced features of Gengen and more
+involved
+examples, please read the manual that comes both in info version and <a href="gengen.html">html
+version</a>.
+<p></p>
+
+
+<hr>
+
+<div id="footer">
+
+<p>
+Please send FSF &amp; GNU inquiries to 
+<a href="mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.
+There are also <a href="/home.html#ContactInfo">other ways to contact</a> 
+the FSF.
+<br />
+Please send broken links and other corrections (or suggestions) to
+<!-- If you are a project maintainer or developer, please use -->
+<!-- your own email, as webmasters does not manage most -->
+<!-- project webpages (those that we do, you know who you are). -->
+<a href="mailto:webmasters@gnu.org"><em>webmasters@gnu.org</em></a>.
+</p>
+
+<p>
+Please see the 
+<a href="/server/standards/README.translations.html">Translations
+README</a> for information on coordinating and submitting
+translations of this article.
+</p>
+
+<p>
+Copyright (C) 2001, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.,
+<address>51 Franklin St, Fifth Floor, Boston, MA 02110, USA</address></p>
+<p>Verbatim copying and distribution of this entire article are
+permitted worldwide, without royalty, in any medium, provided this
+notice, and the copyright notice, are preserved.
+</p>
+
+<p>
+Updated:
+<!-- timestamp start -->
+$Date: 2006/11/14 19:22:05 $ $Author: bettini $
+<!-- timestamp end -->
+</p>
+</div>
+
+</body>
+</html>

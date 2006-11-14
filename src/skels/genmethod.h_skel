@@ -1,0 +1,2 @@
+void generate_@genname@(ostream &stream, unsigned int indent = 0)@methend@
+@genmethbody:method{iteration=true}@

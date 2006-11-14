@@ -1,0 +1,4 @@
+if (@name@.size () > 0)
+  generate_string (@name@, stream, indent + indent_str.length ());
+else
+  generate_@name@ (stream, indent + indent_str.length ());

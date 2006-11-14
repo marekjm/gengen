@@ -1,0 +1,1 @@
+virtual void generate_@name@(ostream &stream, unsigned int indent) = 0;

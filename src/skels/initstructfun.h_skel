@@ -1,0 +1,6 @@
+
+void
+init_@structname@(struct @structname@ *record)
+{
+  @genfieldinit:method{iteration=true}@
+}

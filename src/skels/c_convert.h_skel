@@ -1,0 +1,22 @@
+@IF@ hasints @THEN@
+
+static char *
+int_to_string(int i)
+{
+  static char buffer[256];
+
+  snprintf (buffer, 255, "%d", i);
+
+  return buffer;
+}
+
+@ENDIF@
+@IF@ hasbools @THEN@
+
+static const char *
+bool_to_string(short b)
+{
+  return (b ? "true" : "false");
+}
+
+@ENDIF@

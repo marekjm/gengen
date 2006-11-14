@@ -1,0 +1,30 @@
+@c Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+@example
+@b{#include} @t{<iostream>}
+@b{#include} @t{"example_text.h"}
+
+@b{using} std::cout;
+@b{using} std::endl;
+
+@b{int}
+main()
+@{
+  example_text_gen_class gen_class;
+  gen_class.set_name(@t{"an example"});
+  gen_class.set_progname(@t{"example_text_gen"});
+  gen_class.set_generator(@t{"Gengen"});
+  gen_class.set_version(@t{"1.0"});
+
+  gen_class.generate_example_text(cout);
+  cout << endl;
+
+  cout << endl;
+  gen_class.set_name(@t{"another example"});
+  cout << @t{"  "};
+  gen_class.generate_example_text(cout, 2);
+  cout << endl;
+
+  @b{return} 0;
+@}
+
+@end example

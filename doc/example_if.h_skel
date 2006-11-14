@@ -1,0 +1,26 @@
+@if@ c @then@   foo
+@else@   bar@endif@
+
+@IF@ c @THEN@   foo
+@ELSE@   bar@ENDIF@
+
+@IF@ c @THEN@
+   foo
+@ELSE@
+   bar
+@ENDIF@
+
+  @if@ c @then@
+foo
+  @else@
+bar
+@endif@
+
+@if@ c1 @then@  
+@if@ c2 @then@ foo2
+@elseif@ c3 @then@ foo3
+@endif@
+@else@   bar
+@if@ c4 @then@ foo4
+@endif@
+@endif@

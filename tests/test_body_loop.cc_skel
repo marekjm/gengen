@@ -1,0 +1,7 @@
+cout << "These are the numbers from " << 
+        @start@ << " to " << @end@ << endl;
+
+for (int i = @start@; i <= @end@; ++i)
+   cout << i << " ";
+
+cout << endl;

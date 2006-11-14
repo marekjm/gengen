@@ -1,0 +1,23 @@
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+#define MYVAR @myvar@
+#define @mydef@ @myvar@
+
+int
+main()
+{
+@IF@ boolvar @THEN@
+  cout << "boolvar test" << endl;
+@ELSEIF@ intvar:int < intvarcomp:int or intvar:int = 0 @THEN@
+  cout << "intvar test" << endl;
+@ENDIF@
+@IF@ stringvar:string < stringvarcomp:string or 
+     (stringvar:string != "foo" and stringvar:string < "bara") @THEN@
+  cout << "stringvar value: " << @stringvar@ << endl;
+@ENDIF@
+
+  return 0;
+}

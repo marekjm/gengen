@@ -1,0 +1,5 @@
+@c Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+@example
+if (@@i@@ < 10)
+  printf("the value of @@i@@ is %d", @@i@@);
+@end example

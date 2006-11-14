@@ -1,0 +1,8 @@
+@c Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+@example
+@@rettype@@
+@@funname@@(@@paramtype@@ @@param@@)
+@{
+  @@funbody:method@@
+@}
+@end example

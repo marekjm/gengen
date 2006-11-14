@@ -1,0 +1,277 @@
+2004-08-08  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/gengen.cc (generate_code): generate the code only
+	if it hasn't changed since the last generation
+
+	* src/streamstruct.h (class StreamStruct): contain the streams where
+	the code is generated, passed to SkelStruct classes
+
+	* src/scanner.ll: the sequence @x@@y@ is now recognized correctly
+	as two variables
+
+2004-08-07  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct.cc (check_variable): check that a variable is
+	not used with different types
+
+	* src/withtokeninfo.h (class WithTokenInfo): store information
+	about the position of the item in the original input file
+
+2004-05-20  Lorenzo Bettini  <www.lorenzobettini.it>
+
+        * src/parser.yy: deal with @if@, @then@ and @else@ commands
+        
+        * src/skelstruct_c_common.h: common base class for classes
+        that generate C/C++ releated code
+
+2004-04-20  Lorenzo Bettini  <www.lorenzobettini.it>
+
+        * src/skelitems.h: (class SkelItems) added as a container
+        of SkelItemStruct
+
+        * src/skelstruct.h: use SkelItems
+
+2004-02-21  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skels/genstrfunction.h_skel: free indent_str
+
+	* src/cmdline.ggo: --no-gen-version option
+
+2004-02-14  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/cmdline.ggo: added option --expand-tabs
+
+2004-02-09  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skels/callextfun.h_skel: call generate_string if the field
+	is not empty instead of directly generate the string
+
+	* src/skels/genstringfun.h_skel: added to generate the
+	generate_string function
+
+	* src/skels/callmeth.h_skel: call generate_string if the string
+	is not empty instead of directly generate the string
+
+	* src/skels/genstringmeth.h_skel: added to generate the
+	generate_string method
+
+2004-02-05  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct.cc (gen_generate_instructions): reset the
+	indent counter back to 0 when it encounters a new line and
+	no spaces before a variable
+
+2003-08-27  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct.cc (replace_char): do not act on the very item,
+	but on a copy, so that the original text of the original source
+	is always kept
+
+2003-08-26  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct_cstring.h (class SkelStructCString): 
+	generate into a C string instead of into a file
+
+	* src/skels/genstrfunction.h_skel: for generating the function
+	that writes in a string instead of in a file
+
+	* src/skels/initstructfun.h_skel: generate a C function for
+	initializing a structure (to 0's)
+
+	* src/skels/callextfun.h_skel: call the external method only if
+	the corresponding field in the method is not empty
+
+	* src/skels/callmeth.h_skel: call the method only if the corresponding
+	field is not empty
+
+	* src/skelstruct_cpp.cc (generate_fields): generate string fields
+	also for method items
+	(generate_setmethods): generate set methods also for method items
+	(generate_params): generate memeber cons parameters
+	also for method items
+
+	* src/skelstruct_c.cpp (generate_fields): generate string fields
+	also for method items
+
+	* src/skelstruct_strcnt.h (class SkelStructStrCnt): count the
+	size of a C string to be generated
+
+2003-08-25  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct.h (class SkelStruct): indent_generation, indent_update_generation
+	to abstract from these operations
+
+2003-06-02  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct.h (class SkelStruct): handle common methods
+	previously implemented by SkelStructCpp
+
+	* src/skels/c_header.h_skel: added for generating a C header
+	source
+
+2003-05-11  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* NEWS: Version 0.4.4
+
+	* src/yyerror.cc (yyerror): get a const char * instead of a char *
+
+	* src/parser.yy: do not use enum in the union struct
+
+2003-04-24  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* NEWS: Version 0.4.3
+
+	* src/skels/class.h_skel: removed inclusion of config.h
+
+2002-12-30  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* NEWS: Version 0.4.2
+
+2002-12-26  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct_cpp.cc (generate): added a flush of the main stream
+
+2002-12-24  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src: use new header iostream 
+
+	* src/skels/class.h_skel: use iostream instead of iostream.h
+	do not test namespaces anymore
+
+2002-07-14  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* NEWS: Version 0.4.1
+
+	* configure.in: test for strdup
+
+2002-07-13  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skels/cc_source.h_skel: do not generate default value for
+	indent (it is a repetition)
+
+2002-06-30  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* tests/Makefile.am (check): added check-diff
+
+2002-05-19  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skels/setmethod.h_skel: parameter as const string &
+
+	* src/skelstruct_cpp.cc (generate_params): generate memberwise
+	constructor's parameters as const string &
+
+2002-05-12  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* tests/example_fundef.cc_skel: used in documentation
+
+	* tests/example_text.text_skel: used in documentation
+
+	* tests/test1.cc_skel: used in documentation
+
+	* doc/gengen.texi: info documentation
+
+2002-05-02  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* Version 0.4: can generate separate files
+	
+	* src/skelstruct_cpp.cc (generate_geninstructions): also use
+	start_of_line to correctly generate indent updates
+
+	* src/fileutil.cc (open_output_file): check *sout and not simply sout
+
+2002-05-01  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelfactory.h (class SkelFactory): added method for creating
+	main outputfile
+
+	* src/fileutil.cc (open_output_file): use string
+	(open_input_file): idem
+
+	* src/skels/genmethod_body.h_skel: take care of the real genmethod's
+	body
+
+	* src/cmdline.ggo: added output-dir and separate-files options
+
+	* src/gengen.cc (main): use default for gen_name_arg
+
+2002-04-01  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* Version 0.3: use iteration=true
+	
+	* src/skels/class.h_skel: modified using iteration=true on some
+	parts, so that the resulting generated code looks better :-)
+
+	* src/skelstruct_cpp.cc (all_spaces): check whether an item is made
+	of spaces only
+	(get_next_item): retrieve the next item without modifying the
+	iterator
+	(get_prev_item): retrieve the previous item without modifying the
+	iterator
+	(generate_geninstructions): do not generate the spaces for indentation
+	and new line before and after a method item that has iteration to true
+
+2002-03-31  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelitemoptions.h (struct SkelItemOptions): store some
+	additional options of a SkelItemStruct
+
+	* tests/Makefile.am (check-diff): to test if there are differences
+	in the generated files
+
+2002-03-23  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct_cpp.cc (generate_geninstructions): also replace
+	'\' with '\\'
+
+	* src/skels/class.h_skel: include iostream.h instead of ostream.h
+
+2002-03-11  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skels/class.h_skel: check for HAVE_CONFIG_H and HAVE_NAMESPACES
+
+2002-01-22  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct_cpp.cc (generate): generate name for #ifdef
+	in uppercase
+
+2002-01-08  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* Version 0.2 use itself for generating generator classes 
+
+	* src/skelstruct_cpp.h (class SkelStructCpp): inherit from
+	membercons_gen_class generated class and redefine virtual pure methods
+	(class SkelStructCpp): inherit from genmethod_gen_class
+	generated class and redefine virtual pure method
+
+	* src/skelstruct_cpp.cc (generate_destructor): use the generated
+	destructor
+	(generate_setmethods): use setmethod and abstrmethod generated files
+	(generate_fields): use indent
+
+	* src/skelstruct_cpp.h (class SkelStructCpp): inherit from
+	class_gen_class generated class and redefine virtual pure methods
+
+	* src/skelstruct_cpp.cc (generate_constructors): correctly generate
+	commas
+
+2002-01-07  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct_cpp.cc (analyze_items): compute number of
+	item according to their types
+	(generate_constructors): handle method items differently
+
+	* Version 0.1
+
+2002-01-05  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/skelstruct_cpp.cc (generate_destructors): in case there are
+	virtual methods, generate a virtual destructor
+	(generate_generate_method): the name of generate method is
+	suffixed with the 'name' attribute
+	(generate_generate_method): declare the generate method as virtual,
+	in case some items are of type 'method'
+	
+2002-01-02  Lorenzo Bettini  <www.lorenzobettini.it>
+
+	* src/gengen.cc (main): first beta version
+

@@ -1,0 +1,8 @@
+if (@exp@)
+  {
+    @then_body@
+  }@if@ skipelse @then@@else@
+else
+  {
+    @else_body@
+  }@endif@

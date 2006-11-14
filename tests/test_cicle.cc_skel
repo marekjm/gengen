@@ -1,0 +1,31 @@
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+#define NUM_OF_LOOPS @loopnum@
+
+int
+main()
+{
+  cout << "The val of NUM_OF_LOOPS is ";
+  cout << @loopnum@ << endl;
+
+@IF@ zeroloops @THEN@
+  /*
+   * No loop generated since NUM_OF_LOOPS is 0
+   */
+@ELSEIF@ printsomething @THEN@
+@IF@ printnumloop @THEN@
+  cout << "zero loops: " << @loopnum@ << endl;
+@ELSE@
+  cout << "zero loops!" << endl;
+@ENDIF@
+@ELSE@
+  @loop:method{iteration=false}@
+@IF@ zeroloops @THEN@ @ELSE@ @ENDIF@
+@if@ zeroloops @then@@else@@endif@@IF@ zeroloops @THEN@ @ENDIF@
+@ENDIF@
+
+  @return_st:method@
+}

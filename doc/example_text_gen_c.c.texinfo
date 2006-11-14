@@ -1,0 +1,28 @@
+@c Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+@example
+@b{#include} @t{<stdio.h>}
+@b{#include} @t{"example_text_c.h"}
+
+@b{int}
+main()
+@{
+  @b{struct} example_text_gen_struct gen_struct;
+  init_example_text_gen_struct(&gen_struct);
+  gen_struct.name = @t{"an example"};
+  gen_struct.progname = @t{"example_text_gen"};
+  gen_struct.generator = @t{"Gengen"};
+  gen_struct.version = @t{"1.0"};
+
+  generate_example_text(stdout, &gen_struct, 0);
+  printf(@t{"}\n@t{"});
+
+  printf(@t{"}\n@t{"});
+  gen_struct.name = @t{"another example"};
+  printf(@t{"  "});
+  generate_example_text(stdout, &gen_struct, 2);
+  printf(@t{"}\n@t{"});
+
+  @b{return} 0;
+@}
+
+@end example

@@ -1,0 +1,24 @@
+@c Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+@example
+@b{#include} @t{<iostream>}
+
+@b{using} std::cout;
+@b{using} std::endl;
+
+@b{#include} @t{"test1.h"}
+
+@b{int}
+main()
+@{
+  test1_gen_class gen_class;
+  gen_class.set_i(@t{"foo"});
+  gen_class.generate_test1(cout);
+  cout << endl;
+  gen_class.set_i(@t{"bar"});
+  gen_class.generate_test1(cout);
+  cout << endl;
+
+  @b{return} 0;
+@}
+
+@end example

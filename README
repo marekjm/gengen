@@ -1,0 +1,145 @@
+GNU Gengen
+
+A parameterized-text-generator generator based on a template
+
+by Lorenzo Bettini, http://www.lorenzobettini.it
+
+  ------------------------------------------------------------------------
+
+Table of Contents
+
+   * Download
+   * Simple example
+   * Gengen manual
+
+  ------------------------------------------------------------------------
+
+GNU Gengen (GENerator GENerator) is a tool that, starting from a parameterized
+text, called template, generates a text generator that can substitute
+parameters with values.
+
+At the moment Gengen generates C++ or C code; 
+however other target languages are
+under development.
+
+Gengen is free software; you are free to use, share and modify it under the
+terms of the GNU General Public License (see COPYING).
+
+The home page of Gengen is
+http://www.gnu.org/software/gengen/index.html
+
+See NEWS file for a summary of new features in this release and ChangeLog
+for the complete list of changes sources
+
+Download
+
+Gengen is delivered with sources that have to be compiled. It can be
+downloaded from the above site.
+
+The steps to perform for the installation are standard for packages in
+source form: once you have unpacked the sources in a directory, `cd' to the
+directory containing the package's source code and execute the following
+steps:
+
+./configure
+make
+make install
+
+Note: unless you specify a different install directory by --prefix option of
+configure (e.g. ./configure --prefix=<your home>), you must be root to 'make
+install'.
+
+I do not distribute Windows binaries anymore; since, they can be
+easily built by using Cygnus C/C++ compiler, available at
+http://www.cygwin.com/. However, if you don't feel like downloading
+such compiler, you can request such binaries directly to me, by e-mail
+and I'll send them to you.
+
+Simple example
+
+Say you are writing a C++ program and at some point your program has to
+generate the following code:
+
+if (i < 10)
+  printf("the value of i is %d", i);
+
+Suppose now that the previous piece of code has to be generated many times
+by your program, and every time instead of i another symbol has to be
+generated (decided at run time). In this case, supposing that this value is
+contained in a variable symb, the code for generating this code would be a
+little bit complex:
+
+cout << "if (" << symb << "< 10)" << endl;
+cout << "  printf(\"the value of " << symb << " is %d\", "
+     << symb << ");" << endl;
+
+Probably you didn't even realize that you forgot to leave a space before the
+< 10; basically this is due to the fact that this piece of code mixes the
+code that has to be generated with the code that generates it, and this
+tends to make this part of program less easy to maintain. Especially if some
+day you have to change the code that has to be generated, you'll have to act
+on this part of the program, and probably you'll have to execute some tests
+in order to be sure that you did it right.
+
+If the code that you have to generate is a slightly more complex, the task
+may easily become a pain in the neck!
+
+Wouldn't it be nice if you could write the code to be generated in a
+separate file, let's call it template, say `test1.cc_skel' this way
+
+if (@i@ < 10)
+  printf("the value of @i@ is %d", @i@);
+
+and have a tool that generates a generator, that you can instantiate at
+run-time with the value that has to be substituted to the parameteri?
+
+Well, Gengen does right this! I simply had to run the following command:
+
+gengen -i test1.cc_skel --file-name test1.h --gen-name test1
+
+and it generates a file `test1.h' with a class test1_gen_class, then you
+could write simply this code, in another file, say `test1_gen.cc':
+
+#include <iostream.h>
+#include "test1.h"
+
+int
+main()
+{
+  test1_gen_class gen_class;
+  gen_class.set_i("foo");
+  gen_class.generate_test1(cout);
+  cout << endl;
+  gen_class.set_i("bar");
+  gen_class.generate_test1(cout);
+  cout << endl;
+
+  return 0;
+}
+
+and when you run it you would obtain the expected output:
+
+if (foo < 10)
+  printf("the value of foo is %d", foo);
+if (bar < 10)
+  printf("the value of bar is %d", bar);
+
+Notice that the method generate_test1 accepts an output stream (indeed in
+this example the standard output stream cout is used), thus the stream
+abstraction facilities can be exploited.
+
+Now the code that has to be generated and the code that generates it are
+separated and they can be maintained more easily: if you want to change the
+code that has to be generated you act on the file `test1.cc_skel';
+alternatively, say you need to change the value that will be substituted for
+i, you just change the file `test1_gen.cc'.
+
+Gengen manual
+
+For installation and all the advanced features of Gengen and more involved
+examples, please read the manual that comes both in info version and html
+version.
+
+  ------------------------------------------------------------------------
+
+Please send me any suggestion, http://www.lorenzobettini.it

@@ -1,0 +1,2 @@
+if (@i@ < 10)
+  printf("the value of @i@ is %d", @i@);

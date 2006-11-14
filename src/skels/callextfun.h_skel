@@ -1,0 +1,4 @@
+if (record->@name@)
+  generate_string (record->@name@, stream, indent + strlen (indent_str));
+else
+  generate_@name@ (stream, record, indent + strlen (indent_str));

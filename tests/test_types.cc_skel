@@ -1,0 +1,12 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+  cout << "this is a string: " << @mystring@ << endl;
+  cout << "this is an int: " << @myint:int@ << endl;
+  cout << "this is a bool: " << @mybool:bool@ << endl;
+
+  return 0;
+}

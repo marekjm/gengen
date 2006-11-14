@@ -1,0 +1,3 @@
+alreadydef.cc_skel:6: variable "foo" of type "bool"
+alreadydef.cc_skel:6: already used with another type
+alreadydef.cc_skel:4: previous usage was here with type "string"

@@ -1,0 +1,6 @@
+#ifndef SKELITEMTYPE_H
+#define SKELITEMTYPE_H
+
+typedef enum { NOTYPE = 0, METHOD_TYPE, FUN_TYPE, IF_TYPE, BOOL_TYPE, STRING_TYPE, INT_TYPE } skelitem_type;
+
+#endif // SKELITEMTYPE_H

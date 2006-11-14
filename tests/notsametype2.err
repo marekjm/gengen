@@ -1,0 +1,2 @@
+notsametype2.cc_skel:2: 10 and "foo" < mystring must have the same type
+notsametype2.cc_skel:2: 10 has type int, "foo" < mystring has type bool

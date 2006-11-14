@@ -1,0 +1,8 @@
+
+int
+strcnt_@genname@(struct @structname@ *record, unsigned int indent)
+{
+  int length = 0;
+  @compleninstr:method@
+  return length + @constlen@;
+}

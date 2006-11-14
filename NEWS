@@ -1,0 +1,55 @@
+GNU gengen -- History of visible changes.
+
+Copyright (C) 2002-2006  Lorenzo Bettini www.lorenzobettini.it
+
+Version 1.0
+
+* First GNU release
+* conditional statements expressions can be complex
+  (not single variables)
+* variables can also have types bool and int
+
+Version 0.6
+
+* conditional statements in template files
+* the sequence @x@@y@ is now recognized correctly
+  as two variables
+* before actually generating the file, check whether
+  it is different from a possible previous generation
+
+Version 0.5.1
+
+* removed memory leaks in generated C files
+
+Version 0.5
+
+* C code can be generated instead of C++ code
+* if an item is of type "method" it can still be assigned a string
+and in that case the method is not invoked (the same holds for C external
+functions)
+* correctly reset the indent counter to 0 when it encounters a new
+line and no spaces at the beginning of the line
+* --expand-tabs option added that allows to correctly indent
+strings with newlines inside.
+
+Version 0.4.4
+
+* fixed some compilation problems under SunOS (thanks to
+Dinesh Shanbhag <dshanbhag@hotmail.com>)
+* presence of getopt_long is handled in a cleaner way
+
+Version 0.4.3
+
+* in the generated code config.h is not included anymore
+(it's useless)
+
+Version 0.4.2
+
+* generate code compliant to new C++ standard headers: removed warnings
+with gcc 3.2
+
+Version 0.4.1
+
+* if separated files are generated, no default value (= 0) for indent
+is generated (it is already specified in the header file).  This caused
+some problems with some gcc 3.x.

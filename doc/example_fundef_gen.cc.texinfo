@@ -1,0 +1,35 @@
+@c Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite
+@example
+@b{#include} @t{<iostream>}
+@b{#include} @t{"test1.h"}
+@b{#include} @t{"example_fundef.h"}
+
+@b{using} std::cout;
+@b{using} std::endl;
+
+@b{class} my_fundef_gen : @b{public} example_fundef_gen_class
+@{
+ @b{public}:
+  @b{virtual} @b{void} generate_funbody(ostream &stream, @b{unsigned} @b{int} indent) @{
+    test1_gen_class body_gen;
+    body_gen.set_i (param);
+    body_gen.generate_test1 (stream, indent);
+  @}
+@};
+
+@b{int}
+main()
+@{
+  my_fundef_gen fun_gen;
+  fun_gen.set_rettype (@t{"void"});
+  fun_gen.set_funname (@t{"foo_fun"});
+  fun_gen.set_paramtype (@t{"unsigned int"});
+  fun_gen.set_param (@t{"bar"});
+
+  fun_gen.generate_example_fundef (std::cout);
+  cout << endl;
+
+  @b{return} (0);
+@}
+
+@end example
