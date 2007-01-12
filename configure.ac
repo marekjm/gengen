@@ -13,7 +13,7 @@ AC_INIT(reconf)
 
 dnl for automake
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gengen,1.0)
+AM_INIT_AUTOMAKE(gengen,1.1)
 
 AC_SUBST(gengendatadir)
 AC_SUBST(gengendocdir)

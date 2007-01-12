@@ -22,7 +22,7 @@ EXTRA_DIST = gengen.html index.html $(man_MANS) $(GENERATEDINFOS)
 
 BUILT_SOURCES = $(GENERATEDINFOS)
 
-gengendoc_DATA = gengen.html
+gengendoc_DATA = gengen.html index.html
 
 # man page
 man_MANS = gengen.1

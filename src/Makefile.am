@@ -48,7 +48,8 @@ endif
 
 gengen_LDADD = @LIBOBJS@ @LEXLIB@ libgengen.a
 
-EXTRA_DIST = cmdline.h parser.h yyerror.h gnugetopt.h gengen_globals.h \
+EXTRA_DIST = cmdline.h cmdline.ggo \
+parser.h yyerror.h gnugetopt.h gengen_globals.h \
 skelitemstruct.h skelstruct.h \
 mainskelstruct.h normaltext.h varitem.h skelfactory.h skelfactory_cpp.h \
 mainskelfactory.h skelstruct_cpp.h fileutil.h skelitemtype.h \

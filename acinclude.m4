@@ -41,7 +41,7 @@ dnl Currently supports g++ and gcc.
 dnl This macro must be put after AC_PROG_CC and AC_PROG_CXX in
 dnl configure.in
 dnl
-dnl @version $Id: acinclude.m4,v 1.1 2006/11/14 19:22:05 bettini Exp $
+dnl @version $Id: acinclude.m4,v 1.2 2007/01/12 17:44:40 bettini Exp $
 dnl @author Loic Dachary <loic@senga.org>
 dnl
 AC_DEFUN([AC_COMPILE_WARNINGS],
@@ -111,7 +111,7 @@ dnl
 dnl If the compiler can prevent names clashes using namespaces, define
 dnl HAVE_NAMESPACES.
 dnl
-dnl @version $Id: acinclude.m4,v 1.1 2006/11/14 19:22:05 bettini Exp $
+dnl @version $Id: acinclude.m4,v 1.2 2007/01/12 17:44:40 bettini Exp $
 dnl @author Luc Maisonobe
 dnl
 AC_DEFUN([AC_CXX_NAMESPACES],
@@ -134,7 +134,7 @@ dnl @synopsis AC_CXX_HAVE_STL
 dnl
 dnl If the compiler supports the Standard Template Library, define HAVE_STL.
 dnl
-dnl @version $Id: acinclude.m4,v 1.1 2006/11/14 19:22:05 bettini Exp $
+dnl @version $Id: acinclude.m4,v 1.2 2007/01/12 17:44:40 bettini Exp $
 dnl @author Luc Maisonobe
 dnl
 AC_DEFUN([AC_CXX_HAVE_STL],
@@ -162,7 +162,7 @@ dnl
 dnl If the C++ library has a working stringstream, define HAVE_SSTREAM.
 dnl
 dnl @author Ben Stanley
-dnl @version $Id: acinclude.m4,v 1.1 2006/11/14 19:22:05 bettini Exp $
+dnl @version $Id: acinclude.m4,v 1.2 2007/01/12 17:44:40 bettini Exp $
 dnl
 AC_DEFUN([AC_CXX_HAVE_SSTREAM],
 [AC_CACHE_CHECK(whether the compiler has stringstream,

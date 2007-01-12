@@ -1,6 +1,11 @@
 GNU gengen -- History of visible changes.
 
-Copyright (C) 2002-2006  Lorenzo Bettini www.lorenzobettini.it
+Copyright (C) 2002-2007  Lorenzo Bettini www.lorenzobettini.it
+
+Version 1.1
+
+* distribution of cmdline.ggo whose absence caused make failures in
+  doc directory (thanks to Bob White)
 
 Version 1.0
 

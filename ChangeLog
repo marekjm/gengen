@@ -1,3 +1,7 @@
+2007-01-05  Lorenzo Bettini  <bettini@lorelap>
+
+	* src/Makefile.am (EXTRA_DIST): added cmdline.ggo (bug fix)
+
 2004-08-08  Lorenzo Bettini  <www.lorenzobettini.it>
 
 	* src/gengen.cc (generate_code): generate the code only
