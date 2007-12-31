@@ -17,7 +17,7 @@ C++ class (or C functions) for generating text, based on a template file
 with parameters, after substituting some parameters.  This can be used
 in code generators.
 
-Copyright @copyright{} 2002--2006 Lorenzo Bettini.
+Copyright @copyright{} 2002--2007 Lorenzo Bettini.
 
 @quotation
 Permission is granted to copy, distribute and/or modify this document
@@ -218,7 +218,7 @@ before running the @code{configure} and @code{make} commands, you
 should, at least the first time, run the command:
 
 @example
-sh reconf
+sh autogen.sh
 @end example
 
 @noindent

@@ -8,6 +8,8 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+SUFFIXES = .err .cc_skel .err_test .cc_skel .h .cc_skel _c.h .cc_skel
+
 PROGNAME = $(top_builddir)/src/$(PACKAGE)$(EXEEXT) --no-gen-version 2>> $(VERBOSEOUT)
 
 GENERATE = $(PROGNAME)
@@ -16,22 +18,22 @@ GENERATEERR = $(PROGNAME) --test-mode
 
 TEMP_H = __temp.h
 
-%.err: %.cc_skel
+.cc_skel.err:
 	rm -f $*.h $*.cc && $(GENERATEERR) -i $< > $@ 2>&1
 
-%.err_test: %.cc_skel
+.cc_skel.err_test:
 	rm -f $*.h $*.cc && $(GENERATEERR) -i $< > $@ 2>&1
 
-%_tabs.h: %_tabs.cc_skel
-	$(GENERATE) -i $< --file-name $@ --gen-name $* --expand-tabs
+test_cicle_tabs.h: $(srcdir)/test_cicle_tabs.cc_skel
+	$(GENERATE) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name $@ --gen-name test_cicle --expand-tabs
 
-%_tabs_c.h: %_tabs.cc_skel
-	$(GENERATE_C) -i $< --file-name $@ --gen-name $* --expand-tabs
+test_cicle_tabs_c.h: $(srcdir)/test_cicle_tabs.cc_skel
+	$(GENERATE_C) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name $@ --gen-name test_cicle --expand-tabs
 
-%.h: %.cc_skel
+.cc_skel.h:
 	$(GENERATE) -i $< --file-name $@ --gen-name $* 
 
-%_c.h: %.cc_skel
+.cc_skel_c.h:
 	$(GENERATE_C) -i $< --file-name $@ --gen-name $* 
 
 # the cp is useful when building on a different directory

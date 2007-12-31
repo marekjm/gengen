@@ -2,6 +2,12 @@ GNU gengen -- History of visible changes.
 
 Copyright (C) 2002-2007  Lorenzo Bettini www.lorenzobettini.it
 
+Version 1.2
+
+* better checks for getopt_long and strdup (using gnulib)
+* removed non-standard make rules
+* updated to version 3 of GPL
+
 Version 1.1
 
 * distribution of cmdline.ggo whose absence caused make failures in

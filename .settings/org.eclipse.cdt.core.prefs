@@ -1,3 +1,4 @@
-#Sat Nov 11 15:56:33 CET 2006
+#Mon Dec 24 18:16:27 CET 2007
 eclipse.preferences.version=1
+indexer/indexerId=org.eclipse.cdt.core.domsourceindexer
 indexerId=org.eclipse.cdt.core.domsourceindexer

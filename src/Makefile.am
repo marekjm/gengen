@@ -10,7 +10,7 @@
 
 SUBDIRS = skels includes
 
-SUFFIXES = .ggo
+SUFFIXES = .ggo .hpp .h
 
 bin_PROGRAMS = gengen
 
@@ -38,22 +38,24 @@ else
 endif
 
 if NO_DOUBLECPP
-%.hpp: %.h
+.h.hpp:
 	touch $@
 else
-%.hpp: %.h
+.h.hpp:
 	$(DOUBLECPP) --output-source-ext cc --invade-target --input-header-ext h --output-header-ext hpp --output-source-suff=_dbtab --verbose --assume-virtual --excludeheaders=typemap.h -i $<
 	touch $@
 endif
 
-gengen_LDADD = @LIBOBJS@ @LEXLIB@ libgengen.a
+AM_CPPFLAGS = -I$(top_srcdir)/lib -I$(top_builddir)/lib
+
+gengen_LDADD = $(top_builddir)/lib/libgnu.a @LIBOBJS@ @LEXLIB@ libgengen.a
 
 EXTRA_DIST = cmdline.h cmdline.ggo \
-parser.h yyerror.h gnugetopt.h gengen_globals.h \
+parser.h yyerror.h gengen_globals.h \
 skelitemstruct.h skelstruct.h \
 mainskelstruct.h normaltext.h varitem.h skelfactory.h skelfactory_cpp.h \
 mainskelfactory.h skelstruct_cpp.h fileutil.h skelitemtype.h \
-sourcename.h skelitemoptions.h my_sstream.h strdup.c \
+sourcename.h skelitemoptions.h my_sstream.h \
 gengen_cmdline_options.h \
 $(BUILT_SOURCES)
 

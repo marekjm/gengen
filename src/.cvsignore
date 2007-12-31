@@ -7,3 +7,4 @@ gengen
 .deps
 test_exp_generator
 test_exp_checker
+libgengen.a

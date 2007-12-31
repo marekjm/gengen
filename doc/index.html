@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
-<html>
-<head>
+<html><head>
 
 
   
@@ -14,16 +13,13 @@
   
   <meta name="GENERATOR" content="Mozilla/4.77 [en] (X11; U; Linux 2.4.3-20mdk i686) [Netscape]">
 
-<title>GNU Gengen - GNU Project - Free Software Foundation (FSF)</title>
-
-</head>
-
+<title>GNU Gengen - GNU Project - Free Software Foundation (FSF)</title></head>
 
 <body>
 
 
 <h1>
-GNU Gengen 1.1</h1>
+GNU Gengen 1.2</h1>
 
 
 A parameterized-text-generator generator based on a template
@@ -134,8 +130,7 @@ This project's CVS repository can be checked out through anonymous
 <pre>cvs -z3 -d:pserver:anonymous@cvs.savannah.gnu.org:/sources/gengen co gengen </pre>
 
 
-Further instructions can be found at the address: <a href="http://savannah.gnu.org/projects/gengen">http://savannah.gnu.org/projects/gengen</a>
-.
+Further instructions can be found at the address: <a href="http://savannah.gnu.org/projects/gengen">http://savannah.gnu.org/projects/gengen</a>.
 
    
 <p>Please notice that this way you will get the latest development sources
@@ -160,7 +155,7 @@ should, at least the first time, run the command:</p>
 
 
 
-<pre>     sh reconf<br></pre>
+<pre>     sh autogen.sh<br></pre>
 
 
    
@@ -178,36 +173,27 @@ You will also need <tt>flex</tt> and <tt>bison</tt>.<br>
 Say you are writing a C/C++ program and at some point your program
 has to generate the following code:
 
-<pre class="example">     if (i &lt; 10)
-       printf("the value of i is %d", i);
-</pre>
+<pre class="example">     if (i &lt; 10)<br>       printf("the value of i is %d", i);<br></pre>
    <p class="noindent">It is not so difficult to write this piece of C++ code:
 
-<pre class="example">     cout &lt;&lt; "if (i &lt; 10)" &lt;&lt; endl;
-     cout &lt;&lt; "  printf(\"the value of i is %d\", i);" &lt;&lt; endl;
-</pre>
+</p><pre class="example">     cout &lt;&lt; "if (i &lt; 10)" &lt;&lt; endl;<br>     cout &lt;&lt; "  printf(\"the value of i is %d\", i);" &lt;&lt; endl;<br></pre>
    <p class="noindent">or the C code:
 
-<pre class="example">     printf("if (i &lt; 10)\n");
-     printf("  printf(\"the value of i is %%d\", i);\n");
-</pre>
+</p><pre class="example">     printf("if (i &lt; 10)\n");<br>     printf("  printf(\"the value of i is %%d\", i);\n");<br></pre>
    <p class="noindent">provided that you remember to escape the <code>"</code> (and in the
 C code, also the <code>%</code>).
 
-   <p>Suppose now that the previous piece of code has to be generated many
+   </p><p>Suppose now that the previous piece of code has to be generated many
 times by your program, and every time instead of <code>i</code> another
 symbol has to be generated (decided at run time).  In this case,
 supposing that this value is contained in a variable <code>symb</code>,
 the code for generating this code would be a little bit more
 complex:
 
-<pre class="example">     cout &lt;&lt; "if (" &lt;&lt; symb &lt;&lt; "&lt; 10)" &lt;&lt; endl;
-     cout &lt;&lt; "  printf(\"the value of " &lt;&lt; symb &lt;&lt; " is %d\", "
-          &lt;&lt; symb &lt;&lt; ");" &lt;&lt; endl;
-</pre>
+</p><pre class="example">     cout &lt;&lt; "if (" &lt;&lt; symb &lt;&lt; "&lt; 10)" &lt;&lt; endl;<br>     cout &lt;&lt; "  printf(\"the value of " &lt;&lt; symb &lt;&lt; " is %d\", "<br>          &lt;&lt; symb &lt;&lt; ");" &lt;&lt; endl;<br></pre>
    <p class="noindent">And the C version would be even more obfuscated.
 
-   <p>Probably you didn't even realize that you forgot to leave
+   </p><p>Probably you didn't even realize that you forgot to leave
 a space before the <code>&lt; 10</code>; basically this is due to the fact
 that this piece of code mixes the code that has to be generated
 with the code that generates it, and this tends to make this part
@@ -216,17 +202,15 @@ have to change the code that has to be generated, you'll have
 to act on this part of the program, and probably you'll have to
 execute some tests in order to be sure that you did it right.
 
-   <p>If the code that you have to generate is a slightly more complex,
+   </p><p>If the code that you have to generate is a slightly more complex,
 the task may easily become a pain in the neck!
 
-<p>Wouldn't it be nice if you could write the code to be generated in a
+</p><p>Wouldn't it be nice if you could write the code to be generated in a
 separate file, let's call it <em>template</em>, say <samp><span class="file">test1.cc_skel</span></samp>
 this way
 
 <!-- Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite -->
-<pre class="example">     if (@i@ &lt; 10)
-       printf("the value of @i@ is %d", @i@);
-</pre>
+</p><pre class="example">     if (@i@ &lt; 10)<br>       printf("the value of @i@ is %d", @i@);<br></pre>
    <p class="noindent">and have a tool that generates a generator, that you
 can instantiate at run-time with the value that has to be substituted to
 the <em>parameter</em> <code>i</code>?  If such a tool existed, and it generated
@@ -235,59 +219,31 @@ you could write simply this code, in another file, say
 <samp><span class="file">test1_gen_c.c</span></samp>:
 
 <!-- Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite -->
-<pre class="example">     <b>#include</b> <tt>&lt;stdio.h&gt;</tt>
+</p><pre class="example">     <b>#include</b> <tt>&lt;stdio.h&gt;</tt>
      
      <b>#include</b> <tt>"test1_c.h"</tt>
      
      <b>int</b>
      main()
      {
-       <b>struct</b> test1_gen_struct gen_struct;
-       gen_struct.i = <tt>"foo"</tt>;
-       generate_test1(stdout, &amp;gen_struct, 0);
-       printf(<tt>"</tt>\n<tt>"</tt>);
-       gen_struct.i = <tt>"bar"</tt>;
-       generate_test1(stdout, &amp;gen_struct, 0);
-       printf(<tt>"</tt>\n<tt>"</tt>);
-     
-       <b>return</b> 0;
-     }
-     
-</pre>
+       <b>struct</b> test1_gen_struct gen_struct;<br>       gen_struct.i = <tt>"foo"</tt>;<br>       generate_test1(stdout, &amp;gen_struct, 0);<br>       printf(<tt>"</tt>\n<tt>"</tt>);<br>       gen_struct.i = <tt>"bar"</tt>;<br>       generate_test1(stdout, &amp;gen_struct, 0);<br>       printf(<tt>"</tt>\n<tt>"</tt>);<br>     <br>       <b>return</b> 0;<br>     }<br>     <br></pre>
    <p>Alternatively, if it generated a file <samp><span class="file">test1.h</span></samp> with a C++ class
 <code>test1_gen_class</code>, then you could write simply this code, in
 another file, say <samp><span class="file">test1_gen.cc</span></samp>:
 
 <!-- Generator: GNU source-highlight, by Lorenzo Bettini, http://www.gnu.org/software/src-highlite -->
-<pre class="example">     <b>#include</b> <tt>&lt;iostream&gt;</tt>
+</p><pre class="example">     <b>#include</b> <tt>&lt;iostream&gt;</tt>
      
-     <b>using</b> std::cout;
-     <b>using</b> std::endl;
-     
-     <b>#include</b> <tt>"test1.h"</tt>
+     <b>using</b> std::cout;<br>     <b>using</b> std::endl;<br>     <br>     <b>#include</b> <tt>"test1.h"</tt>
      
      <b>int</b>
      main()
      {
        test1_gen_class gen_class;
-       gen_class.set_i(<tt>"foo"</tt>);
-       gen_class.generate_test1(cout);
-       cout &lt;&lt; endl;
-       gen_class.set_i(<tt>"bar"</tt>);
-       gen_class.generate_test1(cout);
-       cout &lt;&lt; endl;
-     
-       <b>return</b> 0;
-     }
-     
-</pre>
+       gen_class.set_i(<tt>"foo"</tt>);<br>       gen_class.generate_test1(cout);<br>       cout &lt;&lt; endl;<br>       gen_class.set_i(<tt>"bar"</tt>);<br>       gen_class.generate_test1(cout);<br>       cout &lt;&lt; endl;<br>     <br>       <b>return</b> 0;<br>     }<br>     <br></pre>
    <p class="noindent">and when you run it you would obtain the expected output:
 
-<pre class="example">     if (foo &lt; 10)
-       printf("the value of foo is %d", foo);
-     if (bar &lt; 10)
-       printf("the value of bar is %d", bar);
-</pre>
+</p><pre class="example">     if (foo &lt; 10)<br>       printf("the value of foo is %d", foo);<br>     if (bar &lt; 10)<br>       printf("the value of bar is %d", bar);<br></pre>
    <p class="noindent">Well, Gengen does right this!  Now the code that has to
 be generated and the code that generates it are separated and they can
 be maintained more easily: if you want to change the code that has to be
@@ -295,30 +251,27 @@ generated you act on the file <samp><span class="file">test1.cc_skel</span></sam
 you need to change the value that will be substituted for <code>i</code>, you
 just change the file <samp><span class="file">test1_gen.cc</span></samp> or <samp><span class="file">test1_gen_c.c</span></samp>.
 
-   <p>Notice that the method <code>generate_test1</code> accepts an output stream
+   </p><p>Notice that the method <code>generate_test1</code> accepts an output stream
 (indeed in this example the standard output stream <code>cout</code> is used),
 thus the stream abstraction facilities can be exploited.  Similarly, the
 C function <code>generate_test1</code> accepts a <code>FILE*</code>, so you can use
 the C file abstraction.
 
-   <p>Indeed in order to generate the C++ file <samp><span class="file">test1.h</span></samp> with the class
+   </p><p>Indeed in order to generate the C++ file <samp><span class="file">test1.h</span></samp> with the class
 <code>test1_gen_class</code>, I simply had to run the following command:
 
-<pre class="example">     gengen -i test1.cc_skel --file-name test1.h --gen-name test1
-</pre>
+</p><pre class="example">     gengen -i test1.cc_skel --file-name test1.h --gen-name test1<br></pre>
    <p class="noindent">and in order to generate the C file <samp><span class="file">test1_c.h</span></samp> with the structure
 <code>test1_gen_struct</code>, I simply had to run the following command:
 
-<pre class="example">     gengen -i test1.cc_skel --file-name test1_c.h --gen-name test1 \
-             --output-format=c
-</pre>
+</p><pre class="example">     gengen -i test1.cc_skel --file-name test1_c.h --gen-name test1 \<br>             --output-format=c<br></pre>
    <p class="noindent">If I caught your attention and you would like to know
 more about these options and more advanced features of Gengen, I
 hope you read on :-)
 
 
 
-<h2><a name="Gengen manual"></a><a href="gengen.html">Gengen manual</a></h2>
+</p><h2><a name="Gengen manual"></a><a href="gengen.html">Gengen manual</a></h2>
 
 
 For installation and all the advanced features of Gengen and more
@@ -337,7 +290,7 @@ Please send FSF &amp; GNU inquiries to
 <a href="mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.
 There are also <a href="/home.html#ContactInfo">other ways to contact</a> 
 the FSF.
-<br />
+<br>
 Please send broken links and other corrections (or suggestions) to
 <!-- If you are a project maintainer or developer, please use -->
 <!-- your own email, as webmasters does not manage most -->
@@ -354,7 +307,7 @@ translations of this article.
 
 <p>
 Copyright (C) 2001, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.,
-<address>51 Franklin St, Fifth Floor, Boston, MA 02110, USA</address></p>
+</p><address>51 Franklin St, Fifth Floor, Boston, MA 02110, USA</address><p></p>
 <p>Verbatim copying and distribution of this entire article are
 permitted worldwide, without royalty, in any medium, provided this
 notice, and the copyright notice, are preserved.
@@ -363,10 +316,9 @@ notice, and the copyright notice, are preserved.
 <p>
 Updated:
 <!-- timestamp start -->
-$Date: 2007/01/12 17:44:40 $ $Author: bettini $
+$Date: 2007/12/31 15:25:47 $ $Author: bettini $
 <!-- timestamp end -->
 </p>
 </div>
 
-</body>
-</html>
+</body></html>

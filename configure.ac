@@ -9,11 +9,11 @@
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(reconf)
+AC_INIT(configure.ac)
 
 dnl for automake
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gengen,1.1)
+AM_INIT_AUTOMAKE(gengen,1.2)
 
 AC_SUBST(gengendatadir)
 AC_SUBST(gengendocdir)
@@ -23,6 +23,9 @@ gengendocdir=$datadir/doc/gengen
 
 dnl Checks for C compiler.
 AC_PROG_CC
+
+dnl Use of GnuLib
+gl_EARLY
 
 dnl add options for non GNU compilers
 AC_NONGNU_FLAGS
@@ -53,6 +56,9 @@ rm -fr conftest.*
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_TYPE_SIZE_T
+
+# For gnulib.
+gl_INIT
 
 dnl executable extension
 AC_EXEEXT
@@ -100,12 +106,6 @@ dnl Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS(unistd.h)
 
-dnl Checks for library functions.
-AC_REPLACE_FUNCS(strdup)
-
-dnl check for getopt in standard library
-adl_FUNC_GETOPT_LONG
-
 dnl this is for testing purpose and development
 AC_PATH_PROGS(VALGRIND, valgrind)
 
@@ -136,7 +136,11 @@ AC_PATH_PROGS(SOURCEHIGHLIGHT, source-highlight)
 
 AM_CONDITIONAL(NO_SOURCEHIGHLIGHT, test -z "$ac_cv_path_SOURCEHIGHLIGHT" )
 
-AC_OUTPUT(Makefile src/Makefile src/includes/Makefile 
+dnl some scripts (e.g., valgrind_test.sh) need bash extensions
+AC_PATH_PROGS(BASH_SHELL, bash sh)
+
+
+AC_OUTPUT(Makefile lib/Makefile src/Makefile src/includes/Makefile 
           src/skels/Makefile
           doc/Makefile tests/Makefile
           tests/valgrind_tests.sh)

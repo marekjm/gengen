@@ -41,7 +41,7 @@ dnl Currently supports g++ and gcc.
 dnl This macro must be put after AC_PROG_CC and AC_PROG_CXX in
 dnl configure.in
 dnl
-dnl @version $Id: acinclude.m4,v 1.2 2007/01/12 17:44:40 bettini Exp $
+dnl @version $Id: acinclude.m4,v 1.3 2007/12/31 15:25:44 bettini Exp $
 dnl @author Loic Dachary <loic@senga.org>
 dnl
 AC_DEFUN([AC_COMPILE_WARNINGS],
@@ -111,7 +111,7 @@ dnl
 dnl If the compiler can prevent names clashes using namespaces, define
 dnl HAVE_NAMESPACES.
 dnl
-dnl @version $Id: acinclude.m4,v 1.2 2007/01/12 17:44:40 bettini Exp $
+dnl @version $Id: acinclude.m4,v 1.3 2007/12/31 15:25:44 bettini Exp $
 dnl @author Luc Maisonobe
 dnl
 AC_DEFUN([AC_CXX_NAMESPACES],
@@ -134,7 +134,7 @@ dnl @synopsis AC_CXX_HAVE_STL
 dnl
 dnl If the compiler supports the Standard Template Library, define HAVE_STL.
 dnl
-dnl @version $Id: acinclude.m4,v 1.2 2007/01/12 17:44:40 bettini Exp $
+dnl @version $Id: acinclude.m4,v 1.3 2007/12/31 15:25:44 bettini Exp $
 dnl @author Luc Maisonobe
 dnl
 AC_DEFUN([AC_CXX_HAVE_STL],
@@ -162,7 +162,7 @@ dnl
 dnl If the C++ library has a working stringstream, define HAVE_SSTREAM.
 dnl
 dnl @author Ben Stanley
-dnl @version $Id: acinclude.m4,v 1.2 2007/01/12 17:44:40 bettini Exp $
+dnl @version $Id: acinclude.m4,v 1.3 2007/12/31 15:25:44 bettini Exp $
 dnl
 AC_DEFUN([AC_CXX_HAVE_SSTREAM],
 [AC_CACHE_CHECK(whether the compiler has stringstream,
@@ -182,20 +182,3 @@ if test "$ac_cv_cxx_have_sstream" = yes; then
 fi
 ])
 
-dnl Available from the GNU Autoconf Macro Archive at:
-dnl http://www.gnu.org/software/ac-archive/htmldoc/adl_func_getopt_long.html
-dnl
-AC_PREREQ(2.49)
-
-AC_DEFUN([adl_FUNC_GETOPT_LONG],
- [# clean out junk possibly left behind by a previous configuration
-  rm -f lib/getopt.h
-  # Check for getopt_long support
-  AC_CHECK_HEADERS([getopt.h])
-  AC_CHECK_FUNCS([getopt_long],,
-   [# FreeBSD has a gnugetopt library for this
-    AC_CHECK_LIB([gnugetopt],[getopt_long],[AC_DEFINE([HAVE_GETOPT_LONG])],
-     [# use the GNU replacement
-      AC_LIBOBJ(getopt)
-      AC_LIBOBJ(getopt1)
-      AC_CONFIG_LINKS([src/getopt.h:src/gnugetopt.h])])])])

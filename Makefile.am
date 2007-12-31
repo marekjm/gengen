@@ -8,8 +8,11 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-EXTRA_DIST = reconf configure ChangeLog COPYING NEWS THANKS INSTALL README
-SUBDIRS = src doc tests
+ACLOCAL_AMFLAGS = -I m4
+
+EXTRA_DIST = autogen.sh m4/gnulib-cache.m4 ChangeLog COPYING NEWS THANKS INSTALL README
+
+SUBDIRS = lib src doc tests
 
 gengendoc_DATA = ChangeLog COPYING NEWS THANKS INSTALL README
 

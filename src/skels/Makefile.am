@@ -8,11 +8,13 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+SUFFIXES = .h .h_skel
+
 PROGNAME = $(top_builddir)/src/$(PACKAGE)$(EXEEXT)
 
 GENERATE = $(PROGNAME)
 
-%.h: %.h_skel
+.h_skel.h:
 	$(GENERATE) -i $< --file-name $@ --gen-name $* --expand-tabs
 
 BUILT_SOURCES = class.h genmethod.h genmethod_body.h \

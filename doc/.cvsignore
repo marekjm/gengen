@@ -21,4 +21,5 @@ gengen.pgs
 gengen.tps
 gengen.kys
 *.ps
-
+mdate-sh
+texinfo.tex

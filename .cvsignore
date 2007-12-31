@@ -17,3 +17,7 @@ Doxyfile
 debug
 gengen.kdevelop.pcs
 gengen.kdevses
+ylwrap
+depcomp
+install-sh
+missing

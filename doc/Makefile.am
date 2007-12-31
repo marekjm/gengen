@@ -8,7 +8,7 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-# gengendoc_DATA = 
+SUFFIXES = .h.texinfo .h .cc.texinfo .cc .c.texinfo .c .h_skel.texinfo .h_skel .cc_skel.texinfo .cc_skel
 
 AM_MAKEINFOHTMLFLAGS=--no-split
 
@@ -41,36 +41,29 @@ GENERATEDINFOS = test1.cc_skel.texinfo test1_gen_c.c.texinfo test1_gen.cc.texinf
 example_text_gen_c.c.texinfo example_text_gen.cc.texinfo \
 example_fundef.cc_skel.texinfo example_fundef_gen.cc.texinfo
 
-RUNSOURCEHIGHLIGHT=$(SOURCEHIGHLIGHT) -f texinfo --style-file=texinfo.style --output-dir=$(top_builddir)/doc/ --failsafe
+RUNSOURCEHIGHLIGHT=$(SOURCEHIGHLIGHT) -f texinfo --style-file=texinfo.style --output-dir=$(top_builddir)/doc/ --failsafe -o $@
 
 if NO_SOURCEHIGHLIGHT
-%.h.texinfo: $(top_srcdir)/tests/%.h
-	touch $@
 
-%.cc.texinfo: $(top_srcdir)/tests/%.cc
-	touch $@
-
-%.c.texinfo: $(top_srcdir)/tests/%.c
-	touch $@
-
-%.h_skel.texinfo: $(top_srcdir)/tests/%.h_skel
-	touch $@
-
-%.cc_skel.texinfo: $(top_srcdir)/tests/%.cc_skel
-	touch $@
 else
-%.h.texinfo: $(top_srcdir)/tests/%.h
-	$(RUNSOURCEHIGHLIGHT) $< 
+test1_gen_c.c.texinfo: $(top_srcdir)/tests/test1_gen_c.c
+	$(RUNSOURCEHIGHLIGHT) -i $(top_srcdir)/tests/test1_gen_c.c
 
-%.cc.texinfo: $(top_srcdir)/tests/%.cc
-	$(RUNSOURCEHIGHLIGHT) $< 
+test1.cc_skel.texinfo: $(top_srcdir)/tests/test1.cc_skel
+	$(RUNSOURCEHIGHLIGHT) -i $(top_srcdir)/tests/test1.cc_skel
 
-%.c.texinfo: $(top_srcdir)/tests/%.c
-	$(RUNSOURCEHIGHLIGHT) $< 
+test1_gen.cc_skel.texinfo: $(top_srcdir)/tests/test1_gen.cc_skel
+	$(RUNSOURCEHIGHLIGHT) -i $(top_srcdir)/tests/test1_gen.cc_skel
 
-%.h_skel.texinfo: $(top_srcdir)/tests/%.h_skel
-	$(RUNSOURCEHIGHLIGHT) $<
+example_text_gen_c.c.texinfo: $(top_srcdir)/tests/example_text_gen_c.c
+	$(RUNSOURCEHIGHLIGHT) -i $(top_srcdir)/tests/example_text_gen_c.c
 
-%.cc_skel.texinfo: $(top_srcdir)/tests/%.cc_skel
-	$(RUNSOURCEHIGHLIGHT) $< 
+example_text_gen.cc.texinfo: $(top_srcdir)/tests/example_text_gen.cc
+	$(RUNSOURCEHIGHLIGHT) -i $(top_srcdir)/tests/example_text_gen.cc
+
+example_fundef.cc_skel.texinfo: $(top_srcdir)/tests/example_fundef.cc_skel
+	$(RUNSOURCEHIGHLIGHT) -i $(top_srcdir)/tests/example_fundef.cc_skel
+
+example_fundef_gen.cc.texinfo: $(top_srcdir)/tests/example_fundef_gen.cc
+	$(RUNSOURCEHIGHLIGHT) -i $(top_srcdir)/tests/example_fundef_gen.cc
 endif

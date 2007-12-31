@@ -1,3 +1,13 @@
+2007-12-24  Lorenzo Bettini  <bettini@laptop>
+
+	* tests/Makefile.am: removed % non standard make rules
+
+	* src/Makefile.am: removed % non standard make rules	
+
+	* doc/Makefile.am: removed % non standard make rules
+
+	* configure.ac: use of gnulib for strdup and getopt_long
+
 2007-01-05  Lorenzo Bettini  <bettini@lorelap>
 
 	* src/Makefile.am (EXTRA_DIST): added cmdline.ggo (bug fix)
