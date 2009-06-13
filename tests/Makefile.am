@@ -1,4 +1,4 @@
-# Copyright (C) 2002 Lorenzo Bettini <http://www.lorenzobettini.it>
+# Copyright (C) 2002-2008 Lorenzo Bettini <http://www.lorenzobettini.it>
 #  
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without 
@@ -10,7 +10,9 @@
 
 SUFFIXES = .err .cc_skel .err_test .cc_skel .h .cc_skel _c.h .cc_skel
 
-PROGNAME = $(top_builddir)/src/$(PACKAGE)$(EXEEXT) --no-gen-version 2>> $(VERBOSEOUT)
+PROGEXE = $(top_builddir)/src/$(PACKAGE)$(EXEEXT)
+PROGEXE_C = $(PROGEXE) --output-format "c"
+PROGNAME = $(PROGEXE) --no-gen-version 2>> $(VERBOSEOUT)
 
 GENERATE = $(PROGNAME)
 GENERATE_C = $(PROGNAME) --output-format "c"
@@ -68,7 +70,8 @@ $(GENERATED_TESTS) \
 $(ERRFILES) \
 $(ERRFILES_OUTPUT) \
 $(VERBOSEOUTPUT) \
-valgrind_tests.sh.in
+valgrind_tests.sh.in \
+valgrind_gengen_tests.sh.in
 
 BUILT_EXECUTABLES = test_vars$(EXEEXT) gen_test_vars$(EXEEXT) \
 test_cicle$(EXEEXT) test_cicle_str$(EXEEXT) test_cicle_tabs$(EXEEXT) \
@@ -337,7 +340,7 @@ gen_test_cicle_tabs_c.cc: test_cicle_tabs_c$(EXEEXT)
 
 #test_cicle_m$(EXEEXT): test_cicle.h loop.h
 
-check: clean
+check-am: clean
 	$(MAKE) $(AM_MAKEFLAGS) $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) $(BUILT_EXECUTABLES)
 	$(MAKE) $(AM_MAKEFLAGS) check-diff
@@ -390,7 +393,12 @@ check-err:
 	  then errors=1; fi; \
 	done && test -z $$errors
 
-check-valgrind:
+check-valgrind: valgrind_tests.sh
 	$(SHELL) valgrind_tests.sh $(BUILT_EXECUTABLES)
+
+check-gengen-valgrind: valgrind_gengen_tests.sh
+	$(SHELL) valgrind_gengen_tests.sh $(PROGEXE) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name temp_file --gen-name test_cicle --expand-tabs
+	$(SHELL) valgrind_gengen_tests.sh $(PROGEXE_C) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name temp_file --gen-name test_cicle --expand-tabs
+	rm -f temp_file
 
 CLEANFILES = $(BUILT_SOURCES) $(BUILT_EXECUTABLES) *.err_test $(VERBOSEOUT)

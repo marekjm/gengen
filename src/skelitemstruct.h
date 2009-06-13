@@ -45,14 +45,14 @@ class SkelItemStruct : public WithTokenInfo
   SkelItemOptions item_options;
 
  public:
-  SkelItemStruct(const string &s, skelitem_type t = NOTYPE,
+  SkelItemStruct(const string &s, const skelitem_type &t = NOTYPE,
                  SkelItemOptions opts = SkelItemOptions ());
 
   virtual ~SkelItemStruct() {}
 
   const string &getText () const { return text; }
-  skelitem_type getType () const { return item_type; }
-  void setType(skelitem_type t) { item_type = t; }
+  const skelitem_type &getType () const { return item_type; }
+  void setType(const skelitem_type &t) { item_type = t; }
   const SkelItemOptions &getOptions () const { return item_options; }
   void replace_char (char repl, const string &with);
 

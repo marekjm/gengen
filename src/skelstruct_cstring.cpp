@@ -33,7 +33,7 @@ SkelStructCString::std_generation(ostream &stream, const string &s)
 
 void
 SkelStructCString::variable_generation(ostream &stream, const string &name,
-                                       skelitem_type type,
+                                       const skelitem_type &type,
                                        unsigned int indent)
 {
   if (canBeString( type )) {

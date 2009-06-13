@@ -50,7 +50,7 @@ SkelStructStrCnt::indent_generation(ostream &stream, const string &ind)
 
 void
 SkelStructStrCnt::variable_generation(ostream &stream, const string &name,
-                                      skelitem_type type,
+                                      const skelitem_type &type,
                                       unsigned int indent)
 {
   if (examined_variables.find (name) == examined_variables.end ())

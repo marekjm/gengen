@@ -33,8 +33,6 @@ using std::ostream;
 #define CALLEXTERNAL_PREFIX "generate_"
 #define STRCNT_PREFIX "strcnt_"
 
-#include "typemap.h"
-
 class StreamStruct;
 class ExpressionChecker;
 
@@ -43,7 +41,7 @@ class ExpressionChecker;
  * processed by doublecpp require pointers as parameters (and cannot
  * be typedefs, as ostream)
  */
-#line 46 "skelstruct.h"
+#line 44 "skelstruct.h"
 class OstreamInfo
 {
 public:
@@ -64,7 +62,7 @@ class UnaryExpression; // file: unaryexpression.h
 class VarItem; // file: varitem.h
 // doublecpp: end, DO NOT MODIFY
 
-#line 56 "skelstruct.h"
+#line 54 "skelstruct.h"
 class SkelStruct
 {
  protected:
@@ -73,8 +71,6 @@ class SkelStruct
 
   SkelItems *skel_struct;
   ExpressionChecker *expressionChecker;
-  
-  static TypeMap typeMap;
 
   string name;
   string file_name;
@@ -91,7 +87,7 @@ class SkelStruct
   /// whether there are integer variables that must be generated,
   /// i.e., they don't appear only as if expressions
   int num_of_ints_to_generate;
-  
+
   /// whether we're inspecting an if expression
   bool inspecting_if_expression;
 
@@ -113,27 +109,27 @@ class SkelStruct
   void analyze_items(const SkelItems *);
 
   void check_variable(const SkelItemStruct *);
-  
+
   /**
    * Records the occurrence of the passed type
    * @param type The type whose occurrences must be counted
    * @param to_generate Whether this type represents something to actually
    * generate, e.g., not an if expression
    */
-  void count_type(skelitem_type type, bool to_generate);
+  void count_type(const skelitem_type &type, bool to_generate);
 
 // doublecpp: method branches, DO NOT MODIFY
-#line 114 "skelstruct.h"
+#line 110 "skelstruct.h"
 virtual void analyze_item(SkelItemStruct * v);
-#line 115 "skelstruct.h"
+#line 111 "skelstruct.h"
 virtual void analyze_item(VarItem * v);
-#line 116 "skelstruct.h"
+#line 112 "skelstruct.h"
 virtual void analyze_item(Expression * e);
-#line 117 "skelstruct.h"
+#line 113 "skelstruct.h"
 virtual void analyze_item(UnaryExpression * exp);
-#line 118 "skelstruct.h"
+#line 114 "skelstruct.h"
 virtual void analyze_item(BinaryExpression * exp);
-#line 119 "skelstruct.h"
+#line 115 "skelstruct.h"
 virtual void analyze_item(IfStruct * i);
 public:
 void _forward_analyze_item(BinaryExpression * exp)
@@ -168,16 +164,16 @@ void _forward_analyze_item(VarItem * v)
 
 protected:
 virtual void analyze_item_DB(SkelItemStruct * v);
-#line 119 "skelstruct.h"
+#line 115 "skelstruct.h"
 // doublecpp: end, DO NOT MODIFY
 
 
 // doublecpp: method branches, DO NOT MODIFY
-#line 123 "skelstruct.h"
+#line 119 "skelstruct.h"
 virtual void pre_process(SkelItemStruct * s, OstreamInfo * o);
-#line 124 "skelstruct.h"
+#line 120 "skelstruct.h"
 virtual void pre_process(VarItem * v, OstreamInfo * o);
-#line 125 "skelstruct.h"
+#line 121 "skelstruct.h"
 virtual void pre_process(IfStruct * i, OstreamInfo * o);
 public:
 void _forward_pre_process(IfStruct * i, OstreamInfo * o)
@@ -197,30 +193,30 @@ void _forward_pre_process(VarItem * v, OstreamInfo * o)
 
 protected:
 virtual void pre_process_DB(SkelItemStruct * s, OstreamInfo * o);
-#line 125 "skelstruct.h"
+#line 121 "skelstruct.h"
 // doublecpp: end, DO NOT MODIFY
 
 
   SkelItemStruct *get_prev_item (SkelItems::iterator &it, const SkelItems *);
   SkelItemStruct *get_next_item (SkelItems::iterator &it, const SkelItems *);
-  
+
   /**
    * Whether the passed type represents a valid type for a variable
-   * 
-   * @param t the type to examine 
+   *
+   * @param t the type to examine
    * @return true if the type is a valid type for a variable
    */
-  static bool isVariableType(skelitem_type t) ;
+  static bool isVariableType(const skelitem_type &t) ;
 
   /**
    * Whether the passed type can require generation of a string
    * variable
-   * 
-   * @param t the type to examine 
+   *
+   * @param t the type to examine
    * @return true if the type can require generation of a string
    * variable
    */
-  static bool canBeString(skelitem_type t) ;
+  static bool canBeString(const skelitem_type &t) ;
 
   // called when we have to generate a call to an external function/method
   virtual void call_external_function(ostream &stream, const string &name,
@@ -235,18 +231,18 @@ virtual void pre_process_DB(SkelItemStruct * s, OstreamInfo * o);
 
   // called when we have to generate a variable generation instruction
   virtual void variable_generation(ostream &stream, const string &name,
-                                   skelitem_type t,
+                                   const skelitem_type &t,
                                    unsigned int indent) = 0;
 
   // called when we have to generate an if instruction
   virtual void if_generation(const string &exp, const string &then_branch,
                              const string &else_branch, ostream &stream,
                              unsigned int indent) = 0;
-  
+
   /**
    * This method is called when an expression must be translated in the
    * target language
-   * 
+   *
    * @param exp The expression to translate
    * @param stream The stream where it must be translated
    */

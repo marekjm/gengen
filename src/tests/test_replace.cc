@@ -1,9 +1,7 @@
 #include <iostream>
 #include <string>
 
-using std::string;
-using std::cout;
-using std::endl;
+using namespace std;
 
 void test_replace(string &s, char repl, const string &with);
 

@@ -18,6 +18,10 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <string.h>
 #include <string>
 
@@ -107,11 +111,10 @@ ifline2 {ws}*{nl}?
 <VARITEM_STATE>"{" { return '{'; }
 <VARITEM_STATE>"}" { return '}'; }
 <VARITEM_STATE>"=" { return '='; }
-<VARITEM_STATE>"method" { yylval.skel_item_type = METHOD_TYPE; return SKELITEMTYPE_T; }
-<VARITEM_STATE>"function" { yylval.skel_item_type = FUN_TYPE; return SKELITEMTYPE_T; }
-<VARITEM_STATE,IFSTATE>"int" { yylval.skel_item_type = INT_TYPE; return SKELITEMTYPE_T; }
-<VARITEM_STATE,IFSTATE>"string" { yylval.skel_item_type = STRING_TYPE; return SKELITEMTYPE_T; }
-<VARITEM_STATE,IFSTATE>"bool" { yylval.skel_item_type = BOOL_TYPE; return SKELITEMTYPE_T; }
+<VARITEM_STATE>"method" { yylval.string = strdup(METHOD_TYPE); return SKELITEMTYPE_T; }
+<VARITEM_STATE,IFSTATE>"int" { yylval.string = strdup(INT_TYPE); return SKELITEMTYPE_T; }
+<VARITEM_STATE,IFSTATE>"string" { yylval.string = strdup(STRING_TYPE); return SKELITEMTYPE_T; }
+<VARITEM_STATE,IFSTATE>"bool" { yylval.string = strdup(BOOL_TYPE); return SKELITEMTYPE_T; }
 <VARITEM_STATE>"true" { yylval.boolean = true; return OPTVAL_T; }
 <VARITEM_STATE>"false" { yylval.boolean = false; return OPTVAL_T; }
 <VARITEM_STATE>"iteration" { yylval.string = strdup (yytext); return ITERATION_T; }

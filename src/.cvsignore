@@ -8,3 +8,4 @@ gengen
 test_exp_generator
 test_exp_checker
 libgengen.a
+*.exe

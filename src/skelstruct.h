@@ -33,8 +33,6 @@ using std::ostream;
 #define CALLEXTERNAL_PREFIX "generate_"
 #define STRCNT_PREFIX "strcnt_"
 
-#include "typemap.h"
-
 class StreamStruct;
 class ExpressionChecker;
 
@@ -61,8 +59,6 @@ class SkelStruct
 
   SkelItems *skel_struct;
   ExpressionChecker *expressionChecker;
-  
-  static TypeMap typeMap;
 
   string name;
   string file_name;
@@ -79,7 +75,7 @@ class SkelStruct
   /// whether there are integer variables that must be generated,
   /// i.e., they don't appear only as if expressions
   int num_of_ints_to_generate;
-  
+
   /// whether we're inspecting an if expression
   bool inspecting_if_expression;
 
@@ -101,14 +97,14 @@ class SkelStruct
   void analyze_items(const SkelItems *);
 
   void check_variable(const SkelItemStruct *);
-  
+
   /**
    * Records the occurrence of the passed type
    * @param type The type whose occurrences must be counted
    * @param to_generate Whether this type represents something to actually
    * generate, e.g., not an if expression
    */
-  void count_type(skelitem_type type, bool to_generate);
+  void count_type(const skelitem_type &type, bool to_generate);
 
   branches analyze_item
     void (SkelItemStruct *v);
@@ -127,24 +123,24 @@ class SkelStruct
 
   SkelItemStruct *get_prev_item (SkelItems::iterator &it, const SkelItems *);
   SkelItemStruct *get_next_item (SkelItems::iterator &it, const SkelItems *);
-  
+
   /**
    * Whether the passed type represents a valid type for a variable
-   * 
-   * @param t the type to examine 
+   *
+   * @param t the type to examine
    * @return true if the type is a valid type for a variable
    */
-  static bool isVariableType(skelitem_type t) ;
+  static bool isVariableType(const skelitem_type &t) ;
 
   /**
    * Whether the passed type can require generation of a string
    * variable
-   * 
-   * @param t the type to examine 
+   *
+   * @param t the type to examine
    * @return true if the type can require generation of a string
    * variable
    */
-  static bool canBeString(skelitem_type t) ;
+  static bool canBeString(const skelitem_type &t) ;
 
   // called when we have to generate a call to an external function/method
   virtual void call_external_function(ostream &stream, const string &name,
@@ -159,18 +155,18 @@ class SkelStruct
 
   // called when we have to generate a variable generation instruction
   virtual void variable_generation(ostream &stream, const string &name,
-                                   skelitem_type t,
+                                   const skelitem_type &t,
                                    unsigned int indent) = 0;
 
   // called when we have to generate an if instruction
   virtual void if_generation(const string &exp, const string &then_branch,
                              const string &else_branch, ostream &stream,
                              unsigned int indent) = 0;
-  
+
   /**
    * This method is called when an expression must be translated in the
    * target language
-   * 
+   *
    * @param exp The expression to translate
    * @param stream The stream where it must be translated
    */

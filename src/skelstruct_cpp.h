@@ -57,9 +57,9 @@ class SkelStructCpp : public SkelStruct_C_Cpp_Common, public class_gen_class,
                                       unsigned int indent);
   virtual void std_generation(ostream &stream, const string &s);
   virtual void variable_generation(ostream &stream, const string &name,
-                                   skelitem_type t,
+                                   const skelitem_type &t,
                                    unsigned int indent);
-  
+
   virtual ExpressionGeneratorCpp *createExpGen(ostream &stream);
 
  public:

@@ -27,16 +27,16 @@ class Expression : public SkelItemStruct
 {
   private:
     bool isconst; /// whether this is a constant expression
-    
+
 public:
   Expression(const string &e, ExpressionType type = BOOL_TYPE);
-  
-  ExpressionType getExpressionType() const { return getType(); }
+
+  const ExpressionType &getExpressionType() const { return getType(); }
   void setExpressionType(ExpressionType t) { setType( t ); }
 
   bool isConst() const { return isconst; }
   void setIsConst(bool i) { isconst = i; }
-  
+
 // doublecpp: dispatch methods, DO NOT MODIFY
 public:
 virtual void dispatch_add_var_item_const(SkelItems *);

@@ -45,7 +45,7 @@ class SkelFactory
                                         StreamStruct &,
                                         bool sep_files = false) = 0;
   virtual NormalText *createNormalText (const string &);
-  virtual VarItem *createVarItem (const string &, skelitem_type = NOTYPE,
+  virtual VarItem *createVarItem (const string &, const skelitem_type &t = NOTYPE,
                                   SkelItemOptions opts = SkelItemOptions ());
 
   virtual ~SkelFactory() {}

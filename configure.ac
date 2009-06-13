@@ -9,17 +9,17 @@
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(configure.ac)
+AC_INIT(gengen,1.3)
 
 dnl for automake
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gengen,1.2)
+AM_INIT_AUTOMAKE($PACKAGE_NAME, $PACKAGE_VERSION)
 
 AC_SUBST(gengendatadir)
 AC_SUBST(gengendocdir)
 
 gengendatadir=$datadir/gengen
-gengendocdir=$datadir/doc/gengen
+gengendocdir=$docdir
 
 dnl Checks for C compiler.
 AC_PROG_CC
@@ -140,7 +140,9 @@ dnl some scripts (e.g., valgrind_test.sh) need bash extensions
 AC_PATH_PROGS(BASH_SHELL, bash sh)
 
 
-AC_OUTPUT(Makefile lib/Makefile src/Makefile src/includes/Makefile 
-          src/skels/Makefile
+AC_CONFIG_FILES(Makefile lib/Makefile src/Makefile src/includes/Makefile 
+          src/skels/Makefile src/tests/Makefile
           doc/Makefile tests/Makefile
-          tests/valgrind_tests.sh)
+          tests/valgrind_tests.sh tests/valgrind_gengen_tests.sh)
+
+AC_OUTPUT

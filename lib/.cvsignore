@@ -7,3 +7,5 @@ Makefile.in
 *.a
 string.h
 unistd.h
+getopt.h
+stdlib.h

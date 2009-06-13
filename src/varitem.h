@@ -30,7 +30,7 @@ class SkelStruct; // file: skelstruct.h
 class VarItem : public SkelItemStruct
 {
  public:
-  VarItem(const string &s, skelitem_type t, SkelItemOptions opts);
+  VarItem(const string &s, const skelitem_type &t, SkelItemOptions opts);
 // doublecpp: dispatch methods, DO NOT MODIFY
 public:
 virtual void dispatch_analyze_item(SkelStruct *);

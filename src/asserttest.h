@@ -13,7 +13,9 @@
 
 #include <string>
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
+
+using namespace std;
 
 int
 assertEquals(const std::string &expected, const std::string &actual)
@@ -22,10 +24,10 @@ assertEquals(const std::string &expected, const std::string &actual)
         std::cerr << "assertEquals failed" << std::endl;
         std::cerr << "expected: " << expected << std::endl;
         std::cerr << "actual  : " << actual << std::endl;
-        
-        return EXIT_FAILURE;
+
+        exit(EXIT_FAILURE);
     }
-    
+
     return EXIT_SUCCESS;
 }
 
@@ -36,10 +38,10 @@ assertEquals(bool expected, bool actual)
         std::cerr << "assertEquals failed" << std::endl;
         std::cerr << "expected: " << expected << std::endl;
         std::cerr << "actual  : " << actual << std::endl;
-        
-        return EXIT_FAILURE;
+
+        exit(EXIT_FAILURE);
     }
-    
+
     return EXIT_SUCCESS;
 }
 
@@ -49,9 +51,11 @@ assertTrue(bool exp, const std::string &desc = "")
   if (!exp) {
     if (desc != "")
       std::cerr << desc << std::endl;
-    return EXIT_FAILURE;
+    else
+    	std::cerr << "assertion failed!" << std::endl;
+    exit(EXIT_FAILURE);
   }
-  
+
   return EXIT_SUCCESS;
 }
 

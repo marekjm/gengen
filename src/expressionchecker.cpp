@@ -1,7 +1,7 @@
 //
 // C++ Implementation: expressionchecker
 //
-// Description: 
+// Description:
 //
 //
 // Author: Lorenzo Bettini <http://www.lorenzobettini.it>, (C) 2006
@@ -30,8 +30,6 @@
 #define not_boolean(exp) \
     set_error(exp + " is not a boolean expression");
 
-TypeMap ExpressionChecker::typeMap;
-
 ExpressionChecker::ExpressionChecker()
  : ExpressionVisitor()
 {
@@ -50,16 +48,16 @@ void ExpressionChecker::visit( Expression *exp )
 void ExpressionChecker::visit( UnaryExpression *exp )
 {
   Expression *subExpression = exp->getSubExpression();
-  
+
   visit_and_check(subExpression);
-  
+
   ExpressionOperator op = exp->getOperator();
   ExpressionType type = subExpression->getExpressionType();
-  
+
   if (isNotOp(op) && type != BOOL_TYPE) {
     not_boolean(subExpression->getText());
   }
-  
+
   // we get the same type of the subexpression
   exp->setExpressionType( type );
 }
@@ -68,23 +66,23 @@ void ExpressionChecker::visit( BinaryExpression *exp )
 {
   Expression *left = exp->getLeftExpression();
   Expression *right = exp->getRightExpression();
-  
+
   visit_and_check(left);
   visit_and_check(right);
-  
+
   ExpressionType leftType = left->getExpressionType();
   ExpressionType rightType = right->getExpressionType();
 
   if (leftType != rightType) {
-    error = left->getText() + " and " + right->getText() + 
+    error = left->getText() + " and " + right->getText() +
         " must have the same type\n" +
-        left->getText() + " has type " + typeMap[leftType] + ", " +
-        right->getText() + " has type " + typeMap[rightType];
+        left->getText() + " has type " + leftType + ", " +
+        right->getText() + " has type " + rightType;
     return;
   }
-  
+
   ExpressionOperator op = exp->getOperator();
-  
+
   // by now we already checked that subexpressions have the same type
   if (isBooleanOp(op)) {
     if (leftType != BOOL_TYPE) {
@@ -93,7 +91,7 @@ void ExpressionChecker::visit( BinaryExpression *exp )
     exp->setExpressionType( BOOL_TYPE );
   } else if (isRelativeOp(op)) {
     if (leftType == BOOL_TYPE) {
-      set_error(op + " cannot act on boolean expressions " + left->getText() + 
+      set_error(op + " cannot act on boolean expressions " + left->getText() +
                " and " + right->getText());
     }
     exp->setExpressionType( BOOL_TYPE );
@@ -102,6 +100,6 @@ void ExpressionChecker::visit( BinaryExpression *exp )
     // that the two subexpressions have the same type
     exp->setExpressionType( BOOL_TYPE );
   }
-  
+
   // otherwise the type is still no type
 }

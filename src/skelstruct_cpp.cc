@@ -314,7 +314,7 @@ SkelStructCpp::std_generation(ostream &stream, const string &s)
 
 void
 SkelStructCpp::variable_generation(ostream &stream, const string &name,
-                                   skelitem_type t,
+                                   const skelitem_type &t,
                                    unsigned int indent)
 {
   if (expand_tabs)

@@ -33,6 +33,8 @@
 #include "unaryexpression.h"
 #include "binaryexpression.h"
 #include "expressionoperators.h"
+#include "skelitemtype.h"
+// #include "typeenv.h"
 
 //#define YYERROR_VERBOSE
 
@@ -40,6 +42,15 @@ int line = 1 ;
 
 extern int yylex() ;
 extern FILE *yyin ;
+
+/*
+
+THIS SEEMS TO BE USELESS FOR NOW
+
+static const skelitem_type checkType(const std::string &ide, const skelitem_type &type);
+
+static TypeEnv typeEnv;
+*/
 
 %}
 
@@ -57,12 +68,10 @@ extern FILE *yyin ;
   class Expression *expression;
   class UnaryExpression *unaryexpression;
   class BinaryExpression *binaryexpression;
-
-  skelitem_type skel_item_type;
 } ;
 
 %token <string> NORMAL_T IDE_T ITERATION_T RELOP STRING_CONST NUM_CONST BOOL_CONST
-%token <skel_item_type> SKELITEMTYPE_T
+%token <string> SKELITEMTYPE_T
 %token <boolean> OPTVAL_T
 %token <tok> IF_T THEN_T ELSE_T ELSEIF_T ENDIF_T AND_T OR_T NOT_T
 
@@ -116,16 +125,19 @@ normaltext : NORMAL_T
 
 substvar : '@' IDE_T '@'
            {
+             // const skelitem_type &type = checkType($2, "");
              $$ = skel_factory->createVarItem ($2, STRING_TYPE);
              $$->setInfo(@2.first_line);
            }
          | '@' IDE_T ':' SKELITEMTYPE_T '@'
            {
+             //checkType($2, $4);
              $$ = skel_factory->createVarItem ($2, $4);
              $$->setInfo(@2.first_line);
            }
          | '@' IDE_T ':' SKELITEMTYPE_T '{' option_name '=' OPTVAL_T '}' '@'
            {
+             //checkType($2, $4);
              SkelItemOptions options;
              options.iteration = $8;
              $$ = skel_factory->createVarItem ($2, $4, options);
@@ -177,11 +189,13 @@ relexp : baseexp
 
 baseexp : IDE_T
           {
+          	   // const skelitem_type &type = checkType($1, "");
                $$ = new Expression($1);
                $$->setInfo(@1.first_line);
           }
         | IDE_T ':' SKELITEMTYPE_T
           {
+          	   // checkType($1, $3);
                $$ = new Expression($1, $3);
                $$->setInfo(@1.first_line);
           }
@@ -198,3 +212,23 @@ baseexp : IDE_T
 
 %%
 
+/*
+const skelitem_type checkType(const std::string &ide, const skelitem_type &type) {
+	// if no type is specified
+	if (type == "") {
+		if (!typeEnv.hasType(ide)) {
+			// it's the first time we see this ide, so we assign type string
+			return STRING_TYPE;
+		} else {
+			// we return the already assigned type
+			return typeEnv.getType(ide);
+		} 
+	}
+
+	if (!typeEnv.setType(ide, type)) {
+		yyerror(ide + " has already been assigned type " + typeEnv.getType(ide));
+	}
+	
+	return type;
+}
+*/

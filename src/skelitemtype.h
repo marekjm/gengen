@@ -1,6 +1,14 @@
 #ifndef SKELITEMTYPE_H
 #define SKELITEMTYPE_H
 
-typedef enum { NOTYPE = 0, METHOD_TYPE, FUN_TYPE, IF_TYPE, BOOL_TYPE, STRING_TYPE, INT_TYPE } skelitem_type;
+#include <string>
+
+#define NOTYPE "untyped"
+#define METHOD_TYPE "method"
+#define BOOL_TYPE "bool"
+#define INT_TYPE "int"
+#define STRING_TYPE "string"
+
+typedef std::string skelitem_type;
 
 #endif // SKELITEMTYPE_H

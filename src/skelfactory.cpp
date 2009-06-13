@@ -21,7 +21,7 @@ SkelFactory::createNormalText(const string &s)
 }
 
 VarItem *
-SkelFactory::createVarItem (const string &s, skelitem_type t,
+SkelFactory::createVarItem (const string &s, const skelitem_type &t,
                                SkelItemOptions opts)
 {
   return new VarItem (s, t, opts);

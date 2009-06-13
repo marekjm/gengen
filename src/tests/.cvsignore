@@ -1,0 +1,8 @@
+.deps
+Makefile
+Makefile.in
+test_exp_checker
+test_exp_generator
+test_replace
+test_type_env
+*.exe

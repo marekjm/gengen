@@ -19,7 +19,7 @@
 
 #include "skelitemstruct.h"
 
-SkelItemStruct::SkelItemStruct(const string &s, skelitem_type t,
+SkelItemStruct::SkelItemStruct(const string &s, const skelitem_type &t,
                                SkelItemOptions opts) :
   text (s), item_type (t), item_options (opts)
 {

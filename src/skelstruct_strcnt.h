@@ -30,13 +30,13 @@ class SkelStructStrCnt : public SkelStruct_C_Common
   virtual void std_indentstr_generation(ostream &stream, const string &name,
                                         unsigned int indent);
   virtual void variable_generation(ostream &stream, const string &name,
-                                   skelitem_type t,
+                                   const skelitem_type &t,
                                    unsigned int indent);
   virtual void indent_update_generation(ostream &stream, int i);
   virtual void indent_generation(ostream &stream, const string &ind);
   virtual string preformat(const string &item) { return item; }
   virtual void replace_chars(string &) {}
-  
+
  public:
   SkelStructStrCnt (const SkelStruct_C_Common &s);
 

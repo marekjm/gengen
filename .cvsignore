@@ -21,3 +21,6 @@ ylwrap
 depcomp
 install-sh
 missing
+*.lnk
+config.guess
+config.sub

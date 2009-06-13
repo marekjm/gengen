@@ -19,7 +19,7 @@
 
 #include "varitem.h"
 
-VarItem::VarItem(const string &s, skelitem_type t, SkelItemOptions opts) :
+VarItem::VarItem(const string &s, const skelitem_type &t, SkelItemOptions opts) :
   SkelItemStruct (s, t, opts)
 {
 }

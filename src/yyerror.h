@@ -1,6 +1,8 @@
 #ifndef _YYERROR_H
 #define _YYERROR_H
 
-void yyerror (const char *s);
+#include <string>
+
+void yyerror(const std::string &s);
 
 #endif // _YYERROR_H

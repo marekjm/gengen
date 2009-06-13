@@ -28,13 +28,12 @@
 #include "stringutil.h"
 #include "errormanager.h"
 #include "streamstruct.h"
+#include "skelitemtype.h"
 
 #include <algorithm>
 #include <functional>
 
 using std::endl;
-
-TypeMap SkelStruct::typeMap;
 
 SkelStruct::SkelStruct(SkelItems *items, const string &n, const string &file, StreamStruct &s, bool sep)
   : skel_struct (items), expressionChecker (new ExpressionChecker()),
@@ -123,18 +122,18 @@ SkelStruct::get_next_item(SkelItems::iterator &it, const SkelItems *items)
   return item;
 }
 
-bool SkelStruct::isVariableType(skelitem_type item_type)
+bool SkelStruct::isVariableType(const skelitem_type &item_type)
 {
-  return (item_type == NOTYPE || item_type == METHOD_TYPE || 
+  return (item_type == NOTYPE || item_type == METHOD_TYPE ||
           item_type == BOOL_TYPE || item_type == INT_TYPE ||
           item_type == STRING_TYPE);
-} 
+}
 
-bool SkelStruct::canBeString(skelitem_type item_type)
+bool SkelStruct::canBeString(const skelitem_type &item_type)
 {
-  return (item_type == NOTYPE || item_type == METHOD_TYPE || 
+  return (item_type == NOTYPE || item_type == METHOD_TYPE ||
           item_type == STRING_TYPE);
-} 
+}
 
 bool
 SkelStruct::all_spaces(const SkelItemStruct *item)
@@ -223,7 +222,7 @@ SkelStruct::analyze_item(VarItem *var)
   check_variable(var);
 }
 
-void SkelStruct::count_type( skelitem_type type, bool to_generate )
+void SkelStruct::count_type( const skelitem_type &type, bool to_generate )
 {
   if (type == METHOD_TYPE) {
     ++num_of_methods;
@@ -245,10 +244,10 @@ SkelStruct::check_variable(const SkelItemStruct *var)
   VarItemSet::const_iterator v = vars.find(*var);
   if (v != vars.end() && v->getType() != var->getType())
     {
-      print_error("variable \"" + v->getText() + "\" of type \"" + 
-          typeMap[var->getType()] + "\"", var);
+      print_error("variable \"" + v->getText() + "\" of type \"" +
+          var->getType() + "\"", var);
       print_error("already used with another type", var);
-      print_error("previous usage was here with type \"" + typeMap[v->getType()] + "\"", *v);
+      print_error("previous usage was here with type \"" + v->getType() + "\"", *v);
       exit_failure();
     }
   else
@@ -262,7 +261,7 @@ SkelStruct::analyze_item(Expression *e)
   // and we don't check it
   if (! e->isConst())
     check_variable(e);
-  
+
   // pass false since an expression will not be actually generated
   // in the output, but will be used only to test something
   count_type( e->getExpressionType(), false );
@@ -294,11 +293,11 @@ SkelStruct::analyze_item(IfStruct *ifstruct)
       exit_failure();
     }
     analyze_item_DB(exp);
-    
+
     // now check that exp has actually type bool
     if (exp->getType() != BOOL_TYPE) {
       print_error("boolean expression expected instead of type \"" +
-          typeMap[exp->getType()] + "\"", exp);
+          exp->getType() + "\"", exp);
       exit_failure();
     }
   }
@@ -427,7 +426,7 @@ SkelStruct::pre_process(SkelItemStruct *, OstreamInfo *)
 void
 SkelStruct::pre_process(VarItem *var, OstreamInfo *os)
 {
-  skelitem_type item_type = var->getType ();
+  const skelitem_type &item_type = var->getType ();
   string indent_string (os->indent, ' ');
   indent_generation (os->stream, indent_string);
 
@@ -457,9 +456,9 @@ SkelStruct::pre_process(IfStruct *ifstruct, OstreamInfo *os)
   ostringstream then_s;
   ostringstream else_s;
   ostringstream exp_stream;
-  
+
   exp_generation( exp, exp_stream );
-  
+
   string exp_s = exp_stream.str();
 
   const SkelItems *then_branch = ifstruct->getThenBranch();

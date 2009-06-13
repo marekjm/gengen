@@ -1,10 +1,10 @@
 /* A GNU-like <string.h>.
 
-   Copyright (C) 1995-1996, 2001-2007 Free Software Foundation, Inc.
+   Copyright (C) 1995-1996, 2001-2009 Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
+   the Free Software Foundation; either version 3, or (at your option)
    any later version.
 
    This program is distributed in the hope that it will be useful,
@@ -18,15 +18,27 @@
 
 #ifndef _GL_STRING_H
 
-/* The include_next requires a split double-inclusion guard.  */
-#if @HAVE_INCLUDE_NEXT@
-# include_next <string.h>
-#else
-# include @ABSOLUTE_STRING_H@
+#if __GNUC__ >= 3
+@PRAGMA_SYSTEM_HEADER@
 #endif
+
+/* The include_next requires a split double-inclusion guard.  */
+#@INCLUDE_NEXT@ @NEXT_STRING_H@
 
 #ifndef _GL_STRING_H
 #define _GL_STRING_H
+
+
+#ifndef __attribute__
+/* This feature is available in gcc versions 2.5 and later.  */
+# if __GNUC__ < 2 || (__GNUC__ == 2 && __GNUC_MINOR__ < 5)
+#  define __attribute__(Spec) /* empty */
+# endif
+/* The attribute __pure__ was added in gcc 2.96.  */
+# if __GNUC__ < 2 || (__GNUC__ == 2 && __GNUC_MINOR__ < 96)
+#  define __pure__ /* empty */
+# endif
+#endif
 
 
 /* The definition of GL_LINK_WARNING is copied here.  */
@@ -36,17 +48,40 @@
 extern "C" {
 #endif
 
+
+/* Return the first instance of C within N bytes of S, or NULL.  */
+#if @GNULIB_MEMCHR@
+# if @REPLACE_MEMCHR@
+#  define memchr rpl_memchr
+# endif
+# if @REPLACE_MEMCHR@
+extern void *memchr (void const *__s, int __c, size_t __n)
+  __attribute__ ((__pure__));
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef memchr
+# define memchr(s,c,n) \
+    (GL_LINK_WARNING ("memchr has platform-specific bugs - " \
+                      "use gnulib module memchr for portability" ), \
+     memchr (s, c, n))
+#endif
+
 /* Return the first occurrence of NEEDLE in HAYSTACK.  */
 #if @GNULIB_MEMMEM@
-# if ! @HAVE_DECL_MEMMEM@
+# if @REPLACE_MEMMEM@
+#  define memmem rpl_memmem
+# endif
+# if ! @HAVE_DECL_MEMMEM@ || @REPLACE_MEMMEM@
 extern void *memmem (void const *__haystack, size_t __haystack_len,
-		     void const *__needle, size_t __needle_len);
+		     void const *__needle, size_t __needle_len)
+  __attribute__ ((__pure__));
 # endif
 #elif defined GNULIB_POSIXCHECK
 # undef memmem
 # define memmem(a,al,b,bl) \
-    (GL_LINK_WARNING ("memmem is unportable - " \
-                      "use gnulib module memmem for portability"), \
+    (GL_LINK_WARNING ("memmem is unportable and often quadratic - " \
+                      "use gnulib module memmem-simple for portability, " \
+                      "and module memmem for speed" ), \
      memmem (a, al, b, bl))
 #endif
 
@@ -68,7 +103,8 @@ extern void *mempcpy (void *restrict __dest, void const *restrict __src,
 /* Search backwards through a block for a byte (specified as an int).  */
 #if @GNULIB_MEMRCHR@
 # if ! @HAVE_DECL_MEMRCHR@
-extern void *memrchr (void const *, int, size_t);
+extern void *memrchr (void const *, int, size_t)
+  __attribute__ ((__pure__));
 # endif
 #elif defined GNULIB_POSIXCHECK
 # undef memrchr
@@ -76,6 +112,22 @@ extern void *memrchr (void const *, int, size_t);
     (GL_LINK_WARNING ("memrchr is unportable - " \
                       "use gnulib module memrchr for portability"), \
      memrchr (a, b, c))
+#endif
+
+/* Find the first occurrence of C in S.  More efficient than
+   memchr(S,C,N), at the expense of undefined behavior if C does not
+   occur within N bytes.  */
+#if @GNULIB_RAWMEMCHR@
+# if ! @HAVE_RAWMEMCHR@
+extern void *rawmemchr (void const *__s, int __c_in)
+  __attribute__ ((__pure__));
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef rawmemchr
+# define rawmemchr(a,b) \
+    (GL_LINK_WARNING ("rawmemchr is unportable - " \
+                      "use gnulib module rawmemchr for portability"), \
+     rawmemchr (a, b))
 #endif
 
 /* Copy SRC to DST, returning the address of the terminating '\0' in DST.  */
@@ -107,50 +159,6 @@ extern char *stpncpy (char *restrict __dst, char const *restrict __src,
      stpncpy (a, b, n))
 #endif
 
-/* Compare strings S1 and S2, ignoring case, returning less than, equal to or
-   greater than zero if S1 is lexicographically less than, equal to or greater
-   than S2.
-   Note: This function does not work in multibyte locales.  */
-#if ! @HAVE_STRCASECMP@
-extern int strcasecmp (char const *s1, char const *s2);
-#endif
-#if defined GNULIB_POSIXCHECK
-/* strcasecmp() does not work with multibyte strings:
-   POSIX says that it operates on "strings", and "string" in POSIX is defined
-   as a sequence of bytes, not of characters.   */
-# undef strcasecmp
-# define strcasecmp(a,b) \
-    (GL_LINK_WARNING ("strcasecmp cannot work correctly on character strings " \
-                      "in multibyte locales - " \
-                      "use mbscasecmp if you care about " \
-                      "internationalization, or use c_strcasecmp (from " \
-                      "gnulib module c-strcase) if you want a locale " \
-                      "independent function"), \
-     strcasecmp (a, b))
-#endif
-
-/* Compare no more than N bytes of strings S1 and S2, ignoring case,
-   returning less than, equal to or greater than zero if S1 is
-   lexicographically less than, equal to or greater than S2.
-   Note: This function cannot work correctly in multibyte locales.  */
-#if ! @HAVE_DECL_STRNCASECMP@
-extern int strncasecmp (char const *s1, char const *s2, size_t n);
-#endif
-#if defined GNULIB_POSIXCHECK
-/* strncasecmp() does not work with multibyte strings:
-   POSIX says that it operates on "strings", and "string" in POSIX is defined
-   as a sequence of bytes, not of characters.  */
-# undef strncasecmp
-# define strncasecmp(a,b,n) \
-    (GL_LINK_WARNING ("strncasecmp cannot work correctly on character " \
-                      "strings in multibyte locales - " \
-                      "use mbsncasecmp or mbspcasecmp if you care about " \
-                      "internationalization, or use c_strncasecmp (from " \
-                      "gnulib module c-strcase) if you want a locale " \
-                      "independent function"), \
-     strncasecmp (a, b, n))
-#endif
-
 #if defined GNULIB_POSIXCHECK
 /* strchr() does not work with multibyte strings if the locale encoding is
    GB18030 and the character to be searched is a digit.  */
@@ -165,7 +173,8 @@ extern int strncasecmp (char const *s1, char const *s2, size_t n);
 /* Find the first occurrence of C in S or the final NUL byte.  */
 #if @GNULIB_STRCHRNUL@
 # if ! @HAVE_STRCHRNUL@
-extern char *strchrnul (char const *__s, int __c_in);
+extern char *strchrnul (char const *__s, int __c_in)
+  __attribute__ ((__pure__));
 # endif
 #elif defined GNULIB_POSIXCHECK
 # undef strchrnul
@@ -177,7 +186,11 @@ extern char *strchrnul (char const *__s, int __c_in);
 
 /* Duplicate S, returning an identical malloc'd string.  */
 #if @GNULIB_STRDUP@
-# if ! @HAVE_DECL_STRDUP@ && ! defined strdup
+# if @REPLACE_STRDUP@
+#  undef strdup
+#  define strdup rpl_strdup
+# endif
+# if !(@HAVE_DECL_STRDUP@ || defined strdup) || @REPLACE_STRDUP@
 extern char *strdup (char const *__s);
 # endif
 #elif defined GNULIB_POSIXCHECK
@@ -210,7 +223,8 @@ extern char *strndup (char const *__string, size_t __n);
    return MAXLEN.  */
 #if @GNULIB_STRNLEN@
 # if ! @HAVE_DECL_STRNLEN@
-extern size_t strnlen (char const *__string, size_t __maxlen);
+extern size_t strnlen (char const *__string, size_t __maxlen)
+  __attribute__ ((__pure__));
 # endif
 #elif defined GNULIB_POSIXCHECK
 # undef strnlen
@@ -236,7 +250,8 @@ extern size_t strnlen (char const *__string, size_t __maxlen);
 /* Find the first occurrence in S of any character in ACCEPT.  */
 #if @GNULIB_STRPBRK@
 # if ! @HAVE_STRPBRK@
-extern char *strpbrk (char const *__s, char const *__accept);
+extern char *strpbrk (char const *__s, char const *__accept)
+  __attribute__ ((__pure__));
 # endif
 # if defined GNULIB_POSIXCHECK
 /* strpbrk() assumes the second argument is a list of single-byte characters.
@@ -316,25 +331,38 @@ extern char *strsep (char **restrict __stringp, char const *restrict __delim);
      strsep (s, d))
 #endif
 
-#if defined GNULIB_POSIXCHECK
+#if @GNULIB_STRSTR@
+# if @REPLACE_STRSTR@
+#  define strstr rpl_strstr
+char *strstr (const char *haystack, const char *needle)
+  __attribute__ ((__pure__));
+# endif
+#elif defined GNULIB_POSIXCHECK
 /* strstr() does not work with multibyte strings if the locale encoding is
    different from UTF-8:
    POSIX says that it operates on "strings", and "string" in POSIX is defined
    as a sequence of bytes, not of characters.  */
 # undef strstr
 # define strstr(a,b) \
-    (GL_LINK_WARNING ("strstr cannot work correctly on character strings " \
-                      "in most multibyte locales - " \
-                      "use mbsstr if you care about internationalization"), \
+    (GL_LINK_WARNING ("strstr is quadratic on many systems, and cannot " \
+                      "work correctly on character strings in most "    \
+                      "multibyte locales - " \
+                      "use mbsstr if you care about internationalization, " \
+                      "or use strstr if you care about speed"), \
      strstr (a, b))
 #endif
 
 /* Find the first occurrence of NEEDLE in HAYSTACK, using case-insensitive
    comparison.  */
-#if ! @HAVE_STRCASESTR@
-extern char *strcasestr (const char *haystack, const char *needle);
-#endif
-#if defined GNULIB_POSIXCHECK
+#if @GNULIB_STRCASESTR@
+# if @REPLACE_STRCASESTR@
+#  define strcasestr rpl_strcasestr
+# endif
+# if ! @HAVE_STRCASESTR@ || @REPLACE_STRCASESTR@
+extern char *strcasestr (const char *haystack, const char *needle)
+  __attribute__ ((__pure__));
+# endif
+#elif defined GNULIB_POSIXCHECK
 /* strcasestr() does not work with multibyte strings:
    It is a glibc extension, and glibc implements it only for unibyte
    locales.  */
@@ -399,6 +427,12 @@ extern char *strtok_r (char *restrict s, char const *restrict delim,
 /* Return the number of multibyte characters in the character string STRING.
    This considers multibyte characters, unlike strlen, which counts bytes.  */
 extern size_t mbslen (const char *string);
+#endif
+
+#if @GNULIB_MBSNLEN@
+/* Return the number of multibyte characters in the character string starting
+   at STRING and ending at STRING + LEN.  */
+extern size_t mbsnlen (const char *string, size_t len);
 #endif
 
 #if @GNULIB_MBSCHR@
@@ -535,6 +569,48 @@ extern char * mbssep (char **stringp, const char *delim);
 
    See also mbssep().  */
 extern char * mbstok_r (char *string, const char *delim, char **save_ptr);
+#endif
+
+/* Map any int, typically from errno, into an error message.  */
+#if @GNULIB_STRERROR@
+# if @REPLACE_STRERROR@
+#  undef strerror
+#  define strerror rpl_strerror
+extern char *strerror (int);
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef strerror
+# define strerror(e) \
+    (GL_LINK_WARNING ("strerror is unportable - " \
+                      "use gnulib module strerror to guarantee non-NULL result"), \
+     strerror (e))
+#endif
+
+#if @GNULIB_STRSIGNAL@
+# if @REPLACE_STRSIGNAL@
+#  define strsignal rpl_strsignal
+# endif
+# if ! @HAVE_DECL_STRSIGNAL@ || @REPLACE_STRSIGNAL@
+extern char *strsignal (int __sig);
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef strsignal
+# define strsignal(a) \
+    (GL_LINK_WARNING ("strsignal is unportable - " \
+                      "use gnulib module strsignal for portability"), \
+     strsignal (a))
+#endif
+
+#if @GNULIB_STRVERSCMP@
+# if !@HAVE_STRVERSCMP@
+extern int strverscmp (const char *, const char *);
+# endif
+#elif defined GNULIB_POSIXCHECK
+# undef strverscmp
+# define strverscmp(a, b) \
+    (GL_LINK_WARNING ("strverscmp is unportable - " \
+                      "use gnulib module strverscmp for portability"), \
+     strverscmp (a, b))
 #endif
 
 

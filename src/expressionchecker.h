@@ -1,7 +1,7 @@
 //
 // C++ Interface: expressionchecker
 //
-// Description: 
+// Description:
 //
 //
 // Author: Lorenzo Bettini <http://www.lorenzobettini.it>, (C) 2006
@@ -16,7 +16,6 @@
 #include "expressiontype.h"
 
 #include <string>
-#include "typemap.h"
 
 /**
 checks an expression (and its subexpression), e.g., performs type checking
@@ -28,8 +27,6 @@ class ExpressionChecker : public ExpressionVisitor
   protected:
     /// if not empty contains the error message
     std::string error;
-    
-    static TypeMap typeMap;
 
 public:
     ExpressionChecker();

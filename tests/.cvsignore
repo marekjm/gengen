@@ -74,3 +74,5 @@ test_if
 test_if_c
 test_types
 test_types_c
+*.exe
+valgrind_gengen_tests.sh

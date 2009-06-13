@@ -1,7 +1,7 @@
 //
 // C++ Implementation: if_struct
 //
-// Description: 
+// Description:
 //
 //
 // Author: Lorenzo Bettini <http://www.lorenzobettini.it>, (C) 2004
@@ -14,7 +14,7 @@
 #include "expression.h"
 
 IfStruct::IfStruct(Expression *e, const SkelItems *t, IfStruct *el) :
-        SkelItemStruct ("", IF_TYPE), exp (e), then_branch (t), else_branch (el)
+        SkelItemStruct ("", "_if_type"), exp (e), then_branch (t), else_branch (el)
 {
 }
 

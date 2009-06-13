@@ -63,9 +63,9 @@ class SkelStructC : public SkelStruct_C_Common, public c_header_gen_class,
                                       unsigned int indent);
   virtual void std_generation(ostream &stream, const string &s);
   virtual void variable_generation(ostream &stream, const string &name,
-                                   skelitem_type t,
+                                   const skelitem_type &t,
                                    unsigned int indent);
-  
+
  public:
   SkelStructC (SkelItems *items,
                const string &n, const string &file_name, StreamStruct &s,

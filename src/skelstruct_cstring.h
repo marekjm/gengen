@@ -23,9 +23,9 @@ class SkelStructCString : public SkelStruct_C_Common
                                       unsigned int indent);
   virtual void std_generation(ostream &stream, const string &s);
   virtual void variable_generation(ostream &stream, const string &name,
-                                   skelitem_type t,
+                                   const skelitem_type &t,
                                    unsigned int indent);
-  
+
  public:
   SkelStructCString (const SkelStruct_C_Common &s);
 

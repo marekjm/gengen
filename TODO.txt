@@ -28,3 +28,48 @@ does not update indent after an @ENDIF@ without any \n after:
   @foo@
   
 @cond exp ? then : else cond@ (alias for if then else)
+
+STRUCTURED DATA
+---------------
+
+@myvar:MyStruct.field:string@ NO
+@myvar:MyStruct.myfield:MyOtherStruct@ NO
+
+@myvar:MyStruct.field@ YES
+
+type is inferred in expressions
+
+generate #line so that the C compiler can report an error due, e.g.,
+to a missing field.
+
+check for null
+
+@if@ myvar:MyStruct == null @then@
+
+pass a pointer both in C and C++
+
+LOOPS
+-----
+
+@iterator var@
+
+@var@ contains the current value
+
+@next(var)@ says whether there's another element
+
+@enditerator@
+
+typed iterator
+
+@iterator var:MyStruct@
+
+@var@ contains the current value
+
+@next(var)@ says whether there's another element
+
+@enditerator@
+
+TYPES
+-----
+
+check use of gnulib
