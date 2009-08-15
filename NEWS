@@ -2,6 +2,11 @@ GNU gengen -- History of visible changes.
 
 Copyright (C) 2002-2009  Lorenzo Bettini www.lorenzobettini.it
 
+Version 1.4
+
+* remove possible path information passed with --file-name
+* --output-dir option added
+
 Version 1.3
 
 * updated gnulib configure macros

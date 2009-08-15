@@ -1,3 +1,19 @@
+2009-08-15  bettini  <bettini@bettini-laptop>
+
+	* tests/otherdir/Makefile.am: test --output-dir and removal
+	of path in the generated #include
+	* src/cmdline.ggo: --output-dir option 
+	* src/skelstruct_c.cpp (SkelStructC::generate): remove path from
+	headerfile
+	* src/skelstruct_cpp.cc (SkelStructCpp::generate): Ditto 
+	* tests/test_if.h: Removed.
+	* tests/test_if_c.h: Removed.
+	* tests/test_types.h: Removed.
+	* tests/test_types_c.h: Removed.
+	* build-aux/.cvsignore: New file.
+	* configure.ac: easy to develop in a different build dir
+	
+
 2009-06-13  bettini  <bettini@bettini-desktop>
 
 	* configure.ac: use --docdir if specified

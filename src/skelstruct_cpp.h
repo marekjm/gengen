@@ -26,6 +26,9 @@
 #include "genmethod_body.h"
 #include "cc_source.h"
 
+/**
+ * Class for generation of C++ code
+ */
 class SkelStructCpp : public SkelStruct_C_Cpp_Common, public class_gen_class,
                       public genmethod_gen_class,
                       public genmethod_body_gen_class,

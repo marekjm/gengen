@@ -28,10 +28,10 @@ gengendoc_DATA = gengen.html index.html
 man_MANS = gengen.1
 
 if NO_BUILDMAN
-gengen.1: $(top_srcdir)/src/cmdline.ggo
+$(srcdir)/gengen.1: $(top_srcdir)/src/cmdline.ggo
 	touch $@
 else
-gengen.1: $(top_srcdir)/src/cmdline.ggo
+$(srcdir)/gengen.1: $(top_srcdir)/src/cmdline.ggo
 	$(HELP2MAN) $(top_builddir)/src/gengen > $@
 endif
 

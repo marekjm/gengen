@@ -22,6 +22,9 @@
 #include "initstructfun.h"
 #include "genstrfunction.h"
 
+/**
+ * Class for generation of C code
+ */
 class SkelStructC : public SkelStruct_C_Common, public c_header_gen_class,
                     public genfunction_gen_class, public c_source_gen_class,
                     public strcntfunction_gen_class, public initstructfun_gen_class,

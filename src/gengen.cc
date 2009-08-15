@@ -77,7 +77,7 @@ main(int argc, char * const *argv)
     cout << "GNU ";
     cmdline_parser_print_version ();
     copyright_gen_class copyright;
-    copyright.set_year ("2002-2006");
+    copyright.set_year ("2002-2009");
     copyright.generate_copyright (cout);
     exit (0);
   }
@@ -95,6 +95,9 @@ main(int argc, char * const *argv)
 
   if (args_info.file_name_given)
     file_name = string (args_info.file_name_arg);
+
+  if (args_info.output_dir_given)
+	  file_name = string(args_info.output_dir_arg) + "/" + file_name;
 
   if (args_info.input_given)
     {

@@ -24,3 +24,4 @@ missing
 *.lnk
 config.guess
 config.sub
+build

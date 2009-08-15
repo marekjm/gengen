@@ -43,9 +43,12 @@ AC_DEFUN([gl_INIT],
   m4_pushdef([gl_LIBSOURCES_DIR], [])
   gl_COMMON
   gl_source_base='lib'
-  gl_GETOPT
+  gl_FUNC_GETOPT_GNU
+  gl_MODULE_INDICATOR([getopt-gnu])
+  gl_FUNC_GETOPT_POSIX
   AC_SUBST([LIBINTL])
   AC_SUBST([LTLIBINTL])
+  gl_STDDEF_H
   gl_FUNC_STRDUP
   gl_STRING_MODULE_INDICATOR([strdup])
   gl_HEADER_STRING_H
@@ -189,6 +192,7 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/getopt1.c
   lib/getopt_int.h
   lib/gettext.h
+  lib/stddef.in.h
   lib/strdup.c
   lib/string.in.h
   lib/unistd.in.h
@@ -198,7 +202,9 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/gnulib-common.m4
   m4/include_next.m4
   m4/onceonly.m4
+  m4/stddef_h.m4
   m4/strdup.m4
   m4/string_h.m4
   m4/unistd_h.m4
+  m4/wchar_t.m4
 ])

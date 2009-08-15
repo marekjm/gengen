@@ -34,7 +34,7 @@ if NO_GENGETOPT
 	touch $@
 else
 .ggo.c:
-	$(GENGETOPT) --input $< --no-handle-version --no-handle-help
+	$(GENGETOPT) --input $< --output-dir=$(srcdir) --no-handle-version --no-handle-help
 endif
 
 if NO_DOUBLECPP
@@ -59,7 +59,7 @@ sourcename.h skelitemoptions.h my_sstream.h \
 gengen_cmdline_options.h \
 $(BUILT_SOURCES)
 
-BUILT_SOURCES=skelstruct.hpp skelitems.hpp expressionvisitor.hpp
+BUILT_SOURCES=skelstruct.hpp skelitems.hpp expressionvisitor.hpp cmdline.h cmdline.c
 
 INCLUDES = -I@top_srcdir@/src/skels
 noinst_HEADERS = skelstruct_cstring.h ifstruct.h expression.h skelitems.h \

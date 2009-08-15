@@ -24,6 +24,7 @@
 #include "outputcvar.h"
 #include "streamstruct.h"
 #include "utils.h"
+#include "fileutil.h"
 
 #define struct_suffix "_gen_struct"
 
@@ -77,7 +78,9 @@ SkelStructC::generate()
     c_source_gen_class::set_version (VERSION);
   c_source_gen_class::set_author (author);
   c_source_gen_class::set_othercomments (other_comments);
-  set_headerfile (file_name);
+
+  // make sure to strip possible path
+  set_headerfile (strip_file_path(file_name));
 
   generate_c_header (*streamstruct.header_stream);
 

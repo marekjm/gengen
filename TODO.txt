@@ -73,3 +73,7 @@ TYPES
 -----
 
 check use of gnulib
+
+strip path when generating the #include statement
+
+output-dir command line option?

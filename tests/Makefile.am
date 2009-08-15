@@ -8,6 +8,8 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+SUBDIRS = otherdir
+
 SUFFIXES = .err .cc_skel .err_test .cc_skel .h .cc_skel _c.h .cc_skel
 
 PROGEXE = $(top_builddir)/src/$(PACKAGE)$(EXEEXT)

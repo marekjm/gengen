@@ -28,6 +28,8 @@
 #ifndef _GL_STRING_H
 #define _GL_STRING_H
 
+/* NetBSD 5.0 mis-defines NULL.  */
+#include <stddef.h>
 
 #ifndef __attribute__
 /* This feature is available in gcc versions 2.5 and later.  */
@@ -53,8 +55,6 @@ extern "C" {
 #if @GNULIB_MEMCHR@
 # if @REPLACE_MEMCHR@
 #  define memchr rpl_memchr
-# endif
-# if @REPLACE_MEMCHR@
 extern void *memchr (void const *__s, int __c, size_t __n)
   __attribute__ ((__pure__));
 # endif

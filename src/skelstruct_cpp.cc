@@ -31,6 +31,7 @@
 #include "streamstruct.h"
 #include "expressiongenerator_cpp.h"
 #include "utils.h"
+#include "fileutil.h"
 
 #define class_suffix "_gen_class"
 
@@ -78,7 +79,9 @@ SkelStructCpp::generate()
     cc_source_gen_class::set_version (VERSION);
   cc_source_gen_class::set_author (author);
   cc_source_gen_class::set_othercomments (other_comments);
-  set_headerfile (file_name);
+
+  // make sure to strip possible path
+  set_headerfile (strip_file_path(file_name));
 
   const string &init_defaults = generate_init_defaults();
   if (has_booleans() || has_ints())

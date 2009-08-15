@@ -1,4 +1,4 @@
-# Copyright (C) 2002  Lorenzo Bettini <http://www.lorenzobettini.it>
+# Copyright (C) 2002, 2009  Lorenzo Bettini <http://www.lorenzobettini.it>
 #
 # This is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ option  "input"      i "input file (default std input)" string typestr="file" no
 option  "file-name"  F "name used for generating file (default stdout)" string typestr="name" no
 option  "gen-name"   f "prefix for generated code" string default="gengen" no
 option  "output-format" - "target language (cpp, c)" string typestr="lang" default="cpp" no
-#option  "output-dir" -  "output directory (default curr. dir.)" string no
+option  "output-dir" -  "output directory (default current dir)" string no
 option  "separate-files" - "output to separate files (header, source). require --file-name" no
 option  "expand-tabs" - "strings containing newlines are indented according to the current indentation level" no
 option  "no-gen-version" - "do not put gengen version in the generated file" no
