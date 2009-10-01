@@ -24,6 +24,7 @@
 #include "yyerror.h"
 #include "normaltext.h"
 #include "varitem.h"
+#include "skelitems.hpp"
 #include "skelstruct.hpp"
 #include "mainskelstruct.h"
 #include "skelfactory.h"

@@ -12,7 +12,7 @@
 #ifndef SKELSTRUCT_C_COMMON_H
 #define SKELSTRUCT_C_COMMON_H
 
-#include <skelstruct.hpp>
+#include "skelstruct.hpp"
 
 #include "my_sstream.h"
 

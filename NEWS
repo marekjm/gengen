@@ -2,6 +2,10 @@ GNU gengen -- History of visible changes.
 
 Copyright (C) 2002-2009  Lorenzo Bettini www.lorenzobettini.it
 
+Version 1.4.1
+
+* fixed some compilation errors
+
 Version 1.4
 
 * remove possible path information passed with --file-name

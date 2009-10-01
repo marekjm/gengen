@@ -1,3 +1,9 @@
+2009-09-21  bettini  <bettini@prog>
+
+	* src/expressiongenerator_cpp.h: correctly include header file 
+	* src/parser.yy: Ditto
+	* src/skelstruct_c_common.h: Ditto 
+
 2009-08-15  bettini  <bettini@bettini-laptop>
 
 	* tests/otherdir/Makefile.am: test --output-dir and removal
