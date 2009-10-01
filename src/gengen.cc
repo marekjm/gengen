@@ -57,7 +57,7 @@ generate_code(const ostringstream &stream, const string &file_name);
 gengetopt_args_info args_info;
 
 int
-main(int argc, char * const *argv)
+main(int argc, char **argv)
 {
   if(cmdline_parser(argc, argv, &args_info) != 0)
     // calls cmdline parser. The user gived bag args if it doesn't return -1
