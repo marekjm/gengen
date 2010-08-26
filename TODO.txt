@@ -76,3 +76,8 @@ check use of gnulib
 
 strip path when generating the #include statement
 
+GENERAL
+-------
+
+in case of relative output dir there might be some errors
+(appends output dir to the source dir?)
