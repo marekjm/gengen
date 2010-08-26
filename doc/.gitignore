@@ -1,9 +1,6 @@
 Makefile.in
 Makefile
 .deps
-stamp-vti
-version.texi
-gengen.info
 gengen.html
 gengen.log
 gengen.dvi
