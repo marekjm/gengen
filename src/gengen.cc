@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2002  Lorenzo Bettini <http://www.lorenzobettini.it>
+ * Copyright (C) 2002-2010  Lorenzo Bettini <http://www.lorenzobettini.it>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -97,7 +97,7 @@ main(int argc, char **argv)
     file_name = string (args_info.file_name_arg);
 
   if (args_info.output_dir_given)
-	  file_name = string(args_info.output_dir_arg) + "/" + file_name;
+	  file_name = string(args_info.output_dir_arg) + "/" + strip_file_path(file_name);
 
   if (args_info.input_given)
     {

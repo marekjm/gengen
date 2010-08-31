@@ -1,3 +1,8 @@
+2010-08-31  Lorenzo Bettini  <bettini@bettini-laptop>
+
+	* src/gengen.cc (main): strip path from input file name before
+	generating the output file path
+
 2009-09-21  bettini  <bettini@prog>
 
 	* src/expressiongenerator_cpp.h: correctly include header file 

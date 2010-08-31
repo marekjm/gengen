@@ -1,7 +1,7 @@
 This is ../../doc/gengen.info, produced by makeinfo version 4.13 from
 ../../doc/gengen.texinfo.
 
-This manual is for GNU Gengen (version 1.4.1, 26 August 2010).  GNU
+This manual is for GNU Gengen (version 1.4.2, 31 August 2010).  GNU
 Gengen (GENerator GENerator), a tool to generate a C++ class (or C
 functions) for generating text, based on a template file with
 parameters, after substituting some parameters.  This can be used in
@@ -32,7 +32,7 @@ File: gengen.info,  Node: Top,  Next: Audience,  Prev: (dir),  Up: (dir)
 GNU Gengen
 **********
 
-This manual is for GNU Gengen (version 1.4.1, 26 August 2010).  GNU
+This manual is for GNU Gengen (version 1.4.2, 31 August 2010).  GNU
 Gengen (GENerator GENerator), a tool to generate a C++ class (or C
 functions) for generating text, based on a template file with
 parameters, after substituting some parameters.  This can be used in
@@ -62,7 +62,7 @@ code generators.
 * Basic Usage in C and C++::    How to run GNU Gengen with C and C++
 * Conditionals::                Conditional statements
 * Command Options::             Command line options.
-* Bugs::                        What is lame and/or buggy in GNU Gengen 1.4.1
+* Bugs::                        What is lame and/or buggy in GNU Gengen 1.4.2
 * Mailing Lists::
 * Index::                       Index.
 
@@ -178,37 +178,40 @@ page (`http://www.lorenzobettini.it').
    You can also get the patches, if they are available for a particular
 release (see below for patching from a previous version).
 
-1.2 Anonymous CVS Access
+1.2 Anonymous Git Access
 ========================
 
-This project's CVS repository can be checked out through anonymous
-(pserver) CVS with the following instruction:
+This project's git repository can be checked out through the following
+clone instruction(1):
 
-     cvs -z3 -d:pserver:anonymous@cvs.savannah.gnu.org:/sources/gengen co gengen
+     git clone git://git.savannah.gnu.org/gengen.git
 
    Further instructions can be found at the address:
 
    `http://savannah.gnu.org/projects/gengen'.
 
-   Please notice that this way you will get the latest development
-sources of Gengen, which may also be unstable.  This solution is the
-best if you intend to correct/extend this program: you should send me
-patches against the latest cvs repository sources.
+   And the git repository can also browsed on-line at
+
+   `http://git.savannah.gnu.org/cgit/gengen.git'.
+
+   Please note that this way you will get the latest development sources
+of Gengen, which may also be unstable.  This solution is the best if
+you intend to correct/extend this program: you should send me patches
+against the latest git repository sources.
 
    If, on the contrary, you want to get the sources of a given release,
-through cvs, say, e.g., version X.Y.Z, you must specify the tag
-`rel_X_Y_Z' when you run the cvs command or the `cvs update' command.
+through git, say, e.g., version X.Y.Z, you must specify the tag
+`rel_X_Y_Z'.
 
-   When you compile the sources that you get through the cvs repository,
-before running the `configure' and `make' commands, you should, at
-least the first time, run the command:
+   When you compile the sources that you get from the git repository,
+before running the `configure' and `make' commands, for the first time,
+you must run the command:
 
      sh autogen.sh
 
 This will run the autotools commands in the correct order, and also copy
 possibly missing files.  You should have installed recent versions of `automake'
-and `autoconf' in order for this to succeed.  You will also need `flex'
-and `bison'.
+and `autoconf' in order for this to succeed.
 
    Instead of running `autogen.sh' another option is to run
 
@@ -242,6 +245,11 @@ with sources from the previous version (gengen-1.3) and type:
 
    and restart the compilation process (if you had already run
 configure a simple make should do).
+
+   ---------- Footnotes ----------
+
+   (1) Since version 1.4.2 of Gengen the CVS repository was dismissed
+in favor of Git (`http://git-scm.com/').
 
 
 File: gengen.info,  Node: The Problem,  Next: The Solution,  Prev: Installation,  Up: Top
@@ -1173,7 +1181,7 @@ File: gengen.info,  Node: Bugs,  Next: Mailing Lists,  Prev: Command Options,  U
 ************************************************
 
 No program is perfect, and GNU Gengen is certainly no exception.  A
-partial list of problems with Gengen 1.4.1 can be found in the
+partial list of problems with Gengen 1.4.2 can be found in the
 `TODO.txt'.
 
    Should you discover a bug, propose an extension/feature, or just fell
@@ -1212,17 +1220,17 @@ Index
 * Menu:
 
 * Audience:                              Audience.            (line   6)
-* autoconf:                              Installation.        (line  84)
-* automake:                              Installation.        (line  84)
+* autoconf:                              Installation.        (line  88)
+* automake:                              Installation.        (line  88)
 * Conditional statements:                Conditionals.        (line   6)
 * Conditions for copying GNU Gengen:     Copying.             (line   6)
 * Copying conditions:                    Copying.             (line   6)
-* CVS:                                   Installation.        (line  59)
 * download:                              Installation.        (line   6)
 * expression syntax:                     Expression syntax.   (line   6)
 * Generating code with substitutions:    The Problem.         (line   6)
 * getting started with Gengen:           Basic Usage in C and C++.
                                                               (line   6)
+* Git:                                   Installation.        (line  59)
 * how to use Gengen <1>:                 Command Options.     (line   6)
 * how to use Gengen:                     Basic Usage in C and C++.
                                                               (line   6)
@@ -1237,8 +1245,8 @@ Index
 * parameter <2>:                         The Solution.        (line   6)
 * parameter <3>:                         The Problem.         (line   6)
 * parameter:                             Audience.            (line  21)
-* patching:                              Installation.        (line 112)
-* requirements:                          Installation.        (line  95)
+* patching:                              Installation.        (line 115)
+* requirements:                          Installation.        (line  98)
 * template <1>:                          Basic Usage in C and C++.
                                                               (line   6)
 * template:                              The Problem.         (line   6)
@@ -1257,22 +1265,23 @@ Node: Audience2940
 Ref: Audience-Footnote-14682
 Node: Copying4730
 Node: Installation5309
-Node: The Problem9580
-Node: The Solution11425
-Node: Basic Usage in C and C++14433
-Ref: Basic Usage in C and C++-Footnote-121935
-Ref: Basic Usage in C and C++-Footnote-222105
-Ref: Basic Usage in C and C++-Footnote-322222
-Node: Callbacks22392
-Node: Types29704
-Ref: Types-Footnote-131722
-Node: Conditionals31760
-Ref: Conditionals-Footnote-136357
-Node: Expression syntax36492
-Ref: Expression syntax-Footnote-138357
-Node: Command Options38425
-Node: Bugs41730
-Node: Mailing Lists42251
-Node: Index42899
+Ref: Installation-Footnote-19564
+Node: The Problem9676
+Node: The Solution11521
+Node: Basic Usage in C and C++14529
+Ref: Basic Usage in C and C++-Footnote-122031
+Ref: Basic Usage in C and C++-Footnote-222201
+Ref: Basic Usage in C and C++-Footnote-322318
+Node: Callbacks22488
+Node: Types29800
+Ref: Types-Footnote-131818
+Node: Conditionals31856
+Ref: Conditionals-Footnote-136453
+Node: Expression syntax36588
+Ref: Expression syntax-Footnote-138453
+Node: Command Options38521
+Node: Bugs41826
+Node: Mailing Lists42347
+Node: Index42995
 
 End Tag Table
