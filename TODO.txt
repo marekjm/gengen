@@ -81,3 +81,5 @@ GENERAL
 
 in case of relative output dir there might be some errors
 (appends output dir to the source dir?)
+
+remove autogen.sh
