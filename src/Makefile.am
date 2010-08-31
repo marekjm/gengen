@@ -17,7 +17,8 @@ bin_PROGRAMS = gengen
 noinst_LIBRARIES = libgengen.a
 
 libgengen_a_AR = @ar_to_use@
-libgengen_a_SOURCES = parser.yy scanner.ll yyerror.cc 		skelitemstruct.cc \
+libgengen_a_SOURCES = parser.cc scanner.cc yyerror.cc \
+		skelitemstruct.cc \
 				skelstruct.hpp skelstruct.cc skelstruct_dbtab.cc normaltext.cc 		varitem.cc \
 				skelfactory_cpp.cc skelstruct_cpp.cc fileutil.cc skelstruct_c.h 		skelstruct_c.cpp \
 				skelfactory_c.h skelfactory_c.cpp skelstruct_strcnt.h 		skelstruct_strcnt.cpp \
@@ -28,6 +29,12 @@ libgengen_a_SOURCES = parser.yy scanner.ll yyerror.cc 		skelitemstruct.cc \
 				expressiongenerator_c.cpp expressionchecker.cpp expressiongenerator_cpp.cpp typeenv.cpp utils.cpp
 
 gengen_SOURCES = cmdline.c gengen.cc 
+
+scanner.cc: $(srcdir)/scanner.ll
+	$(LEX) $(LFLAGS) -o $(srcdir)/scanner.cc $(srcdir)/scanner.ll
+
+parser.cc: $(srcdir)/parser.yy
+	$(YACC) -o $(srcdir)/parser.cc $(srcdir)/parser.yy --defines=$(srcdir)/parser.h
 
 if NO_GENGETOPT
 .ggo.c:
@@ -51,6 +58,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/lib -I$(top_builddir)/lib
 gengen_LDADD = $(top_builddir)/lib/libgnu.a @LIBOBJS@ @LEXLIB@ libgengen.a
 
 EXTRA_DIST = cmdline.h cmdline.ggo \
+parser.yy scanner.ll \
 parser.h yyerror.h gengen_globals.h \
 skelitemstruct.h skelstruct.h \
 mainskelstruct.h normaltext.h varitem.h skelfactory.h skelfactory_cpp.h \
@@ -59,7 +67,7 @@ sourcename.h skelitemoptions.h my_sstream.h \
 gengen_cmdline_options.h \
 $(BUILT_SOURCES)
 
-BUILT_SOURCES=skelstruct.hpp skelitems.hpp expressionvisitor.hpp cmdline.h cmdline.c
+BUILT_SOURCES=skelstruct.hpp skelitems.hpp expressionvisitor.hpp cmdline.h cmdline.c parser.cc scanner.cc
 
 INCLUDES = -I@top_srcdir@/src/skels
 noinst_HEADERS = skelstruct_cstring.h ifstruct.h expression.h skelitems.h \
