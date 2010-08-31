@@ -122,51 +122,47 @@ option of configure (e.g. <tt>./configure --prefix=&lt;your
 home&gt;</tt>),
 you must be root to 'make install'.<br>
 
-<h3><a name="mozTocId38513" class="mozTocH3"></a> Anonymous CVS Access</h3>
+<h3><a name="mozTocId38513" class="mozTocH3"></a> Anonymous Git Access</h3>
 
+<p>This project's git repository can be checked out through the following
+clone instruction:
 
-This project's CVS repository can be checked out through anonymous
-(pserver) CVS with the following instruction:
-<pre>cvs -z3 -d:pserver:anonymous@cvs.savannah.gnu.org:/sources/gengen co gengen </pre>
+<pre>     git clone git://git.savannah.gnu.org/gengen.git
+</pre>
+   <p>Further instructions can be found at the address:
 
+   <p><a href="http://savannah.gnu.org/projects/gengen">http://savannah.gnu.org/projects/gengen</a>.
 
-Further instructions can be found at the address: <a href="http://savannah.gnu.org/projects/gengen">http://savannah.gnu.org/projects/gengen</a>.
+   <p>And the git repository can also browsed on-line at
 
-   
-<p>Please notice that this way you will get the latest development sources
+   <p><a href="http://git.savannah.gnu.org/cgit/gengen.git">http://git.savannah.gnu.org/cgit/gengen.git</a>.
+
+<p>
+<i>Since version 1.4.2 of Gengen the
+CVS repository was dismissed in favor of Git
+(<a href="http://git-scm.com/">http://git-scm.com/</a>).</i>
+
+   <p>Please note that this way you will get the latest development sources
 of Gengen, which may also be unstable.  This solution is the
 best if you intend to correct/extend this program: you should send me
-patches against the latest cvs repository sources.</p>
+patches against the latest git repository sources.
 
+   <p>If, on the contrary, you want to get the sources of a given release,
+through git, say, e.g., version X.Y.Z, you must specify the tag
+<code>rel_X_Y_Z</code>.
 
+   <p>When you compile the sources that you get from the git repository,
+before running the <code>configure</code> and <code>make</code> commands, for the
+first time, you must run the command:
 
-   
-<p>If, on the contrary, you want to get the sources of a given release,
-through cvs, say, e.g., version X.Y.Z, you must specify the tag
-<tt>rel_X_Y_Z</tt> when you run the cvs command or the <tt>cvs update</tt>
-command.</p>
-
-
-
-   
-<p>When you compile the sources that you get through the cvs repository,
-before running the <tt>configure</tt> and <tt>make</tt> commands, you
-should, at least the first time, run the command:</p>
-
-
-
-<pre>     sh autogen.sh<br></pre>
-
-
-   
-   
-<p>This will run the autotools commands in the correct order, and also copy
+<pre>     autoreconf -i
+</pre>
+   <p>This will run the autotools commands in the correct order, and also copy
 possibly missing files.  You should have installed recent versions of
-<tt>automake</tt> and <tt>autoconf</tt> in order for this to succeed. 
-You will also need <tt>flex</tt> and <tt>bison</tt>.<br>
-
-
+<code>automake</code> and <code>autoconf</code> in order for this to
+succeed.
 </p>
+
 
 <h2><a name="Simple example"></a>Simple example</h2>
 
