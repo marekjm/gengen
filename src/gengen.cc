@@ -23,6 +23,7 @@
 
 #include <iostream>
 #include <string.h>
+#include <stdlib.h>
 
 #include "skelstruct.hpp"
 #include "skelfactory_cpp.h"

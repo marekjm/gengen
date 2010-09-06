@@ -1,4 +1,4 @@
-# Copyright (C) 2002 Lorenzo Bettini <http://www.lorenzobettini.it>
+# Copyright (C) 2002-2010 Lorenzo Bettini <http://www.lorenzobettini.it>
 #  
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without 

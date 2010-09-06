@@ -1,3 +1,7 @@
+2010-09-06  Lorenzo Bettini  <bettini@bettini-laptop>
+
+	* src/gengen.cc: added stdlib.h inclusion for function exit
+
 2010-08-31  Lorenzo Bettini  <bettini@bettini-laptop>
 
 	* src/gengen.cc (main): strip path from input file name before
