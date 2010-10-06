@@ -14,8 +14,15 @@ PROGNAME = $(top_builddir)/src/$(PACKAGE)$(EXEEXT)
 
 GENERATE = $(PROGNAME)
 
+# it may happen, usually if the sources have been downloaded from a
+# repository, that .h_skel is more recent than the generated files, but
+# they cannot be re-generated, even because gengen has
+# to be built first.
+
 .h_skel.h:
-	$(GENERATE) -i $< --file-name $@ --gen-name $* --expand-tabs
+	if test -f $(PROGNAME); then \
+	$(GENERATE) -i $< --file-name $@ --gen-name $* --expand-tabs; \
+	fi
 
 BUILT_SOURCES = class.h genmethod.h genmethod_body.h \
 setmethod.h abstrmethod.h cc_source.h copyright.h \
