@@ -1,7 +1,7 @@
 This is ../../doc/gengen.info, produced by makeinfo version 4.13 from
 ../../doc/gengen.texinfo.
 
-This manual is for GNU Gengen (version 1.4.2, 23 November 2010).  GNU
+This manual is for GNU Gengen (version 1.4.3rc, 31 August 2010).  GNU
 Gengen (GENerator GENerator), a tool to generate a C++ class (or C
 functions) for generating text, based on a template file with
 parameters, after substituting some parameters.  This can be used in
@@ -32,7 +32,7 @@ File: gengen.info,  Node: Top,  Next: Audience,  Prev: (dir),  Up: (dir)
 GNU Gengen
 **********
 
-This manual is for GNU Gengen (version 1.4.2, 23 November 2010).  GNU
+This manual is for GNU Gengen (version 1.4.3rc, 31 August 2010).  GNU
 Gengen (GENerator GENerator), a tool to generate a C++ class (or C
 functions) for generating text, based on a template file with
 parameters, after substituting some parameters.  This can be used in
@@ -62,7 +62,7 @@ code generators.
 * Basic Usage in C and C++::    How to run GNU Gengen with C and C++
 * Conditionals::                Conditional statements
 * Command Options::             Command line options.
-* Bugs::                        What is lame and/or buggy in GNU Gengen 1.4.2
+* Bugs::                        What is lame and/or buggy in GNU Gengen 1.4.3rc
 * Mailing Lists::
 * Index::                       Index.
 
@@ -1181,7 +1181,7 @@ File: gengen.info,  Node: Bugs,  Next: Mailing Lists,  Prev: Command Options,  U
 ************************************************
 
 No program is perfect, and GNU Gengen is certainly no exception.  A
-partial list of problems with Gengen 1.4.2 can be found in the
+partial list of problems with Gengen 1.4.3rc can be found in the
 `TODO.txt'.
 
    Should you discover a bug, propose an extension/feature, or just fell
@@ -1261,27 +1261,27 @@ Index
 
 Tag Table:
 Node: Top1258
-Node: Audience2944
-Ref: Audience-Footnote-14686
-Node: Copying4734
-Node: Installation5313
-Ref: Installation-Footnote-19568
-Node: The Problem9680
-Node: The Solution11525
-Node: Basic Usage in C and C++14533
-Ref: Basic Usage in C and C++-Footnote-122035
-Ref: Basic Usage in C and C++-Footnote-222205
-Ref: Basic Usage in C and C++-Footnote-322322
-Node: Callbacks22492
-Node: Types29804
-Ref: Types-Footnote-131822
-Node: Conditionals31860
-Ref: Conditionals-Footnote-136457
-Node: Expression syntax36592
-Ref: Expression syntax-Footnote-138457
-Node: Command Options38525
-Node: Bugs41830
-Node: Mailing Lists42351
-Node: Index42999
+Node: Audience2946
+Ref: Audience-Footnote-14688
+Node: Copying4736
+Node: Installation5315
+Ref: Installation-Footnote-19570
+Node: The Problem9682
+Node: The Solution11527
+Node: Basic Usage in C and C++14535
+Ref: Basic Usage in C and C++-Footnote-122037
+Ref: Basic Usage in C and C++-Footnote-222207
+Ref: Basic Usage in C and C++-Footnote-322324
+Node: Callbacks22494
+Node: Types29806
+Ref: Types-Footnote-131824
+Node: Conditionals31862
+Ref: Conditionals-Footnote-136459
+Node: Expression syntax36594
+Ref: Expression syntax-Footnote-138459
+Node: Command Options38527
+Node: Bugs41832
+Node: Mailing Lists42355
+Node: Index43003
 
 End Tag Table

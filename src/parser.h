@@ -85,7 +85,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 58 "../../src/parser.yy"
+#line 62 "../../src/parser.yy"
 
   int tok ; /* command */
   char * string ; /* string : id, ... */

@@ -1,3 +1,7 @@
+2011-01-24  Lorenzo Bettini  <bettini@bettini-prog-karmic>
+
+	* src/parser.yy: include config.h
+
 2010-09-06  Lorenzo Bettini  <bettini@bettini-laptop>
 
 	* src/gengen.cc: added stdlib.h inclusion for function exit

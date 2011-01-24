@@ -89,6 +89,10 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -127,7 +131,7 @@ static TypeEnv typeEnv;
 
 
 /* Line 189 of yacc.c  */
-#line 131 "../../src/parser.cc"
+#line 135 "../../src/parser.cc"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -200,7 +204,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 58 "../../src/parser.yy"
+#line 62 "../../src/parser.yy"
 
   int tok ; /* command */
   char * string ; /* string : id, ... */
@@ -219,7 +223,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 223 "../../src/parser.cc"
+#line 227 "../../src/parser.cc"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -244,7 +248,7 @@ typedef struct YYLTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 248 "../../src/parser.cc"
+#line 252 "../../src/parser.cc"
 
 #ifdef short
 # undef short
@@ -542,10 +546,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    94,    94,   100,   105,   112,   113,   114,   117,   118,
-     121,   127,   133,   139,   149,   152,   156,   162,   166,   170,
-     176,   179,   180,   182,   186,   187,   191,   197,   203,   205,
-     207,   209,   210
+       0,    98,    98,   104,   109,   116,   117,   118,   121,   122,
+     125,   131,   137,   143,   153,   156,   160,   166,   170,   174,
+     180,   183,   184,   186,   190,   191,   195,   201,   207,   209,
+     211,   213,   214
 };
 #endif
 
@@ -1514,7 +1518,7 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 95 "../../src/parser.yy"
+#line 99 "../../src/parser.yy"
     {
          skel_items = (yyvsp[(1) - (1)].skelitems);
        }
@@ -1523,7 +1527,7 @@ yyreduce:
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 101 "../../src/parser.yy"
+#line 105 "../../src/parser.yy"
     {
          (yyval.skelitems) = new SkelItems;
          (yyval.skelitems)->add_item ((yyvsp[(1) - (1)].skelitemstruct));
@@ -1533,7 +1537,7 @@ yyreduce:
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 106 "../../src/parser.yy"
+#line 110 "../../src/parser.yy"
     {
          (yyvsp[(1) - (2)].skelitems)->add_item ((yyvsp[(2) - (2)].skelitemstruct));
          (yyval.skelitems) = (yyvsp[(1) - (2)].skelitems);
@@ -1543,42 +1547,42 @@ yyreduce:
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 112 "../../src/parser.yy"
+#line 116 "../../src/parser.yy"
     { (yyval.skelitemstruct) = (yyvsp[(1) - (1)].normaltext); }
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 113 "../../src/parser.yy"
+#line 117 "../../src/parser.yy"
     { (yyval.skelitemstruct) = (yyvsp[(1) - (1)].varitem); }
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 114 "../../src/parser.yy"
+#line 118 "../../src/parser.yy"
     { (yyval.skelitemstruct) = (yyvsp[(1) - (1)].ifstruct); }
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 117 "../../src/parser.yy"
+#line 121 "../../src/parser.yy"
     { (yyval.skelitems) = (yyvsp[(1) - (1)].skelitems); }
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 118 "../../src/parser.yy"
+#line 122 "../../src/parser.yy"
     { (yyval.skelitems) = new SkelItems; }
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 122 "../../src/parser.yy"
+#line 126 "../../src/parser.yy"
     {
                (yyval.normaltext) = skel_factory->createNormalText ((yyvsp[(1) - (1)].string));
              }
@@ -1587,7 +1591,7 @@ yyreduce:
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 128 "../../src/parser.yy"
+#line 132 "../../src/parser.yy"
     {
              // const skelitem_type &type = checkType($2, "");
              (yyval.varitem) = skel_factory->createVarItem ((yyvsp[(2) - (3)].string), STRING_TYPE);
@@ -1598,7 +1602,7 @@ yyreduce:
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 134 "../../src/parser.yy"
+#line 138 "../../src/parser.yy"
     {
              //checkType($2, $4);
              (yyval.varitem) = skel_factory->createVarItem ((yyvsp[(2) - (5)].string), (yyvsp[(4) - (5)].string));
@@ -1609,7 +1613,7 @@ yyreduce:
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 140 "../../src/parser.yy"
+#line 144 "../../src/parser.yy"
     {
              //checkType($2, $4);
              SkelItemOptions options;
@@ -1622,7 +1626,7 @@ yyreduce:
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 153 "../../src/parser.yy"
+#line 157 "../../src/parser.yy"
     {
               (yyval.ifstruct) = new IfStruct((yyvsp[(2) - (5)].expression), (yyvsp[(4) - (5)].skelitems), 0);
            }
@@ -1631,7 +1635,7 @@ yyreduce:
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 157 "../../src/parser.yy"
+#line 161 "../../src/parser.yy"
     {
               (yyval.ifstruct) = new IfStruct((yyvsp[(2) - (5)].expression), (yyvsp[(4) - (5)].skelitems), (yyvsp[(5) - (5)].ifstruct));
            }
@@ -1640,7 +1644,7 @@ yyreduce:
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 163 "../../src/parser.yy"
+#line 167 "../../src/parser.yy"
     {
                (yyval.ifstruct) = new IfStruct(0, (yyvsp[(2) - (3)].skelitems));
              }
@@ -1649,7 +1653,7 @@ yyreduce:
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 167 "../../src/parser.yy"
+#line 171 "../../src/parser.yy"
     {
                (yyval.ifstruct) = new IfStruct((yyvsp[(2) - (5)].expression), (yyvsp[(4) - (5)].skelitems), 0);
              }
@@ -1658,7 +1662,7 @@ yyreduce:
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 171 "../../src/parser.yy"
+#line 175 "../../src/parser.yy"
     {
                (yyval.ifstruct) = new IfStruct((yyvsp[(2) - (5)].expression), (yyvsp[(4) - (5)].skelitems), (yyvsp[(5) - (5)].ifstruct));
              }
@@ -1667,28 +1671,28 @@ yyreduce:
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 181 "../../src/parser.yy"
+#line 185 "../../src/parser.yy"
     { (yyval.expression) = new BinaryExpression( (yyvsp[(1) - (3)].expression)->getText() + " " + ANDOP + " " + (yyvsp[(3) - (3)].expression)->getText(), ANDOP, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression)) ; }
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 183 "../../src/parser.yy"
+#line 187 "../../src/parser.yy"
     { (yyval.expression) = new BinaryExpression( (yyvsp[(1) - (3)].expression)->getText() + " " + OROP + " " + (yyvsp[(3) - (3)].expression)->getText(), OROP, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression)) ; }
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 188 "../../src/parser.yy"
+#line 192 "../../src/parser.yy"
     { (yyval.expression) = new BinaryExpression( (yyvsp[(1) - (3)].expression)->getText() + " " + (yyvsp[(2) - (3)].string) + " " + (yyvsp[(3) - (3)].expression)->getText(), (yyvsp[(2) - (3)].string), (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression)) ; }
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 192 "../../src/parser.yy"
+#line 196 "../../src/parser.yy"
     {
           	   // const skelitem_type &type = checkType($1, "");
                (yyval.expression) = new Expression((yyvsp[(1) - (1)].string));
@@ -1699,7 +1703,7 @@ yyreduce:
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 198 "../../src/parser.yy"
+#line 202 "../../src/parser.yy"
     {
           	   // checkType($1, $3);
                (yyval.expression) = new Expression((yyvsp[(1) - (3)].string), (yyvsp[(3) - (3)].string));
@@ -1710,42 +1714,42 @@ yyreduce:
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 204 "../../src/parser.yy"
+#line 208 "../../src/parser.yy"
     { (yyval.expression) = new Expression((yyvsp[(1) - (1)].string), STRING_TYPE); (yyval.expression)->setInfo((yylsp[(1) - (1)]).first_line); (yyval.expression)->setIsConst(true); }
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 206 "../../src/parser.yy"
+#line 210 "../../src/parser.yy"
     { (yyval.expression) = new Expression((yyvsp[(1) - (1)].string), INT_TYPE); (yyval.expression)->setInfo((yylsp[(1) - (1)]).first_line); (yyval.expression)->setIsConst(true); }
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 208 "../../src/parser.yy"
+#line 212 "../../src/parser.yy"
     { (yyval.expression) = new Expression((yyvsp[(1) - (1)].string), BOOL_TYPE); (yyval.expression)->setInfo((yylsp[(1) - (1)]).first_line); (yyval.expression)->setIsConst(true); }
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 209 "../../src/parser.yy"
+#line 213 "../../src/parser.yy"
     { (yyval.expression) = (yyvsp[(2) - (3)].expression); }
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 211 "../../src/parser.yy"
+#line 215 "../../src/parser.yy"
     { (yyval.expression) = new UnaryExpression(string() + NOTOP + " " + (yyvsp[(2) - (2)].expression)->getText(), NOTOP, (yyvsp[(2) - (2)].expression)); }
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1749 "../../src/parser.cc"
+#line 1753 "../../src/parser.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1964,7 +1968,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 214 "../../src/parser.yy"
+#line 218 "../../src/parser.yy"
 
 
 /*
