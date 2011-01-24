@@ -1,5 +1,7 @@
 2011-01-24  Lorenzo Bettini  <bettini@bettini-prog-karmic>
 
+	* src/Makefile.am (AM_CPPFLAGS): order of -I directives
+
 	* src/parser.yy: include config.h
 
 2010-09-06  Lorenzo Bettini  <bettini@bettini-laptop>
