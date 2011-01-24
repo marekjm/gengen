@@ -85,7 +85,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 58 "parser.yy"
+#line 58 "../../src/parser.yy"
 
   int tok ; /* command */
   char * string ; /* string : id, ... */
@@ -104,7 +104,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 108 "parser.h"
+#line 108 "../../src/parser.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

@@ -1,7 +1,7 @@
 This is ../../doc/gengen.info, produced by makeinfo version 4.13 from
 ../../doc/gengen.texinfo.
 
-This manual is for GNU Gengen (version 1.4.2, 31 August 2010).  GNU
+This manual is for GNU Gengen (version 1.4.2, 23 November 2010).  GNU
 Gengen (GENerator GENerator), a tool to generate a C++ class (or C
 functions) for generating text, based on a template file with
 parameters, after substituting some parameters.  This can be used in
@@ -32,7 +32,7 @@ File: gengen.info,  Node: Top,  Next: Audience,  Prev: (dir),  Up: (dir)
 GNU Gengen
 **********
 
-This manual is for GNU Gengen (version 1.4.2, 31 August 2010).  GNU
+This manual is for GNU Gengen (version 1.4.2, 23 November 2010).  GNU
 Gengen (GENerator GENerator), a tool to generate a C++ class (or C
 functions) for generating text, based on a template file with
 parameters, after substituting some parameters.  This can be used in
@@ -1260,28 +1260,28 @@ Index
 
 
 Tag Table:
-Node: Top1256
-Node: Audience2940
-Ref: Audience-Footnote-14682
-Node: Copying4730
-Node: Installation5309
-Ref: Installation-Footnote-19564
-Node: The Problem9676
-Node: The Solution11521
-Node: Basic Usage in C and C++14529
-Ref: Basic Usage in C and C++-Footnote-122031
-Ref: Basic Usage in C and C++-Footnote-222201
-Ref: Basic Usage in C and C++-Footnote-322318
-Node: Callbacks22488
-Node: Types29800
-Ref: Types-Footnote-131818
-Node: Conditionals31856
-Ref: Conditionals-Footnote-136453
-Node: Expression syntax36588
-Ref: Expression syntax-Footnote-138453
-Node: Command Options38521
-Node: Bugs41826
-Node: Mailing Lists42347
-Node: Index42995
+Node: Top1258
+Node: Audience2944
+Ref: Audience-Footnote-14686
+Node: Copying4734
+Node: Installation5313
+Ref: Installation-Footnote-19568
+Node: The Problem9680
+Node: The Solution11525
+Node: Basic Usage in C and C++14533
+Ref: Basic Usage in C and C++-Footnote-122035
+Ref: Basic Usage in C and C++-Footnote-222205
+Ref: Basic Usage in C and C++-Footnote-322322
+Node: Callbacks22492
+Node: Types29804
+Ref: Types-Footnote-131822
+Node: Conditionals31860
+Ref: Conditionals-Footnote-136457
+Node: Expression syntax36592
+Ref: Expression syntax-Footnote-138457
+Node: Command Options38525
+Node: Bugs41830
+Node: Mailing Lists42351
+Node: Index42999
 
 End Tag Table

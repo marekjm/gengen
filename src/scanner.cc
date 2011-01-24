@@ -1,5 +1,6 @@
+#line 2 "../../src/scanner.cc"
 
-#line 3 "scanner.cc"
+#line 4 "../../src/scanner.cc"
 
 #define  YY_INT_ALIGNED short int
 
@@ -579,8 +580,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "scanner.ll"
-#line 2 "scanner.ll"
+#line 1 "../../src/scanner.ll"
+#line 2 "../../src/scanner.ll"
 /*
  * Copyright (C) 2002, Lorenzo Bettini <http://www.lorenzobettini.it>
  *
@@ -640,7 +641,7 @@ updateTokenInfo()
 
 
 
-#line 644 "scanner.cc"
+#line 645 "../../src/scanner.cc"
 
 #define INITIAL 0
 #define VARITEM_STATE 1
@@ -837,10 +838,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 81 "scanner.ll"
+#line 81 "../../src/scanner.ll"
 
 
-#line 844 "scanner.cc"
+#line 845 "../../src/scanner.cc"
 
 	if ( !(yy_init) )
 		{
@@ -935,206 +936,206 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 83 "scanner.ll"
+#line 83 "../../src/scanner.ll"
 { yylval.string = strdup (&yytext[1]); return NORMAL_T; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 85 "scanner.ll"
+#line 85 "../../src/scanner.ll"
 { PUSH (IFSTATE); VERB_SCAN2("if"); return IF_T; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 86 "scanner.ll"
+#line 86 "../../src/scanner.ll"
 { POP(); VERB_SCAN2("then"); count_nl(yytext); return THEN_T; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 87 "scanner.ll"
+#line 87 "../../src/scanner.ll"
 { VERB_SCAN2("else"); count_nl(yytext); return ELSE_T; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 88 "scanner.ll"
+#line 88 "../../src/scanner.ll"
 { PUSH (IFSTATE); VERB_SCAN2("elseif"); count_nl(yytext); return ELSEIF_T; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 89 "scanner.ll"
+#line 89 "../../src/scanner.ll"
 { VERB_SCAN2("endif"); count_nl(yytext); return ENDIF_T; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 91 "scanner.ll"
+#line 91 "../../src/scanner.ll"
 { PUSH (IFSTATE); VERB_SCAN2("IF"); return IF_T; }
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 92 "scanner.ll"
+#line 92 "../../src/scanner.ll"
 { POP(); VERB_SCAN2("THEN"); count_nl(yytext); return THEN_T; }
 	YY_BREAK
 case 9:
 /* rule 9 can match eol */
 YY_RULE_SETUP
-#line 93 "scanner.ll"
+#line 93 "../../src/scanner.ll"
 { VERB_SCAN2("ELSE"); count_nl(yytext); return ELSE_T; }
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 94 "scanner.ll"
+#line 94 "../../src/scanner.ll"
 { PUSH (IFSTATE); VERB_SCAN2("ELSEIF"); count_nl(yytext); return ELSEIF_T; }
 	YY_BREAK
 case 11:
 /* rule 11 can match eol */
 YY_RULE_SETUP
-#line 95 "scanner.ll"
+#line 95 "../../src/scanner.ll"
 { VERB_SCAN2("ENDIF"); count_nl(yytext); return ENDIF_T; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 97 "scanner.ll"
+#line 97 "../../src/scanner.ll"
 { VERB_SCAN2("AND"); return AND_T; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 98 "scanner.ll"
+#line 98 "../../src/scanner.ll"
 { VERB_SCAN2("("); return '('; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 99 "scanner.ll"
+#line 99 "../../src/scanner.ll"
 { VERB_SCAN2("("); return ')'; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 100 "scanner.ll"
+#line 100 "../../src/scanner.ll"
 { VERB_SCAN2("OR"); return OR_T; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 101 "scanner.ll"
+#line 101 "../../src/scanner.ll"
 { VERB_SCAN2("NOT"); return NOT_T; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 102 "scanner.ll"
+#line 102 "../../src/scanner.ll"
 { VERB_SCAN2(yytext); yylval.string = strdup (yytext); return RELOP; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 103 "scanner.ll"
+#line 103 "../../src/scanner.ll"
 { VERB_SCAN2("STRING_CONST"); yylval.string = strdup (yytext); updateTokenInfo(); return STRING_CONST; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 104 "scanner.ll"
+#line 104 "../../src/scanner.ll"
 { VERB_SCAN2("NUM_CONST"); yylval.string = strdup (yytext); updateTokenInfo(); return NUM_CONST; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 105 "scanner.ll"
+#line 105 "../../src/scanner.ll"
 { VERB_SCAN2("BOOL_CONST"); yylval.string = strdup (yytext); updateTokenInfo(); return BOOL_CONST; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 106 "scanner.ll"
+#line 106 "../../src/scanner.ll"
 { VERB_SCAN2(yytext); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 108 "scanner.ll"
+#line 108 "../../src/scanner.ll"
 { BEGIN VARITEM_STATE; return '@'; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 109 "scanner.ll"
+#line 109 "../../src/scanner.ll"
 { BEGIN INITIAL; return '@'; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 110 "scanner.ll"
+#line 110 "../../src/scanner.ll"
 { return ':'; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 111 "scanner.ll"
+#line 111 "../../src/scanner.ll"
 { return '{'; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 112 "scanner.ll"
+#line 112 "../../src/scanner.ll"
 { return '}'; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 113 "scanner.ll"
+#line 113 "../../src/scanner.ll"
 { return '='; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 114 "scanner.ll"
+#line 114 "../../src/scanner.ll"
 { yylval.string = strdup(METHOD_TYPE); return SKELITEMTYPE_T; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 115 "scanner.ll"
+#line 115 "../../src/scanner.ll"
 { yylval.string = strdup(INT_TYPE); return SKELITEMTYPE_T; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 116 "scanner.ll"
+#line 116 "../../src/scanner.ll"
 { yylval.string = strdup(STRING_TYPE); return SKELITEMTYPE_T; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 117 "scanner.ll"
+#line 117 "../../src/scanner.ll"
 { yylval.string = strdup(BOOL_TYPE); return SKELITEMTYPE_T; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 118 "scanner.ll"
+#line 118 "../../src/scanner.ll"
 { yylval.boolean = true; return OPTVAL_T; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 119 "scanner.ll"
+#line 119 "../../src/scanner.ll"
 { yylval.boolean = false; return OPTVAL_T; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 120 "scanner.ll"
+#line 120 "../../src/scanner.ll"
 { yylval.string = strdup (yytext); return ITERATION_T; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 121 "scanner.ll"
+#line 121 "../../src/scanner.ll"
 { yylval.string = strdup (yytext); VERB_SCAN2("IDE"); updateTokenInfo(); return IDE_T; }
 	YY_BREAK
 case 36:
 /* rule 36 can match eol */
 YY_RULE_SETUP
-#line 123 "scanner.ll"
+#line 123 "../../src/scanner.ll"
 { yylval.string = strdup (yytext); ++line ; VERB_SCAN2("NL"); return NORMAL_T; }
 	YY_BREAK
 case 37:
 /* rule 37 can match eol */
 YY_RULE_SETUP
-#line 124 "scanner.ll"
+#line 124 "../../src/scanner.ll"
 { ++line ; VERB_SCAN2("NL"); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 126 "scanner.ll"
+#line 126 "../../src/scanner.ll"
 { yylval.string = strdup (yytext); VERB_SCAN2("NORMAL"); return NORMAL_T; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 129 "scanner.ll"
+#line 129 "../../src/scanner.ll"
 ECHO;
 	YY_BREAK
-#line 1138 "scanner.cc"
+#line 1139 "../../src/scanner.cc"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(VARITEM_STATE):
 case YY_STATE_EOF(IFSTATE):
@@ -2150,7 +2151,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 129 "scanner.ll"
+#line 129 "../../src/scanner.ll"
 
 
 
