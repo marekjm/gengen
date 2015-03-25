@@ -10,14 +10,16 @@
 
 SUBDIRS = otherdir
 
-SUFFIXES = .err .cc_skel .err_test .cc_skel .h .cc_skel _c.h .cc_skel
+SUFFIXES = .err .cc_skel .err_test .cc_skel .h .cc_skel _c.h .cc_skel _lua.lua
 
 PROGEXE = $(top_builddir)/src/$(PACKAGE)$(EXEEXT)
 PROGEXE_C = $(PROGEXE) --output-format "c"
+PROGEXE_LUA = $(PROGEXE) --output-format "lua"
 PROGNAME = $(PROGEXE) --no-gen-version 2>> $(VERBOSEOUT)
 
 GENERATE = $(PROGNAME)
 GENERATE_C = $(PROGNAME) --output-format "c"
+GENERATE_LUA = $(PROGNAME) --output-format "lua"
 GENERATEERR = $(PROGNAME) --test-mode
 
 TEMP_H = __temp.h
@@ -34,11 +36,17 @@ test_cicle_tabs.h: $(srcdir)/test_cicle_tabs.cc_skel
 test_cicle_tabs_c.h: $(srcdir)/test_cicle_tabs.cc_skel
 	$(GENERATE_C) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name $@ --gen-name test_cicle --expand-tabs
 
+test_cicle_tabs_lua.lua: $(srcdir)/test_cicle_tabs.cc_skel
+	$(GENERATE_LUA) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name $@ --gen-name test_cicle --expand-tabs
+
 .cc_skel.h:
 	$(GENERATE) -i $< --file-name $@ --gen-name $* 
 
 .cc_skel_c.h:
-	$(GENERATE_C) -i $< --file-name $@ --gen-name $* 
+	$(GENERATE_C) -i $< --file-name $@ --gen-name $*
+
+cc_skel_lua.lua:
+	$(GENERATE_LUA) -i $< --file-name $@ --gen-name $*
 
 # the cp is useful when building on a different directory
 # since the sources are also deleted during `make check`
@@ -55,19 +63,19 @@ notbool.err notbool2.err notbool3.err \
 notsametype.err notsametype2.err
 
 EXTRA_DIST = test_vars.cc_skel test_cicle.cc_skel \
-test_cicle_tabs.cc_skel test_body_loop.cc_skel \
+test_cicle_tabs.cc_skel test_body_loop.cc_skel test_body_loop_lua.skel \
 loop.cc_skel test_subst.cc_skel test_subst.cc_skel test_iter.cc_skel \
 test1.cc_skel example_text.text_skel example_fundef.cc_skel \
-test_vars.cc test_cicle.cc test_cicle_str.cc test_cicle2_main.c \
+test_vars.cc test_cicle.cc test_cicle_str.cc test_cicle2_main.c test_cicle2_main.lua \
 test_iter.cc test_cicle_m.cc test_subst.cc \
-test_subst2_main.cc test1_gen.cc test1_gen_c.c \
-example_text_gen.cc example_text_gen_c.c \
+test_subst2_main.cc test1_gen.cc test1_gen_c.c test1_gen.lua \
+example_text_gen.cc example_text_gen_c.c example_text_gen_lua.lua \
 example_fundef_gen.cc \
-test_cicle_c.c test_cicle_str_c.c test_cicle2_c.c \
+test_cicle_c.c test_cicle_gen_lua.lua test_cicle_str_c.c test_cicle2_c.c test_cicle2_lua.lua \
 test_cicle_cstring.c test_cicle_c_cc.cc \
-test_cicle_tabs.cc test_cicle_tabs_c.c \
-test_if.cc_skel test_if.cc test_if_c.c \
-test_types.cc_skel test_types.cc test_types_c.c \
+test_cicle_tabs.cc test_cicle_tabs_c.c test_cicle_tabs_gen_lua.lua \
+test_if.cc_skel test_if.cc test_if_c.c test_if_gen_lua.lua \
+test_types.cc_skel test_types.cc test_types_c.c test_types_gen_lua.lua \
 $(GENERATED_TESTS) \
 $(ERRFILES) \
 $(ERRFILES_OUTPUT) \
@@ -80,18 +88,18 @@ test_cicle$(EXEEXT) test_cicle_str$(EXEEXT) test_cicle_tabs$(EXEEXT) \
 gen_test_cicle$(EXEEXT) gen_test_cicle_str$(EXEEXT) \
 test_cicle_m$(EXEEXT) gen_test_cicle_m$(EXEEXT) test_subst$(EXEEXT) \
 gen_test_subst$(EXEEXT) test_iter$(EXEEXT) \
-gen_test_iter$(EXEEXT) test_subst2_prog$(EXEEXT) test1_gen$(EXEEXT) test1_gen_c$(EXEEXT) \
-example_text_gen$(EXEEXT) example_text_gen_c$(EXEEXT) \
+gen_test_iter$(EXEEXT) test_subst2_prog$(EXEEXT) test1_gen$(EXEEXT) test1_gen_c$(EXEEXT) test1_gen_lua$(EXEEXT) \
+example_text_gen$(EXEEXT) example_text_gen_c$(EXEEXT) example_text_gen_lua$(EXEEXT) \
 example_fundef_gen$(EXEEXT) \
-test_cicle_c$(EXEEXT) test_cicle_str_c$(EXEEXT) \
-test_cicle2_c$(EXEEXT) test_cicle_c_cc$(EXEEXT) \
-test_cicle_tabs_c$(EXEEXT) \
+test_cicle_c$(EXEEXT) test_cicle_gen_lua$(EXEEXT) test_cicle_str_c$(EXEEXT) \
+test_cicle2_c$(EXEEXT) test_cicle2_lua$(EXEEXT) test_cicle_c_cc$(EXEEXT) \
+test_cicle_tabs_c$(EXEEXT) test_cicle_tabs_gen_lua$(EXEEXT) \
 gen_test_cicle_c$(EXEEXT) gen_test_cicle_str_c$(EXEEXT) \
 gen_test_cicle_c_cc$(EXEEXT) \
 test_cicle_cstring$(EXEEXT) gen_test_cicle_cstring$(EXEEXT) \
 gen_test_cicle_tabs$(EXEEXT) \
-test_if$(EXEEXT) test_if_c$(EXEEXT) \
-test_types$(EXEEXT) test_types_c$(EXEEXT)
+test_if$(EXEEXT) test_if_c$(EXEEXT) test_if_gen_lua$(EXEEXT) \
+test_types$(EXEEXT) test_types_c$(EXEEXT) test_types_gen_lua$(EXEEXT)
 
 # we do not want that generated sources are included in the tar ball
 # so we have to do things manually:
@@ -142,15 +150,16 @@ test_body_loop.h gen_test_cicle.cc gen_test_cicle_str.cc \
 loop.h gen_test_cicle_m.cc \
 test_subst.h gen_test_subst.cc test_iter.h gen_test_iter.cc \
 test_subst2.h test_subst2.cc \
-test1.h test1_c.h \
-example_text.h example_text_c.h example_fundef.h \
-test_cicle_c.h test_cicle2_c.h test_cicle2_c.c test_body_loop_c.h \
-test_cicle_tabs_c.h \
+test1.h test1_c.h test1_lua.lua \
+example_text.h example_text_c.h example_text_lua.lua example_fundef.h \
+test_cicle_c.h test_cicle_lua.lua test_cicle2_c.h test_cicle2_lua.header \
+test_cicle2_c.c test_cicle2_lua.lua test_body_loop_c.h test_body_loop_lua.lua \
+test_cicle_tabs_c.h test_cicle_tabs_lua.lua \
 gen_test_cicle_c.cc gen_test_cicle_str_c.cc \
 gen_test_cicle_cstring.cc gen_test_cicle_c_cc.cc \
 gen_test_cicle_tabs.cc gen_test_cicle_tabs_c.cc \
-test_if.h test_if_c.h \
-test_types.h test_types_c.h
+test_if.h test_if_c.h test_if_lua.lua \
+test_types.h test_types_c.h test_types_lua.lua
 
 # there seem to be problems if using *.test in EXTRA_DIST:
 # it works with `make dist` but not with `make distcheck`
@@ -161,12 +170,12 @@ gen_test_cicle_m.cc.test \
 test_subst.h.test gen_test_subst.cc.test test_iter.h.test \
 gen_test_iter.cc.test \
 test_subst2.h.test test_subst2.cc.test \
-test1.h.test test1_c.h.test example_text.h.test example_text_c.h.test \
+test1.h.test test1_c.h.test test1_lua.lua.test example_text.h.test example_text_c.h.test example_text_lua.lua.test \
 example_fundef.h.test \
-test_cicle_c.h.test \
-test_cicle2_c.h.test \
-test_cicle2_c.c.test \
-test_body_loop_c.h.test \
+test_cicle_c.h.test test_cicle_lua.lua.test \
+test_cicle2_c.h.test test_cicle2_lua.header.test \
+test_cicle2_c.c.test test_cicle2_lua.lua.test \
+test_body_loop_c.h.test test_body_loop_lua.lua.test \
 gen_test_cicle_c.cc.test \
 gen_test_cicle_str_c.cc.test \
 gen_test_cicle_c_cc.cc.test \
@@ -175,8 +184,8 @@ test_cicle_tabs.h.test \
 test_cicle_tabs_c.h.test \
 gen_test_cicle_tabs.cc.test \
 gen_test_cicle_tabs_c.cc.test \
-test_if.h.test test_if_c.h.test \
-test_types.h.test test_types_c.h.test
+test_if.h.test test_if_c.h.test test_if_lua.lua.test \
+test_types.h.test test_types_c.h.test test_types_lua.lua.test
 
 CXXLD = $(CXX)
 COMPILE_BUILT_EXEC = $(CXXLD) -DHAVE_CONFIG_H $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -I$(top_builddir)/tests/ -I$(top_srcdir)/src/ -I$(top_builddir)/ -o $@ $^
@@ -251,6 +260,9 @@ example_text.h: example_text.text_skel
 example_text_c.h: example_text.text_skel
 	$(GENERATE) -i $< --file-name $@ --gen-name example_text --output-format=c
 
+example_text_lua.lua: example_text.text_skel
+	$(GENERATE) -i $< --file-name $@ --gen-name example_text --output-format=lua
+
 test_if$(EXEEXT): $(test_if_BUILT_SRC) test_if.h
 	$(COMPILE_BUILT_EXEC)
 
@@ -270,6 +282,10 @@ test_subst2.h: test_subst.cc_skel
 test_cicle2_c.c: test_cicle2_c.h
 test_cicle2_c.h: test_cicle.cc_skel
 	$(GENERATE_C) -i $< --file-name $@ --gen-name test_cicle --separate-files
+
+test_cicle2_lua.lua: test_cicle2_lua.header
+test_cicle2_lua.header: test_cicle.cc_skel
+	$(GENERATE_LUA) -i $< --file-name $@ --gen-name test_cicle --separate-files
 
 gen_test_vars.cc: test_vars$(EXEEXT)
 	$(top_builddir)/tests/$< > $@
@@ -401,6 +417,7 @@ check-valgrind: valgrind_tests.sh
 check-gengen-valgrind: valgrind_gengen_tests.sh
 	$(SHELL) valgrind_gengen_tests.sh $(PROGEXE) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name temp_file --gen-name test_cicle --expand-tabs
 	$(SHELL) valgrind_gengen_tests.sh $(PROGEXE_C) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name temp_file --gen-name test_cicle --expand-tabs
+	$(SHELL) valgrind_gengen_tests.sh $(PROGEXE_LUA) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name temp_file --gen-name test_cicle --expand-tabs
 	rm -f temp_file
 
 CLEANFILES = $(BUILT_SOURCES) $(BUILT_EXECUTABLES) *.err_test $(VERBOSEOUT)
