@@ -1,0 +1,22 @@
+
+function generate_@genname@(stream, record, indent)
+  local id = {}
+  local indent_str = ""
+  for i = 1, indent do
+    id[#id + 1] = ' '
+  end
+  indent_str = table.concat(id)
+  -- save context
+  local ctx = io.output()
+  io.output(stream)
+  @geninstructions:method{iteration=true}@
+
+  -- restore context
+  io.output(ctx)
+end
+
+function generatep_@genname@(stream, indent@genparameters:method@)
+  record = {}
+  @assignfields:method@
+  generate_@genname@(stream, record, indent)
+end

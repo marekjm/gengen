@@ -1,0 +1,6 @@
+
+if(record.@name@) then
+  generate_string(record.@name@, stream, indent + string.len(indent_str))
+else
+  generate_@name@(stream, record, indent + string.len(indent_str))
+end

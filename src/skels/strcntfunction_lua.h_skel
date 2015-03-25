@@ -1,0 +1,6 @@
+
+function strcnt_@genname@(record, indent)
+  local length = 0;
+  @compleninstr:method@
+  return length + @constlen@;
+end

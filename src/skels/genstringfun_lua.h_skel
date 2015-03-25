@@ -1,0 +1,65 @@
+
+function strchr_tab(tab, char)
+  local store
+  local ret_str = ""
+  for w, k in ipairs(tab) do
+    if(k == char) then
+      store = w
+      break
+    end
+  end
+  if(store == nil) then
+    return nil
+  end
+  for i = store, #tab do
+    ret_str = ret_str .. tab[i]
+  end
+  return store, ret_str
+end
+
+function str_to_tab(str)
+  tab = {}
+  for i in string.gmatch(str, ".") do
+    table.insert(tab, i)
+  end
+  return tab
+end
+
+function generate_string(s, stream, indent)
+  local subs = s
+  local indent_str = ""
+  local id = {}
+  local pos = 0
+  local my_tab = str_to_tab(s)
+
+  -- save context
+  local ctx = io.output()
+  io.output(stream)
+
+  if((indent == 0) or (strchr_tab(my_tab, "\n") == nil)) then
+    io.write(s)
+    return
+  end
+
+  for i = 1, indent do
+    id[#id + 1] = ' '
+  end
+  indent_str = table.concat(id)
+
+  while(true) do
+    pos, subs = strchr_tab(str_to_tab(s), '\n')
+    if(subs == nil) then break end
+    io.write(table.concat(my_tab, "", 1, pos))
+    s = subs:sub(2)
+    my_tab = str_to_tab(s)
+    if(s ~= "") then
+      io.write(indent_str);
+    end
+  end
+  if(s) then
+    io.write(s)
+  end
+
+  -- restore context
+  io.output(ctx)
+end

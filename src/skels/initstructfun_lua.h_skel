@@ -1,0 +1,4 @@
+
+function init_@structname@(record)
+  @genfieldinit:method{iteration=true}@
+end

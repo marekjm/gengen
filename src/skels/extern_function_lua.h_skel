@@ -1,0 +1,9 @@
+
+generate_@name@ = function(stream, record, indent)
+--[[
+    This call back function will be executed if 'var'
+    associated with type 'method' is 'nil'. You could
+    add your Lua code here.
+--]]
+end
+

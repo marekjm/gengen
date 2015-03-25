@@ -28,6 +28,7 @@
 #include "skelstruct.hpp"
 #include "skelfactory_cpp.h"
 #include "skelfactory_c.h"
+#include "skelfactory_lua.h"
 #include "mainskelstruct.h"
 #include "mainskelfactory.h"
 #include "cmdline.h"
@@ -118,6 +119,11 @@ main(int argc, char **argv)
     {
       skel_factory = new SkelFactoryC;
       source_ext = "c";
+    }
+  else if (strcmp (args_info.output_format_arg, "lua") == 0)
+    {
+      skel_factory = new SkelFactoryLua;
+      source_ext = "lua";
     }
   else
     {

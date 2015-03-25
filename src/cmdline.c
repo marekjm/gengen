@@ -37,7 +37,7 @@ const char *gengetopt_args_info_help[] = {
   "  -i, --input=file          input file (default std input)",
   "  -F, --file-name=name      name used for generating file (default stdout)",
   "  -f, --gen-name=STRING     prefix for generated code  (default=`gengen')",
-  "      --output-format=lang  target language (cpp, c)  (default=`cpp')",
+  "      --output-format=lang  target language (cpp, c, lua)  (default=`cpp')",
   "      --output-dir=STRING   output directory (default current dir)",
   "      --separate-files      output to separate files (header, source). require \n                              --file-name",
   "      --expand-tabs         strings containing newlines are indented according \n                              to the current indentation level",

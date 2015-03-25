@@ -1,0 +1,18 @@
+
+function genstring_@genname@(record, indent)
+  local id = {}
+  local indent_str = ""
+  local output = ""
+  for i = 1, indent do
+    id[#id + 1] = ' '
+  end
+  indent_str = table.concat(id)
+  @strgeninstructions:method{iteration=true}@
+  return output;
+end
+
+function genstringp_@genname@(indent@genparameters:method@)
+  record = {}
+  @assignfields:method@
+  return genstring_@genname@ (record, indent);
+end
