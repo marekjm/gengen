@@ -1,6 +1,10 @@
 GNU gengen -- History of visible changes.
 
-Copyright (C) 2002-2010  Lorenzo Bettini www.lorenzobettini.it
+Copyright (C) 2002-2015  Lorenzo Bettini <www.lorenzobettini.it>
+
+Version 1.4.3rc
+
+* Implement Lua module for GNU Gengen
 
 Version 1.4.2
 
