@@ -1,7 +1,14 @@
+
+2015-03-26  Raman Gopalan <ramangopalan@gmail.com>
+
+	* lua: Add all files implementing lua support for gengen
+	* lua: Add test cases for gengen's lua support
+	* .gitignore: Add *.o to ignore list
+	* Other cosmetic changes
+
 2011-01-24  Lorenzo Bettini  <bettini@bettini-prog-karmic>
 
 	* src/Makefile.am (AM_CPPFLAGS): order of -I directives
-
 	* src/parser.yy: include config.h
 
 2010-09-06  Lorenzo Bettini  <bettini@bettini-laptop>
