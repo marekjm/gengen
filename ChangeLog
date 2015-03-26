@@ -15,25 +15,25 @@
 
 2009-09-21  bettini  <bettini@prog>
 
-	* src/expressiongenerator_cpp.h: correctly include header file 
+	* src/expressiongenerator_cpp.h: correctly include header file
 	* src/parser.yy: Ditto
-	* src/skelstruct_c_common.h: Ditto 
+	* src/skelstruct_c_common.h: Ditto
 
 2009-08-15  bettini  <bettini@bettini-laptop>
 
 	* tests/otherdir/Makefile.am: test --output-dir and removal
 	of path in the generated #include
-	* src/cmdline.ggo: --output-dir option 
+	* src/cmdline.ggo: --output-dir option
 	* src/skelstruct_c.cpp (SkelStructC::generate): remove path from
 	headerfile
-	* src/skelstruct_cpp.cc (SkelStructCpp::generate): Ditto 
+	* src/skelstruct_cpp.cc (SkelStructCpp::generate): Ditto
 	* tests/test_if.h: Removed.
 	* tests/test_if_c.h: Removed.
 	* tests/test_types.h: Removed.
 	* tests/test_types_c.h: Removed.
 	* build-aux/.cvsignore: New file.
 	* configure.ac: easy to develop in a different build dir
-	
+
 
 2009-06-13  bettini  <bettini@bettini-desktop>
 
@@ -51,7 +51,7 @@
 
 	* tests/Makefile.am: removed % non standard make rules
 
-	* src/Makefile.am: removed % non standard make rules	
+	* src/Makefile.am: removed % non standard make rules
 
 	* doc/Makefile.am: removed % non standard make rules
 
@@ -83,7 +83,7 @@
 2004-05-20  Lorenzo Bettini  <www.lorenzobettini.it>
 
         * src/parser.yy: deal with @if@, @then@ and @else@ commands
-        
+
         * src/skelstruct_c_common.h: common base class for classes
         that generate C/C++ releated code
 
@@ -132,7 +132,7 @@
 
 2003-08-26  Lorenzo Bettini  <www.lorenzobettini.it>
 
-	* src/skelstruct_cstring.h (class SkelStructCString): 
+	* src/skelstruct_cstring.h (class SkelStructCString):
 	generate into a C string instead of into a file
 
 	* src/skels/genstrfunction.h_skel: for generating the function
@@ -196,7 +196,7 @@
 
 2002-12-24  Lorenzo Bettini  <www.lorenzobettini.it>
 
-	* src: use new header iostream 
+	* src: use new header iostream
 
 	* src/skels/class.h_skel: use iostream instead of iostream.h
 	do not test namespaces anymore
@@ -236,7 +236,7 @@
 2002-05-02  Lorenzo Bettini  <www.lorenzobettini.it>
 
 	* Version 0.4: can generate separate files
-	
+
 	* src/skelstruct_cpp.cc (generate_geninstructions): also use
 	start_of_line to correctly generate indent updates
 
@@ -260,7 +260,7 @@
 2002-04-01  Lorenzo Bettini  <www.lorenzobettini.it>
 
 	* Version 0.3: use iteration=true
-	
+
 	* src/skels/class.h_skel: modified using iteration=true on some
 	parts, so that the resulting generated code looks better :-)
 
@@ -299,7 +299,7 @@
 
 2002-01-08  Lorenzo Bettini  <www.lorenzobettini.it>
 
-	* Version 0.2 use itself for generating generator classes 
+	* Version 0.2 use itself for generating generator classes
 
 	* src/skelstruct_cpp.h (class SkelStructCpp): inherit from
 	membercons_gen_class generated class and redefine virtual pure methods
@@ -333,7 +333,7 @@
 	suffixed with the 'name' attribute
 	(generate_generate_method): declare the generate method as virtual,
 	in case some items are of type 'method'
-	
+
 2002-01-02  Lorenzo Bettini  <www.lorenzobettini.it>
 
 	* src/gengen.cc (main): first beta version
