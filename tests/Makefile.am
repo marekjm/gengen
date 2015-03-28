@@ -45,7 +45,7 @@ test_cicle_tabs_lua.lua: $(srcdir)/test_cicle_tabs.cc_skel
 .cc_skel_c.h:
 	$(GENERATE_C) -i $< --file-name $@ --gen-name $*
 
-cc_skel_lua.lua:
+.cc_skel_lua.lua:
 	$(GENERATE_LUA) -i $< --file-name $@ --gen-name $*
 
 # the cp is useful when building on a different directory
@@ -182,6 +182,7 @@ gen_test_cicle_c_cc.cc.test \
 gen_test_cicle_cstring.cc.test \
 test_cicle_tabs.h.test \
 test_cicle_tabs_c.h.test \
+test_cicle_tabs_lua.lua.test \
 gen_test_cicle_tabs.cc.test \
 gen_test_cicle_tabs_c.cc.test \
 test_if.h.test test_if_c.h.test test_if_lua.lua.test \
