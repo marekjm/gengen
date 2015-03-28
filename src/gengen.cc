@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2002-2010  Lorenzo Bettini <http://www.lorenzobettini.it>
+ * Copyright (C) 2002-2015  Lorenzo Bettini <http://www.lorenzobettini.it>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ main(int argc, char **argv)
     cout << "GNU ";
     cmdline_parser_print_help ();
     cout << endl;
-    cout << "Report bugs to Lorenzo Bettini <http://www.lorenzobettini.it> " << endl;
+    cout << "Report bugs to Raman Gopalan <ramangopalan@gmail.com> " << endl;
     exit (0);
   }
 
@@ -79,7 +79,7 @@ main(int argc, char **argv)
     cout << "GNU ";
     cmdline_parser_print_version ();
     copyright_gen_class copyright;
-    copyright.set_year ("2002-2009");
+    copyright.set_year ("2002-2015");
     copyright.generate_copyright (cout);
     exit (0);
   }
