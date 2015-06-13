@@ -1,7 +1,7 @@
-This is ../../doc/gengen.info, produced by makeinfo version 4.13 from
-../../doc/gengen.texinfo.
+This is gengen.info, produced by makeinfo version 5.2 from
+gengen.texinfo.
 
-This manual is for GNU Gengen (version 1.4.3rc, 31 August 2010).  GNU
+This manual is for GNU Gengen (version 1.4.3, 28 March 2015).  GNU
 Gengen (GENerator GENerator), a tool to generate a C++ class (or C
 functions) for generating text, based on a template file with
 parameters, after substituting some parameters.  This can be used in
@@ -18,9 +18,8 @@ code generators.
      "GNU Free Documentation License."
 
      (a) The FSF's Back-Cover Text is: "You have freedom to copy and
-     modify this GNU Manual, like GNU software.  Copies published by
-     the Free Software Foundation raise funds for GNU development."
-
+     modify this GNU Manual, like GNU software.  Copies published by the
+     Free Software Foundation raise funds for GNU development."
 INFO-DIR-SECTION GNU programming tools
 START-INFO-DIR-ENTRY
 * Gengen: (gengen).         A parameterized-text-generator generator based on a template
@@ -32,7 +31,7 @@ File: gengen.info,  Node: Top,  Next: Audience,  Prev: (dir),  Up: (dir)
 GNU Gengen
 **********
 
-This manual is for GNU Gengen (version 1.4.3rc, 31 August 2010).  GNU
+This manual is for GNU Gengen (version 1.4.3, 28 March 2015).  GNU
 Gengen (GENerator GENerator), a tool to generate a C++ class (or C
 functions) for generating text, based on a template file with
 parameters, after substituting some parameters.  This can be used in
@@ -49,21 +48,21 @@ code generators.
      "GNU Free Documentation License."
 
      (a) The FSF's Back-Cover Text is: "You have freedom to copy and
-     modify this GNU Manual, like GNU software.  Copies published by
-     the Free Software Foundation raise funds for GNU development."
+     modify this GNU Manual, like GNU software.  Copies published by the
+     Free Software Foundation raise funds for GNU development."
 
 * Menu:
 
 * Audience::                    Who this manual is for.
 * Copying::                     Your rights.
-* Installation::
+* Installation::                
 * The Problem::                 Generating code may become a pain in the neck.
 * The Solution::                Let a tool generate the generator for you.
 * Basic Usage in C and C++::    How to run GNU Gengen with C and C++
 * Conditionals::                Conditional statements
 * Command Options::             Command line options.
-* Bugs::                        What is lame and/or buggy in GNU Gengen 1.4.3rc
-* Mailing Lists::
+* Bugs::                        What is lame and/or buggy in GNU Gengen 1.4.3
+* Mailing Lists::               
 * Index::                       Index.
 
 
@@ -78,14 +77,14 @@ can substitute parameters with values.
 
    This manual is written for C++ and C programmers, specifically the
 _lazy_ ones ;-).  If you've written any non-trivial code generator, you
-probably had to write many `cout <<' or `printf' lines of code, mixing
+probably had to write many 'cout <<' or 'printf' lines of code, mixing
 fixed text to be generated and parts based on the value of some
-variables.   If the text to be generated is full of parts that have to
-be substituted at run-time, your code will end up containing many
+variables.  If the text to be generated is full of parts that have to be
+substituted at run-time, your code will end up containing many
 instructions that print constant strings and variables; this will tend
 to make the text to be generated unclear and thus also more difficult to
-maintain.   Gengen can save you from this work, leaving you free to
-focus on the text that has to be generated.
+maintain.  Gengen can save you from this work, leaving you free to focus
+on the text that has to be generated.
 
    Indeed the code to be generated will be written in a separated file
 (that we call _template_ file) that can contain variable parts (that we
@@ -105,7 +104,7 @@ languages are under development (e.g., Java).
 
    ---------- Footnotes ----------
 
-   (1) `http://www.gnu.org/software/gengetopt'
+   (1) <http://www.gnu.org/software/gengetopt>
 
 
 File: gengen.info,  Node: Copying,  Next: Installation,  Prev: Audience,  Up: Top
@@ -119,7 +118,7 @@ manual.
 
    The code that Gengen generates is also free software; however it is
 licensed with a simple all-permissive license instead of the GPL or
-LGPL.  You are free to do anything you like with the generated code,
+LGPL. You are free to do anything you like with the generated code,
 including incorporating it into or linking it with proprietary software.
 
 
@@ -128,52 +127,49 @@ File: gengen.info,  Node: Installation,  Next: The Problem,  Prev: Copying,  Up:
 1 Installation
 **************
 
-See the file `INSTALL' for detailed building and  installation
+See the file 'INSTALL' for detailed building and installation
 instructions; anyway if you're used to compiling Linux software that
-comes with sources you may simply follow the usual procedure, i.e. untar
-the file you downloaded in a directory and then:
+comes with sources you may simply follow the usual procedure, i.e.
+untar the file you downloaded in a directory and then:
 
      cd <source code main directory>
      ./configure
      make
      make install
 
-   Note: unless you specify a different install directory by `--prefix'
-option of configure (e.g. `./configure --prefix=<your home>'), you must
-be root to run `make install'.
+   Note: unless you specify a different install directory by '--prefix'
+option of configure (e.g.  './configure --prefix=<your home>'), you must
+be root to run 'make install'.
 
    Files will be installed in the following directories:
 
-`executables'
-     `/prefix/bin'
+'executables'
+     '/prefix/bin'
+'docs'
+     '/prefix/share/doc/gengen'
+'examples'
+     '/prefix/share/doc/gengen/examples'
+'additional files'
+     '/prefix/share/gengen'
 
-`docs'
-     `/prefix/share/doc/gengen'
-
-`examples'
-     `/prefix/share/doc/gengen/examples'
-
-`additional files'
-     `/prefix/share/gengen'
-
-   Default value for prefix is `/usr/local' but you may change it with
-`--prefix' option to configure.
+   Default value for prefix is '/usr/local' but you may change it with
+'--prefix' option to configure.
 
 1.1 Download
 ============
 
-You can download it from GNU's ftp site: `ftp://ftp.gnu.org/gnu/gengen'
-or from one of its mirrors (see `http://www.gnu.org/prep/ftp.html').
+You can download it from GNU's ftp site: <ftp://ftp.gnu.org/gnu/gengen>
+or from one of its mirrors (see <http://www.gnu.org/prep/ftp.html>).
 
    I do not distribute Windows binaries anymore; since, they can be
 easily built by using Cygnus C/C++ compiler, available at
-`http://www.cygwin.com'.  However, if you don't feel like downloading
+<http://www.cygwin.com>.  However, if you don't feel like downloading
 such compiler, you can request such binaries directly to me, by e-mail
 (find my e-mail at my home page) and I can send them to you.
 
    Archives are digitally signed by me (Lorenzo Bettini) with GNU gpg
-(`http://www.gnupg.org'). My GPG public key can be found at my home
-page (`http://www.lorenzobettini.it').
+(<http://www.gnupg.org>).  My GPG public key can be found at my home
+page (<http://www.lorenzobettini.it>).
 
    You can also get the patches, if they are available for a particular
 release (see below for patching from a previous version).
@@ -188,32 +184,32 @@ clone instruction(1):
 
    Further instructions can be found at the address:
 
-   `http://savannah.gnu.org/projects/gengen'.
+   <http://savannah.gnu.org/projects/gengen>.
 
    And the git repository can also browsed on-line at
 
-   `http://git.savannah.gnu.org/cgit/gengen.git'.
+   <http://git.savannah.gnu.org/cgit/gengen.git>.
 
    Please note that this way you will get the latest development sources
-of Gengen, which may also be unstable.  This solution is the best if
-you intend to correct/extend this program: you should send me patches
+of Gengen, which may also be unstable.  This solution is the best if you
+intend to correct/extend this program: you should send me patches
 against the latest git repository sources.
 
    If, on the contrary, you want to get the sources of a given release,
 through git, say, e.g., version X.Y.Z, you must specify the tag
-`rel_X_Y_Z'.
+'rel_X_Y_Z'.
 
    When you compile the sources that you get from the git repository,
-before running the `configure' and `make' commands, for the first time,
+before running the 'configure' and 'make' commands, for the first time,
 you must run the command:
 
      sh autogen.sh
 
 This will run the autotools commands in the correct order, and also copy
-possibly missing files.  You should have installed recent versions of `automake'
-and `autoconf' in order for this to succeed.
+possibly missing files.  You should have installed recent versions of
+'automake' and 'autoconf' in order for this to succeed.
 
-   Instead of running `autogen.sh' another option is to run
+   Instead of running 'autogen.sh' another option is to run
 
      autoreconf -i
 
@@ -221,15 +217,15 @@ and `autoconf' in order for this to succeed.
 =================================
 
 Gengen has been developed under GNU/Linux, using gcc (C++), and bison
-(yacc) and flex (lex), and ported under Win32 with Cygnus
-C/C++compiler, available at `http://www.cygwin.com'.  I used the
-excellent GNU Autoconf and GNU Automake.  I also used Autotools
-(`ftp://ftp.ugcs.caltech.edu/pub/elef/autotools') which creates a
+(yacc) and flex (lex), and ported under Win32 with Cygnus C/C++compiler,
+available at <http://www.cygwin.com>.  I used the excellent GNU Autoconf
+and GNU Automake.  I also used Autotools
+(<ftp://ftp.ugcs.caltech.edu/pub/elef/autotools>) which creates a
 starting source tree (according to GNU standards) with autoconf,
 automake starting files.
 
    Finally I used _GNU gengetopt_
-(`http://www.gnu.org/software/gengetopt'), for command line parsing.
+(<http://www.gnu.org/software/gengetopt>), for command line parsing.
 
    Actually, you don't need all these tools above to build gengen
 because I provide generated sources, unless you want to develop gengen.
@@ -237,19 +233,19 @@ because I provide generated sources, unless you want to develop gengen.
 1.4 Patching from a previous version
 ====================================
 
-If you downloaded a patch, say `gengen-1.3-1.3.1-patch.gz' (i.e., the
-patch to go from version 1.3 to version 1.3.1), cd to the directory
-with sources from the previous version (gengen-1.3) and type:
+If you downloaded a patch, say 'gengen-1.3-1.3.1-patch.gz' (i.e., the
+patch to go from version 1.3 to version 1.3.1), cd to the directory with
+sources from the previous version (gengen-1.3) and type:
 
      gunzip -cd ../gengen-1.3-1.3.1.patch.gz | patch -p1
 
-   and restart the compilation process (if you had already run
-configure a simple make should do).
+   and restart the compilation process (if you had already run configure
+a simple make should do).
 
    ---------- Footnotes ----------
 
-   (1) Since version 1.4.2 of Gengen the CVS repository was dismissed
-in favor of Git (`http://git-scm.com/').
+   (1) Since version 1.4.2 of Gengen the CVS repository was dismissed in
+favor of Git (<http://git-scm.com/>).
 
 
 File: gengen.info,  Node: The Problem,  Next: The Solution,  Prev: Installation,  Up: Top
@@ -273,13 +269,13 @@ or the C code:
      printf("if (i < 10)\n");
      printf("  printf(\"the value of i is %%d\", i);\n");
 
-provided that you remember to escape the `"' (and in the C code, also
-the `%').
+provided that you remember to escape the '"' (and in the C code, also
+the '%').
 
    Suppose now that the previous piece of code has to be generated many
-times by your program, and every time instead of `i' another symbol has
+times by your program, and every time instead of 'i' another symbol has
 to be generated (decided at run time).  In this case, supposing that
-this value is contained in a variable `symb', the code for generating
+this value is contained in a variable 'symb', the code for generating
 this code would be a little bit more complex:
 
      cout << "if (" << symb << "< 10)" << endl;
@@ -289,7 +285,7 @@ this code would be a little bit more complex:
 And the C version would be even more obfuscated.
 
    Probably you didn't even realize that you forgot to leave a space
-before the `< 10'; basically this is due to the fact that this piece of
+before the '< 10'; basically this is due to the fact that this piece of
 code mixes the code that has to be generated with the code that
 generates it, and this tends to make this part of program less easy to
 maintain.  Especially if some day you have to change the code that has
@@ -297,8 +293,8 @@ to be generated, you'll have to act on this part of the program, and
 probably you'll have to execute some tests in order to be sure that you
 did it right.
 
-   If the code that you have to generate is a slightly more complex,
-the task may easily become a pain in the neck!
+   If the code that you have to generate is a slightly more complex, the
+task may easily become a pain in the neck!
 
 
 File: gengen.info,  Node: The Solution,  Next: Basic Usage in C and C++,  Prev: The Problem,  Up: Top
@@ -307,16 +303,16 @@ File: gengen.info,  Node: The Solution,  Next: Basic Usage in C and C++,  Prev: 
 *************************
 
 Wouldn't it be nice if you could write the code to be generated in a
-separate file, let's call it _template_, say `test1.cc_skel' this way
+separate file, let's call it _template_, say 'test1.cc_skel' this way
 
      if (@i@ < 10)
        printf("the value of @i@ is %d", @i@);
 
 and have a tool that generates a generator, that you can instantiate at
 run-time with the value that has to be substituted to the _parameter_
-`i'?  If such a tool existed, and it generated a file `test1_c.h' with
-a C struct `test1_gen_struct', then you could write simply this code,
-in another file, say `test1_gen_c.c':
+'i'?  If such a tool existed, and it generated a file 'test1_c.h' with a
+C struct 'test1_gen_struct', then you could write simply this code, in
+another file, say 'test1_gen_c.c':
 
      #include <stdio.h>
 
@@ -336,9 +332,10 @@ in another file, say `test1_gen_c.c':
        return 0;
      }
 
-   Alternatively, if it generated a file `test1.h' with a C++ class
-`test1_gen_class', then you could write simply this code, in another
-file, say `test1_gen.cc':
+
+   Alternatively, if it generated a file 'test1.h' with a C++ class
+'test1_gen_class', then you could write simply this code, in another
+file, say 'test1_gen.cc':
 
      #include <iostream>
 
@@ -361,6 +358,7 @@ file, say `test1_gen.cc':
        return 0;
      }
 
+
 and when you run it you would obtain the expected output:
 
      if (foo < 10)
@@ -368,26 +366,26 @@ and when you run it you would obtain the expected output:
      if (bar < 10)
        printf("the value of bar is %d", bar);
 
-Well, Gengen does right this!  Now the code that has to be generated
-and the code that generates it are separated and they can be maintained
-more easily: if you want to change the code that has to be generated
-you act on the file `test1.cc_skel'; alternatively, say you need to
-change the value that will be substituted for `i', you just change the
-file `test1_gen.cc' or `test1_gen_c.c'.
+Well, Gengen does right this!  Now the code that has to be generated and
+the code that generates it are separated and they can be maintained more
+easily: if you want to change the code that has to be generated you act
+on the file 'test1.cc_skel'; alternatively, say you need to change the
+value that will be substituted for 'i', you just change the file
+'test1_gen.cc' or 'test1_gen_c.c'.
 
-   Notice that the method `generate_test1' accepts an output stream
-(indeed in this example the standard output stream `cout' is used),
-thus the stream abstraction facilities can be exploited.  Similarly, the
-C function `generate_test1' accepts a `FILE*', so you can use the C
-file abstraction.
+   Notice that the method 'generate_test1' accepts an output stream
+(indeed in this example the standard output stream 'cout' is used), thus
+the stream abstraction facilities can be exploited.  Similarly, the C
+function 'generate_test1' accepts a 'FILE*', so you can use the C file
+abstraction.
 
-   Indeed in order to generate the C++ file `test1.h' with the class
-`test1_gen_class', I simply had to run the following command:
+   Indeed in order to generate the C++ file 'test1.h' with the class
+'test1_gen_class', I simply had to run the following command:
 
      gengen -i test1.cc_skel --file-name test1.h --gen-name test1
 
-and in order to generate the C file `test1_c.h' with the structure
-`test1_gen_struct', I simply had to run the following command:
+and in order to generate the C file 'test1_c.h' with the structure
+'test1_gen_struct', I simply had to run the following command:
 
      gengen -i test1.cc_skel --file-name test1_c.h --gen-name test1 \
              --output-format=c
@@ -406,8 +404,8 @@ pointless, program.  Now we'll go back and look at things in more
 detail.
 
    The input file for Gengen is basically any text file, where some
-parts are interpreted differently, namely symbols enclosed in `@'.   We
-call this input file a _template_ and the symbols enclosed in `@'
+parts are interpreted differently, namely symbols enclosed in '@'.  We
+call this input file a _template_ and the symbols enclosed in '@'
 _parameters_ (or _variables_):
 
      This is @name@ generated by the program @progname@.
@@ -415,23 +413,23 @@ _parameters_ (or _variables_):
      generated by @generator@ version @version@, made by
      Lorenzo Bettini <foobar@@foo.org>.
 
-First all notice that, since `@' is a special character, if you really
+First all notice that, since '@' is a special character, if you really
 want it to appear in the generated text you have to repeated, as in the
-e-mail address `foobar@@foo.org'.
+e-mail address 'foobar@@foo.org'.
 
-   If this text is stored in the file `example_text.text_skel' and I
+   If this text is stored in the file 'example_text.text_skel' and I
 process it with the following command:
 
      gengen -i example_text.text_skel
        --file-name example_text_c.h --gen-name example_text
        --output_format=c
 
-the struct `example_text_gen_struct' (option `--gen-name example_text')
-will be generated in the file `example_text_c.h' (option `--file-name
+the struct 'example_text_gen_struct' (option '--gen-name example_text')
+will be generated in the file 'example_text_c.h' (option '--file-name
 example_text_c.h').  This struct will have a field for each single
-parameter, with the same name of the parameter and type `const char *'.
- For in instance in this example it will contain the fields `name',
-`progname', `generator' and `version'.   These can be used to set the
+parameter, with the same name of the parameter and type 'const char *'.
+For in instance in this example it will contain the fields 'name',
+'progname', 'generator' and 'version'.  These can be used to set the
 string that will be substituted at run-time for the corresponding name
 in the input file (Notice that otherwise the empty string is assumed).
 
@@ -448,13 +446,13 @@ structure with the following generated function:
              example_text_gen_struct *record, unsigned int indent)
 
 can be called in order to generate the text with substitutions (using
-the values of the passed struct) into the stream `stream'.  The
-parameter `indent' is useful to specify an indentation in the generated
+the values of the passed struct) into the stream 'stream'.  The
+parameter 'indent' is useful to specify an indentation in the generated
 text.
 
    Alternatively, one can use the following function (even with a non
-initiliazed struct) specifying the values for each field (notice the
-`p' after `generate'):
+initiliazed struct) specifying the values for each field (notice the 'p'
+after 'generate'):
 
      void
      generatep_example_text(FILE *stream, unsigned int indent,
@@ -462,7 +460,7 @@ initiliazed struct) specifying the values for each field (notice the
              const char *version);
 
    The following example uses the generated struct in order to generate
-the text twice; the second time, the name of the parameter `name' is
+the text twice; the second time, the name of the parameter 'name' is
 changed, and the indentation is set to 2(1):
 
      #include <stdio.h>
@@ -490,6 +488,7 @@ changed, and the indentation is set to 2(1):
        return 0;
      }
 
+
 The output of this program will be as expected:
 
      This is an example generated by the program example_text_gen.
@@ -504,10 +503,9 @@ The output of this program will be as expected:
 
    Now, since C lacks the (wonderful :-) stream abstraction that permits
 creating a stream that writes into a string (such as the
-`ostringstream'),  two additional functions are provided in the
-generated file, that return a (`malloc'ed) string instead of generating
-the output to a file (they correspond to the two generate functions
-seen above):
+'ostringstream'), two additional functions are provided in the generated
+file, that return a ('malloc'ed) string instead of generating the output
+to a file (they correspond to the two generate functions seen above):
 
      char *
      genstring_example_text(struct example_text_gen_struct *record,
@@ -518,43 +516,43 @@ seen above):
              const char *generator, const char *name, const char *progname,
              const char *version);
 
-Remember: it is up to you to `free' these strings when you don't need
+Remember: it is up to you to 'free' these strings when you don't need
 them anymore.
 
-   If you prefer to program in C++ you  process the file
-`example_text.text_skel' with the following command(2):
+   If you prefer to program in C++ you process the file
+'example_text.text_skel' with the following command(2):
 
      gengen -i example_text.text_skel
        --file-name example_text.h --gen-name example_text
 
-the class `example_text_gen_class' (option `--gen-name example_text')
-will be generated in the file `example_text.h' (option `--file-name
-example_text.h').   This class will have a member for each single
-parameter, with the same name of the parameter and type `string'.
-This class will also contain a method `set_<xxx>' for each distinct
-`@xxx@' present in the input file; for in instance in this example it
-will contain the methods `set_name', `set_progname', `set_generator' and
-`set_version'.   These methods get a `const string &' as parameter.
-These can be used to set the string that will be substituted at
-run-time for the corresponding name in the input file (otherwise the
-empty string is assumed).
+the class 'example_text_gen_class' (option '--gen-name example_text')
+will be generated in the file 'example_text.h' (option '--file-name
+example_text.h').  This class will have a member for each single
+parameter, with the same name of the parameter and type 'string'.  This
+class will also contain a method 'set_<xxx>' for each distinct '@xxx@'
+present in the input file; for in instance in this example it will
+contain the methods 'set_name', 'set_progname', 'set_generator' and
+'set_version'.  These methods get a 'const string &' as parameter.
+These can be used to set the string that will be substituted at run-time
+for the corresponding name in the input file (otherwise the empty string
+is assumed).
 
    Notice that in C++ there's no need to call any initialization
 function, since the fields in the class are automatically initialized
 (as empty strings) by the constructor.  Morever, there is no version
 that generates a string, as in C, since you can use the class
-`ostringstream'.
+'ostringstream'.
 
    Once these values are set, the method
 
      void generate_example_text(ostream &stream, unsigned int indent = 0)
 
 can be called in order to generate the text with substitutions into the
-stream `stream'.  The parameter `indent' (default = 0) is useful to
+stream 'stream'.  The parameter 'indent' (default = 0) is useful to
 specify an indentation in the generated text.
 
    The following example uses the generated class in order to generate
-the text twice; the second time, the name of the parameter `name' is
+the text twice; the second time, the name of the parameter 'name' is
 changed, and the indentation is set to 2(3):
 
      #include <iostream>
@@ -584,6 +582,7 @@ changed, and the indentation is set to 2(3):
        return 0;
      }
 
+
 The output of this program will be as before.
 
    This is already a useful feature of Gengen (at least that's what I
@@ -595,21 +594,21 @@ section.
 
 * Menu:
 
-* Callbacks::
-* Types::
+* Callbacks::                   
+* Types::                       
 
    ---------- Footnotes ----------
 
    (1) Notice that the first indentation has to be performed manually;
-this behavior is useful in conjunction with a more involved feature
-that will be explained later.
+this behavior is useful in conjunction with a more involved feature that
+will be explained later.
 
    (2) Notice that, by default gengen produces C++ code, so you don't
-need to specify the `--output-format' option.
+need to specify the '--output-format' option.
 
    (3) Notice that the first indentation has to be performed manually;
-this behavior is useful in conjunction with a more involved feature
-that will be explained later.
+this behavior is useful in conjunction with a more involved feature that
+will be explained later.
 
 
 File: gengen.info,  Node: Callbacks,  Next: Types,  Prev: Basic Usage in C and C++,  Up: Basic Usage in C and C++
@@ -619,12 +618,12 @@ File: gengen.info,  Node: Callbacks,  Next: Types,  Prev: Basic Usage in C and C
 
 You may want the generator to invoke a call back method when it comes to
 generate a specific symbol, instead of relying only on strings.  This
-can be achieved by specifying the _type_ `method' for a parameter.  Let
+can be achieved by specifying the _type_ 'method' for a parameter.  Let
 me clarify this with an example.
 
    Say that your program has to generate some functions, and you,
 obviously, want all these functions to have the same definition style;
-then you can create a template file `example_fundef.cc_skel':
+then you can create a template file 'example_fundef.cc_skel':
 
      @rettype@
      @funname@(@paramtype@ @param@)
@@ -637,10 +636,10 @@ and once again process it with the command
      gengen -i example_fundef.cc_skel --file-name example_fundef.h
        --gen-name example_fundef
 
-Then the generated class `example_fundef_gen_class' will  contain  the
-set-methods `set_rettype',   `set_funname', `set_paramtype'     and
-`set_param',   and     a    method `set_funbody',  but  it will  also
-declare the following abstract method:
+Then the generated class 'example_fundef_gen_class' will contain the
+set-methods 'set_rettype', 'set_funname', 'set_paramtype' and
+'set_param', and a method 'set_funbody', but it will also declare the
+following abstract method:
 
      virtual void
        generate_funbody(ostream &stream, unsigned int indent) = 0;
@@ -648,11 +647,11 @@ declare the following abstract method:
    Thus, this class cannot be directly instantiated; instead you can
 derive from this class and provide the implementation of such method,
 knowing that this method will be called right when it comes to generate
-that part of code, in case the variable `funbody' has not already been
-set via the method `set_funbody' (indeed the virtual method is called
-if `funbody' is an empty string).  Here's an example that extends this
-class and uses the previous class `test1_gen_class' to generate the
-function body (file `example_fundef_gen.cc'):
+that part of code, in case the variable 'funbody' has not already been
+set via the method 'set_funbody' (indeed the virtual method is called if
+'funbody' is an empty string).  Here's an example that extends this
+class and uses the previous class 'test1_gen_class' to generate the
+function body (file 'example_fundef_gen.cc'):
 
      #include <iostream>
      #include "test1.h"
@@ -686,12 +685,13 @@ function body (file `example_fundef_gen.cc'):
        return (0);
      }
 
-Notice that the parameter `i' of `test1_gen_class' is set to the same
-name of the inherited field `param': this will guarantee consistency in
+
+Notice that the parameter 'i' of 'test1_gen_class' is set to the same
+name of the inherited field 'param': this will guarantee consistency in
 the generated code (the code will be compilable) and the generated
 function body will use the parameter of the function definition.
-Moreover when the method `generate_test1' is invoked, both the `stream'
-and `indent' parameters are passed over, so that they will be used also
+Moreover when the method 'generate_test1' is invoked, both the 'stream'
+and 'indent' parameters are passed over, so that they will be used also
 by the other generator.
 
    The generated code is once again as expected:
@@ -710,18 +710,18 @@ according to the leading spaces in a line.
    This scenario can take place in a code generator where you want to
 have all the generated functions with the same style.  When you decide
 you want to change the style you'll only have to change the file
-`example_fundef.cc_skel', while the other parts of the programs remain
+'example_fundef.cc_skel', while the other parts of the programs remain
 unchanged.
 
    When a generated class contains at least an abstract method, a
-virtual destructor is also generated (that basically performs no
-action) that is useful if you have to destroy something allocated in
-the derived class.
+virtual destructor is also generated (that basically performs no action)
+that is useful if you have to destroy something allocated in the derived
+class.
 
-   The type `method' has also an _option_; an option is basically a
-statement of the shape `<name>=<value>' and has to be specified between
-brackets `{}'.   The option is `iteration'.  If one specified
-`@funbody:method{iteration=true}@' then no space would have been
+   The type 'method' has also an _option_; an option is basically a
+statement of the shape '<name>=<value>' and has to be specified between
+brackets '{}'.  The option is 'iteration'.  If one specified
+'@funbody:method{iteration=true}@' then no space would have been
 generated before invoking the call back method, and no newline would
 have been generated after.  This could be useful when the result of the
 call back method is either the empty string or a sequence of similar
@@ -735,7 +735,7 @@ last one differently).
      gengen -i example_fundef.c_skel --file-name example_fundef.h
        --gen-name example_fundef --output-format c
 
-This will generate the file `example_fundef.h' containing the following
+This will generate the file 'example_fundef.h' containing the following
 struct declaration:
 
      struct example_fundef_gen_struct
@@ -753,7 +753,7 @@ and some functions
      example_fundef_gen_struct *record, unsigned int indent);
 
 that, given an initialized struct, generates the output to the file
-`stream', and
+'stream', and
 
      void
      generatep_example_fundef(FILE *stream, unsigned int indent,
@@ -765,13 +765,13 @@ that does not require a struct, since it requires a value for each
 parameter in the template file.
 
    We suggest to use the following function in order to be sure that
-each string in the struct is correctly initialized to `NULL':
+each string in the struct is correctly initialized to 'NULL':
 
      void
      init_example_fundef_gen_struct(struct example_fundef_gen_struct *r);
 
 and two additional functions are provided in the generated file, that
-return a (`malloc'ed) string instead of generating the output to a file
+return a ('malloc'ed) string instead of generating the output to a file
 (they correspond to the two generate functions seen above):
 
      char *
@@ -784,10 +784,10 @@ return a (`malloc'ed) string instead of generating the output to a file
                                const char *param, const char *paramtype,
                                const char *rettype);
 
-Remember: it is up to you to `free' these strings when you don't need
+Remember: it is up to you to 'free' these strings when you don't need
 them anymore.
 
-   As for the type `method', instead of creating a pure virtual method
+   As for the type 'method', instead of creating a pure virtual method
 as in C++, an extern function declaration is generated:
 
      extern
@@ -796,14 +796,14 @@ as in C++, an extern function declaration is generated:
                            unsigned int indent);
 
 but no code is generated for this function, so that the programmer is
-required to provide a definition for this function somewhere else in
-the program.   This (extern) function will be called right when it
-comes to generate that part of code, in case the argument `funbody' or
-the field `funbody' in the passed struct is `NULL'.
+required to provide a definition for this function somewhere else in the
+program.  This (extern) function will be called right when it comes to
+generate that part of code, in case the argument 'funbody' or the field
+'funbody' in the passed struct is 'NULL'.
 
-   When you use `@if@' conditionals (or `bool' parameters, see *note
-Types::), the generated record fields are of type `short', and when you
-use `int' parameters the fields are of type `int'.
+   When you use '@if@' conditionals (or 'bool' parameters, see *note
+Types::), the generated record fields are of type 'short', and when you
+use 'int' parameters the fields are of type 'int'.
 
 * Menu:
 
@@ -815,35 +815,35 @@ File: gengen.info,  Node: Types,  Prev: Callbacks,  Up: Basic Usage in C and C++
 4.2 Types
 =========
 
-So far, we dealt only with parameters of type `method' or string
+So far, we dealt only with parameters of type 'method' or string
 parameters.  Actually, unless explicitly stated, the type of parameter
-is implicitly considered as `string' (and for conditional expressions
-as `bool', see *note Conditionals::).  However, the type of a parameter
-can be made explicit, just like we did with `method' type.  In
-particular, currently, the following basic types are available:
-`string', `int' and `bool'(1).
+is implicitly considered as 'string' (and for conditional expressions as
+'bool', see *note Conditionals::).  However, the type of a parameter can
+be made explicit, just like we did with 'method' type.  In particular,
+currently, the following basic types are available: 'string', 'int' and
+'bool'(1).
 
    Since gengen does not provide variable declarations (to keep things
 simple :-) you must always specify the type each time (just like for
-`method' parameters), unless the type is not the default one.  Of
+'method' parameters), unless the type is not the default one.  Of
 course, gengen will check that you use parameter types consistently,
 i.e., always with the same type.
 
    For instance, the following code is correct, since by default the
-type of a parameter is of type string, thus the parameter `mypar' is
+type of a parameter is of type string, thus the parameter 'mypar' is
 used consistently:
 
      This is the value of the parameter @mypar@.
      And I repeat it here @mypar:string@.
 
-While this example will generate an error, since the first time `mypar'
-is (implicitly) of type `string', while the second time is of type
-`int':
+While this example will generate an error, since the first time 'mypar'
+is (implicitly) of type 'string', while the second time is of type
+'int':
 
      This is the value of the parameter @mypar@.
      And I repeat it here @mypar:int@.
 
-For instance, if this file is called `foo.skel', gengen will issue the
+For instance, if this file is called 'foo.skel', gengen will issue the
 following error:
 
      foo.skel:2: variable "mypar" of type "int"
@@ -852,11 +852,11 @@ following error:
 
    Gengen will use the specified type to generate fields and methods of
 the generated class accordintly, e.g., if a parameter is declared of
-type `int' the generated set method will get an integer parameter.
+type 'int' the generated set method will get an integer parameter.
 
-   When generating a parameter of type `int' the string representation
-of the actual integer value will be output; while for `bool' parameters
-the literal `true' or `false' will be output.
+   When generating a parameter of type 'int' the string representation
+of the actual integer value will be output; while for 'bool' parameters
+the literal 'true' or 'false' will be output.
 
    ---------- Footnotes ----------
 
@@ -882,13 +882,13 @@ can also use the following syntax:
      @endif@
 
 that has the same semantics of if in programming languages you're used
-to, and of course all the else parts are optional.  For every `condvar'
+to, and of course all the else parts are optional.  For every 'condvar'
 a boolean instance variable is added to the generated class, and of
 course a corresponding set method receiving a boolean argument.
 
    It is important to notice a possible new line characters and spaces
-after a `@then@', `@else@' and `@endif@', and possible spaces before
-`@if@', `@elseif@' and `@else@' are NOT discarded during the generation
+after a '@then@', '@else@' and '@endif@', and possible spaces before
+'@if@', '@elseif@' and '@else@' are NOT discarded during the generation
 of code.  Thus, the following this code
 
      @if@ c @then@   foo
@@ -907,8 +907,8 @@ will generate the following C++ code(1)
          stream << "   bar";
        }
 
-Notice that there are spaces before the generated strings, as there
-were in the template file.
+Notice that there are spaces before the generated strings, as there were
+in the template file.
 
    And the following code
 
@@ -941,14 +941,14 @@ will generate the following C++ code
        }
 
 Notice the two characters inserted before the if test (that are
-generated independently from the evaluation of `c') and the new line
+generated independently from the evaluation of 'c') and the new line
 before the then and else bodies.
 
-   If you're not confortable with this treatment of spaces and new
-lines in conjunction with if statements, you can use the uppercase
-version of these keywords, i.e., `IF', `THEN', etc.   When you use these
-keywords, spaces and newlines are skipped.   For instance, the previous
-example can be rewritten as follows:
+   If you're not confortable with this treatment of spaces and new lines
+in conjunction with if statements, you can use the uppercase version of
+these keywords, i.e., 'IF', 'THEN', etc.  When you use these keywords,
+spaces and newlines are skipped.  For instance, the previous example can
+be rewritten as follows:
 
      @IF@ c @THEN@   foo
      @ELSE@   bar@ENDIF@
@@ -1014,7 +1014,7 @@ version.
 template file, Gengen will check that you do use variables in a
 consistent way (see *note Types::); thus you're not allowed to the same
 name for a string variable and for the boolean expression of an if
-statement (which is implicitly considered of type `bool').   For
+statement (which is implicitly considered of type 'bool').  For
 instance, the following code:
 
      @foo@
@@ -1027,7 +1027,7 @@ will generate the following error:
      test.h_skel:3: already used with another type
      test.h_skel:1: previous usage was here with type "string"
 
-On the contrary, this version will work fine, since `foo' is used
+On the contrary, this version will work fine, since 'foo' is used
 consistently:
 
      @foo:bool@
@@ -1040,8 +1040,8 @@ consistently:
 
    ---------- Footnotes ----------
 
-   (1) In this section will use generated C++ code as an example, but
-of course, the same features hold for generated C code as well.
+   (1) In this section will use generated C++ code as an example, but of
+course, the same features hold for generated C code as well.
 
 
 File: gengen.info,  Node: Expression syntax,  Prev: Conditionals,  Up: Conditionals
@@ -1050,31 +1050,31 @@ File: gengen.info,  Node: Expression syntax,  Prev: Conditionals,  Up: Condition
 =====================
 
 Since version 1.0, it is possible to specify complex conditional
-expressions.  You then can use comparison operators `<', `>', `<=',
-`>=', `='(1) and `!=', and boolean operators `and', `or' and `not'.
+expressions.  You then can use comparison operators '<', '>', '<=',
+'>=', '='(1) and '!=', and boolean operators 'and', 'or' and 'not'.
 
    The precendence of these operators is the standard one, and, of
 course, you're allowed to override the precedence by using parenthesis.
 
    Gengen will perform type checking on the expressions (see *note
-Types::), thus it will check that `and', `or' and `not' are used only
-on boolean expressions, and that when using the other operators, the
-operands are of the same type.  Moreover, `<', `>', `<=', `>=' cannot
-be used on boolean expressions.  While they can be used on string
-expressions, and in that case the standard lexicographical order will
-be used for the comparison.
+Types::), thus it will check that 'and', 'or' and 'not' are used only on
+boolean expressions, and that when using the other operators, the
+operands are of the same type.  Moreover, '<', '>', '<=', '>=' cannot be
+used on boolean expressions.  While they can be used on string
+expressions, and in that case the standard lexicographical order will be
+used for the comparison.
 
    In expressions you can use constants of the basic types, and in this
 case you must not specify the type: it will be automatically inferred.
 
    Any numerical literal will be considered an integer constant; the
-literals `true' and `false' will be considered boolean constants;
-finally, string constants must be enclosed in `"'.
+literals 'true' and 'false' will be considered boolean constants;
+finally, string constants must be enclosed in '"'.
 
-   For instance, the following is a valid expression (notice that,
-since we are in the context of an if expression, parameters are
-automatically considered of type `bool', thus string parameters must be
-explicitly specified with type `string'):
+   For instance, the following is a valid expression (notice that, since
+we are in the context of an if expression, parameters are automatically
+considered of type 'bool', thus string parameters must be explicitly
+specified with type 'string'):
 
      @if@ (not foo) and (mystring:string < "foo" or i:int > j:int) @then@
      ...
@@ -1106,7 +1106,7 @@ These are the options that can be passed to GNU Gengen:
        -i, --input=file          input file (default std input)
        -F, --file-name=name      name used for generating file (default stdout)
        -f, --gen-name=STRING     prefix for generated code  (default=`gengen')
-           --output-format=lang  target language (cpp, c)  (default=`cpp')
+           --output-format=lang  target language (cpp, c, lua)  (default=`cpp')
            --output-dir=STRING   output directory (default current dir)
            --separate-files      output to separate files (header, source). require
                                    --file-name
@@ -1119,16 +1119,16 @@ These are the options that can be passed to GNU Gengen:
 
 Let us examine the ones not yet explained.
 
-   `--separate-files' that makes Gengen generate the header with class
-definition and a `.cc' file with the same name specified with
-`--file-name', which contains the implementation of the generate
+   '--separate-files' that makes Gengen generate the header with class
+definition and a '.cc' file with the same name specified with
+'--file-name', which contains the implementation of the generate
 methods.
 
-   `--expand-tabs' is pretty useful: all the variables specified in the
+   '--expand-tabs' is pretty useful: all the variables specified in the
 template files, when generated, will be correctly indented according to
 the current indentation level (i.e., the indentation level at the point
-where they are in the template file).  Thus, consider a slight
-variation of the example seen before:
+where they are in the template file).  Thus, consider a slight variation
+of the example seen before:
 
      @rettype@
      @funname@(@paramtype@ @param@)
@@ -1136,8 +1136,8 @@ variation of the example seen before:
        @funbody@
      }
 
-where `funbody' is not of type `method'.  Then, if you do not use the
-`--expand-tabs' and you set the string if (bar < 10)\n  return;, then
+where 'funbody' is not of type 'method'.  Then, if you do not use the
+'--expand-tabs' and you set the string if (bar < 10)\n  return;, then
 the resulting generated code will look the following one (the other
 variables are set to values as seen before):
 
@@ -1148,7 +1148,7 @@ variables are set to values as seen before):
      return;
      }
 
-While, if you use `--expand-tabs', the string containing newlines will
+While, if you use '--expand-tabs', the string containing newlines will
 be correctly formatted:
 
      void
@@ -1163,13 +1163,13 @@ recompilations of many files, before actually generating the output
 file, checks whether a previous generated file exists and, if so,
 whether there are any changes since the last generation.  If no
 modification is needed, the previous generated file is not overwritten.
-This saves compilations, for instance, when you use `--separate-files'
-and you only change something in the template file that affects only
-the code that has to be generated (i.e., the `generate' method itself),
-but not the class interface.  However, if you want to force the
-generation of the output file, you can do so with the option `--force'.
+This saves compilations, for instance, when you use '--separate-files'
+and you only change something in the template file that affects only the
+code that has to be generated (i.e., the 'generate' method itself), but
+not the class interface.  However, if you want to force the generation
+of the output file, you can do so with the option '--force'.
 
-   The `--output-format' permits generating code different from C++ (in
+   The '--output-format' permits generating code different from C++ (in
 the current version the other available target language is C).
 
    The remaining options should be self-explanatory :-)
@@ -1181,12 +1181,12 @@ File: gengen.info,  Node: Bugs,  Next: Mailing Lists,  Prev: Command Options,  U
 ************************************************
 
 No program is perfect, and GNU Gengen is certainly no exception.  A
-partial list of problems with Gengen 1.4.3rc can be found in the
-`TODO.txt'.
+partial list of problems with Gengen 1.4.3 can be found in the
+'TODO.txt'.
 
    Should you discover a bug, propose an extension/feature, or just fell
 like telling me what you think of this program, please send an e-mail at
-the address `bug-gengen' at gnu dot org.
+the address 'bug-gengen' at gnu dot org.
 
 
 File: gengen.info,  Node: Mailing Lists,  Next: Index,  Prev: Bugs,  Up: Top
@@ -1196,16 +1196,16 @@ File: gengen.info,  Node: Mailing Lists,  Next: Index,  Prev: Bugs,  Up: Top
 
 The following mailing lists are available:
 
-   `help-gengen at gnu dot org'
+   'help-gengen at gnu dot org'
 
 for generic discussions about the program and for asking for help about
 it (open mailing list),
-`http://mail.gnu.org/mailman/listinfo/help-gengen'
+<http://mail.gnu.org/mailman/listinfo/help-gengen>
 
-   `info-gengen at gnu dot org'
+   'info-gengen at gnu dot org'
 
 for receiving information about new releases and features (read-only
-mailing list), `http://mail.gnu.org/mailman/listinfo/info-gengen'.
+mailing list), <http://mail.gnu.org/mailman/listinfo/info-gengen>.
 
    If you want to subscribe to a mailing list just go to the URL and
 follow the instructions, or send me an e-mail and I'll subscribe you.
@@ -1220,68 +1220,71 @@ Index
 * Menu:
 
 * Audience:                              Audience.            (line   6)
-* autoconf:                              Installation.        (line  88)
-* automake:                              Installation.        (line  88)
+* autoconf:                              Installation.        (line  85)
+* automake:                              Installation.        (line  85)
 * Conditional statements:                Conditionals.        (line   6)
 * Conditions for copying GNU Gengen:     Copying.             (line   6)
 * Copying conditions:                    Copying.             (line   6)
 * download:                              Installation.        (line   6)
+* download <1>:                          Installation.        (line  37)
 * expression syntax:                     Expression syntax.   (line   6)
 * Generating code with substitutions:    The Problem.         (line   6)
 * getting started with Gengen:           Basic Usage in C and C++.
                                                               (line   6)
-* Git:                                   Installation.        (line  59)
-* how to use Gengen <1>:                 Command Options.     (line   6)
+* Git:                                   Installation.        (line  56)
 * how to use Gengen:                     Basic Usage in C and C++.
                                                               (line   6)
+* how to use Gengen <1>:                 Command Options.     (line   6)
 * installation:                          Installation.        (line   6)
 * Known Bugs:                            Bugs.                (line   6)
 * Limits:                                Bugs.                (line   6)
 * mailing list:                          Mailing Lists.       (line   6)
 * Misfeatures:                           Bugs.                (line   6)
 * Overview of GNU Gengen:                The Solution.        (line   6)
-* parameter <1>:                         Basic Usage in C and C++.
-                                                              (line   6)
-* parameter <2>:                         The Solution.        (line   6)
-* parameter <3>:                         The Problem.         (line   6)
 * parameter:                             Audience.            (line  21)
-* patching:                              Installation.        (line 115)
-* requirements:                          Installation.        (line  98)
+* parameter <1>:                         The Problem.         (line   6)
+* parameter <2>:                         The Solution.        (line   6)
+* parameter <3>:                         Basic Usage in C and C++.
+                                                              (line   6)
+* parameter <4>:                         Basic Usage in C and C++.
+                                                              (line  10)
+* patching:                              Installation.        (line 112)
+* requirements:                          Installation.        (line  95)
+* template:                              The Problem.         (line   6)
 * template <1>:                          Basic Usage in C and C++.
                                                               (line   6)
-* template:                              The Problem.         (line   6)
 * type:                                  Basic Usage in C and C++.
                                                               (line   6)
+* variable:                              Audience.            (line  21)
 * variable <1>:                          Basic Usage in C and C++.
                                                               (line  10)
-* variable:                              Audience.            (line  21)
 * Who should use Gengen:                 Audience.            (line   6)
 
 
 
 Tag Table:
-Node: Top1258
-Node: Audience2946
-Ref: Audience-Footnote-14688
-Node: Copying4736
-Node: Installation5315
-Ref: Installation-Footnote-19570
-Node: The Problem9682
-Node: The Solution11527
-Node: Basic Usage in C and C++14535
-Ref: Basic Usage in C and C++-Footnote-122037
-Ref: Basic Usage in C and C++-Footnote-222207
-Ref: Basic Usage in C and C++-Footnote-322324
-Node: Callbacks22494
-Node: Types29806
-Ref: Types-Footnote-131824
-Node: Conditionals31862
-Ref: Conditionals-Footnote-136459
-Node: Expression syntax36594
-Ref: Expression syntax-Footnote-138459
-Node: Command Options38527
-Node: Bugs41832
-Node: Mailing Lists42355
-Node: Index43003
+Node: Top1233
+Node: Audience2947
+Ref: Audience-Footnote-14687
+Node: Copying4735
+Node: Installation5313
+Ref: Installation-Footnote-19566
+Node: The Problem9678
+Node: The Solution11523
+Node: Basic Usage in C and C++14533
+Ref: Basic Usage in C and C++-Footnote-122073
+Ref: Basic Usage in C and C++-Footnote-222243
+Ref: Basic Usage in C and C++-Footnote-322360
+Node: Callbacks22530
+Node: Types29821
+Ref: Types-Footnote-131839
+Node: Conditionals31877
+Ref: Conditionals-Footnote-136471
+Node: Expression syntax36606
+Ref: Expression syntax-Footnote-138471
+Node: Command Options38539
+Node: Bugs41849
+Node: Mailing Lists42370
+Node: Index43018
 
 End Tag Table
