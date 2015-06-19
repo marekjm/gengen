@@ -10,7 +10,7 @@
 
 SUBDIRS = otherdir
 
-SUFFIXES = .err .cc_skel .err_test .cc_skel .h .cc_skel _c.h .cc_skel _lua.lua
+SUFFIXES = .err .cc_skel .err_test .cc_skel .h .cc_skel _c.h .cc_skel .lua_skel _lua.lua
 
 PROGEXE = $(top_builddir)/src/$(PACKAGE)$(EXEEXT)
 PROGEXE_C = $(PROGEXE) --output-format "c"
@@ -39,6 +39,9 @@ test_cicle_tabs_c.h: $(srcdir)/test_cicle_tabs.cc_skel
 test_cicle_tabs_lua.lua: $(srcdir)/test_cicle_tabs.cc_skel
 	$(GENERATE_LUA) -i $(srcdir)/test_cicle_tabs.cc_skel --file-name $@ --gen-name test_cicle --expand-tabs
 
+test_body_loop_lua.lua: $(srcdir)/test_body_loop.lua_skel
+	$(GENERATE_LUA) -i $(srcdir)/test_body_loop.lua_skel --file-name $@ --gen-name test_body_loop
+
 .cc_skel.h:
 	$(GENERATE) -i $< --file-name $@ --gen-name $* 
 
@@ -63,15 +66,15 @@ notbool.err notbool2.err notbool3.err \
 notsametype.err notsametype2.err
 
 EXTRA_DIST = test_vars.cc_skel test_cicle.cc_skel \
-test_cicle_tabs.cc_skel test_body_loop.cc_skel test_body_loop_lua.skel \
+test_cicle_tabs.cc_skel test_body_loop.cc_skel test_body_loop.lua_skel \
 loop.cc_skel test_subst.cc_skel test_subst.cc_skel test_iter.cc_skel \
 test1.cc_skel example_text.text_skel example_fundef.cc_skel \
 test_vars.cc test_cicle.cc test_cicle_str.cc test_cicle2_main.c test_cicle2_main.lua \
 test_iter.cc test_cicle_m.cc test_subst.cc \
-test_subst2_main.cc test1_gen.cc test1_gen_c.c test1_gen.lua \
+test_subst2_main.cc test1_gen.cc test1_gen_c.c test1_gen_lua.lua \
 example_text_gen.cc example_text_gen_c.c example_text_gen_lua.lua \
 example_fundef_gen.cc \
-test_cicle_c.c test_cicle_gen_lua.lua test_cicle_str_c.c test_cicle2_c.c test_cicle2_lua.lua \
+test_cicle_c.c test_cicle_str_c.c test_cicle2_c.c test_cicle2_lua.lua \
 test_cicle_cstring.c test_cicle_c_cc.cc \
 test_cicle_tabs.cc test_cicle_tabs_c.c test_cicle_tabs_gen_lua.lua \
 test_if.cc_skel test_if.cc test_if_c.c test_if_gen_lua.lua \
@@ -88,18 +91,18 @@ test_cicle$(EXEEXT) test_cicle_str$(EXEEXT) test_cicle_tabs$(EXEEXT) \
 gen_test_cicle$(EXEEXT) gen_test_cicle_str$(EXEEXT) \
 test_cicle_m$(EXEEXT) gen_test_cicle_m$(EXEEXT) test_subst$(EXEEXT) \
 gen_test_subst$(EXEEXT) test_iter$(EXEEXT) \
-gen_test_iter$(EXEEXT) test_subst2_prog$(EXEEXT) test1_gen$(EXEEXT) test1_gen_c$(EXEEXT) test1_gen_lua$(EXEEXT) \
-example_text_gen$(EXEEXT) example_text_gen_c$(EXEEXT) example_text_gen_lua$(EXEEXT) \
+gen_test_iter$(EXEEXT) test_subst2_prog$(EXEEXT) test1_gen$(EXEEXT) test1_gen_c$(EXEEXT) \
+example_text_gen$(EXEEXT) example_text_gen_c$(EXEEXT) \
 example_fundef_gen$(EXEEXT) \
-test_cicle_c$(EXEEXT) test_cicle_gen_lua$(EXEEXT) test_cicle_str_c$(EXEEXT) \
-test_cicle2_c$(EXEEXT) test_cicle2_lua$(EXEEXT) test_cicle_c_cc$(EXEEXT) \
-test_cicle_tabs_c$(EXEEXT) test_cicle_tabs_gen_lua$(EXEEXT) \
+test_cicle_c$(EXEEXT) test_cicle_str_c$(EXEEXT) \
+test_cicle2_c$(EXEEXT) test_cicle_c_cc$(EXEEXT) \
+test_cicle_tabs_c$(EXEEXT) \
 gen_test_cicle_c$(EXEEXT) gen_test_cicle_str_c$(EXEEXT) \
 gen_test_cicle_c_cc$(EXEEXT) \
 test_cicle_cstring$(EXEEXT) gen_test_cicle_cstring$(EXEEXT) \
 gen_test_cicle_tabs$(EXEEXT) \
-test_if$(EXEEXT) test_if_c$(EXEEXT) test_if_gen_lua$(EXEEXT) \
-test_types$(EXEEXT) test_types_c$(EXEEXT) test_types_gen_lua$(EXEEXT)
+test_if$(EXEEXT) test_if_c$(EXEEXT) \
+test_types$(EXEEXT) test_types_c$(EXEEXT)
 
 # we do not want that generated sources are included in the tar ball
 # so we have to do things manually:
@@ -144,13 +147,14 @@ test_if_c_BUILT_SRC = test_if_c.c
 test_types_BUILT_SRC = test_types.cc
 test_types_c_BUILT_SRC = test_types_c.c
 
+
 BUILT_SOURCES = test_vars.h gen_test_vars.cc test_cicle.h \
 test_cicle_tabs.h \
 test_body_loop.h gen_test_cicle.cc gen_test_cicle_str.cc \
 loop.h gen_test_cicle_m.cc \
 test_subst.h gen_test_subst.cc test_iter.h gen_test_iter.cc \
 test_subst2.h test_subst2.cc \
-test1.h test1_c.h test1_lua.lua \
+test1.h test1_c.h \
 example_text.h example_text_c.h example_text_lua.lua example_fundef.h \
 test_cicle_c.h test_cicle_lua.lua test_cicle2_c.h test_cicle2_lua.header \
 test_cicle2_c.c test_cicle2_lua.lua test_body_loop_c.h test_body_loop_lua.lua \
