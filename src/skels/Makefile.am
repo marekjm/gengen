@@ -26,21 +26,22 @@ GENERATE = $(PROGNAME)
 
 BUILT_SOURCES = class.h genmethod.h genmethod_body.h \
 setmethod.h abstrmethod.h cc_source.h copyright.h \
-c_header.h extern_function.h genfunction.h c_source.h strcntfunction.h \
-callmeth.h callextfun.h initstructfun.h genstrfunction.h \
-genstringfun.h outputcvar.h ifgen_c.h \
-c_convert.h
+c_header.h lua_header.h extern_function.h extern_function_lua.h \
+genfunction.h genfunction_lua.h c_source.h lua_source.h strcntfunction.h strcntfunction_lua.h \
+callmeth.h callextfun.h callextfun_lua.h initstructfun.h initstructfun_lua.h genstrfunction.h genstrfunction_lua.h \
+genstringfun.h genstringfun_lua.h outputcvar.h outputluavar.h ifgen_c.h ifgen_lua.h \
+c_convert.h lua_convert.h
 
 EXTRA_DIST = class.h_skel genmethod.h_skel \
 setmethod.h_skel abstrmethod.h_skel genmethod_body.h_skel \
-cc_source.h_skel copyright.h_skel \
-c_header.h_skel extern_function.h_skel \
-genfunction.h_skel c_source.h_skel strcntfunction.h_skel \
-callmeth.h_skel callextfun.h_skel initstructfun.h_skel \
-genstrfunction.h_skel \
-genstringfun.h_skel outputcvar.h_skel \
-ifgen_c.h_skel \
-c_convert.h_skel \
+cc_source.h_skel lua_source.h_skel copyright.h_skel \
+c_header.h_skel lua_header.h_skel extern_function.h_skel extern_function_lua.h_skel \
+genfunction.h_skel genfunction_lua.h_skel c_source.h_skel strcntfunction.h_skel strcntfunction_lua.h_skel \
+callmeth.h_skel callextfun.h_skel callextfun_lua.h_skel initstructfun.h_skel initstructfun_lua.h_skel \
+genstrfunction.h_skel genstrfunction_lua.h_skel \
+genstringfun.h_skel genstringfun_lua.h_skel outputcvar.h_skel outputluavar.h_skel \
+ifgen_c.h_skel ifgen_lua.h_skel \
+c_convert.h_skel lua_convert.h_skel \
 $(BUILT_SOURCES)
 
 clean-built:
